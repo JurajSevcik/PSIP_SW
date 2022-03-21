@@ -11,15 +11,18 @@ using System.Windows.Forms;
 
 
 //TODO: pozrieť sa kde sa nachádza súbor do ktorého chcem zapoiovaoť 
-//TODO: presuńut vystup do okna ... možnoskusiť ja pop-up
+//TODO: presuńut vystup do okna ... možno skusiť ja pop-up
 
 namespace My_PSIP_project
 {
     internal class Libraly
     {
+        
         public string TextToDisplay;
-        protected LibPcapLiveDevice device_a;
-        protected LibPcapLiveDevice device_b;
+        protected internal LibPcapLiveDevice device_a;  //loopback devices ....
+        protected internal LibPcapLiveDevice device_b;
+        table_class T = new table_class();
+        
 
         static Form1 F = new Form1();
 
@@ -30,7 +33,6 @@ namespace My_PSIP_project
             string[] array = new string[5];
             foreach (var dev in devices)
                  array.Append(dev.ToString());
-            //Console.WriteLine("{0}\n", dev.ToString());
             return array;
         }
 
@@ -49,40 +51,30 @@ namespace My_PSIP_project
         private void ChoseDevice_B()
         {
             var devices = LibPcapLiveDeviceList.Instance; //list of all devices 
-            device_b = devices[7];
+            device_b = devices[9];
         }
 
         public void capture()
         {
-            //F.SetTextCallback("Start");
-
-            //TextToDisplay.Invoke((MethodInvoker)(() => F.textBox1_TextChanged.Text = "My new text"));
-            //F.UpdateTextBox_1_2("Start\r\n");
-            //TextToDisplay += "Start";
-            //string capFile = ("CaptureFile.pcap");
             ChoseDevice_A();
             ChoseDevice_B();
 
-            // Register our handler function to the 'packet arrival' event
+            //handler function to the 'packet arrival' event
             device_a.OnPacketArrival +=
                 new PacketArrivalEventHandler(device_OnPacketArrival_A);
 
             device_b.OnPacketArrival +=
                 new PacketArrivalEventHandler(device_OnPacketArrival_B);
 
-            // Open the device for capturing
+            // Open device 
             int readTimeoutMilliseconds = 1000;
-            device_a.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal, read_timeout: readTimeoutMilliseconds);
-            device_b.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal, read_timeout: readTimeoutMilliseconds);
+            device_a.Open(mode: DeviceModes.Promiscuous /*| DeviceModes.DataTransferUdp */| DeviceModes.NoCaptureLocal, read_timeout: readTimeoutMilliseconds);
+            device_b.Open(mode: DeviceModes.Promiscuous /*| DeviceModes.DataTransferUdp */| DeviceModes.NoCaptureLocal, read_timeout: readTimeoutMilliseconds);
 
             
-
-            // Start the capturing process
+            // Start capturing 
             device_a.StartCapture();
             device_b.StartCapture();
-
-            // Print out the device statistics
-            //Console.WriteLine(device_a.Statistics.ToString());
         }
 
         public void Stop()  //Stop devices   //TODO:add exaption catcher ...if devices are offline 
@@ -90,7 +82,7 @@ namespace My_PSIP_project
             F.UpdateTextBox_1("Stop");
             device_a.StopCapture();
             device_b.StopCapture();
-            Console.WriteLine("A:\nARP {0}\nTCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n", TypARP_in_A, TypTCP_in_A, TypUDP_in_A, TypICMP_in_A, TypHTTP_in_A);
+            Console.WriteLine("A:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n", TypARP_in_A, TypTCP_in_A, TypUDP_in_A, TypICMP_in_A, TypHTTP_in_A);
             Console.WriteLine("B:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n", TypARP_in_B, TypTCP_in_B, TypUDP_in_B, TypICMP_in_B, TypHTTP_in_B);
         }
 
@@ -128,18 +120,18 @@ namespace My_PSIP_project
             TypHTTPS_in_B = 0;
         }
 
-        /// <summary>
-        /// Prints the time and length of each received packet
-        /// </summary>
         private void device_OnPacketArrival_A(object sender, PacketCapture e)
         {
             //var device = (ICaptureDevice)sender;
 
             // write the packet to the file
             var rawPacket = e.GetPacket();
+            //add MAC to table (source)
+            T.GiveMeMyPacket(rawPacket, 'A'); //chceck mac address table and add or cheange log int there  ;
             Console.WriteLine("I got packet A");
             var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
-            device_b.Open();   //open send packet close
+            int readTimeoutMilliseconds = 1000;
+            device_b.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal, read_timeout: readTimeoutMilliseconds);   //open send packet close
             try
             {
                 //Send the packet out the network device
@@ -158,58 +150,33 @@ namespace My_PSIP_project
             //var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
             var ethernetPacket = (EthernetPacket)packet;
             
-
-            /*
-            if (rawPacket.LinkLayerType == PacketDotNet.LinkLayers.Ethernet)
-            {
-                
-                //
-                
-                string text = (packetIndex + " At: " 
-                    + rawPacket.Timeval.Date.ToString() + ":"
-                    + rawPacket.Timeval.Date.Millisecond + " : MAC: "
-                    +  + "-> MAC: "
-                    + ethernetPacket.DestinationHardwareAddress);
-                F.UpdateTextBox_1(text);
-                
-                //int TypARP = 0;
-
-                
-                string arp = "ARP";
-                if (
-                
-                Console.WriteLine("{0} At: {1}:{2}: MAC:{3} -> MAC:{4}",
-                                  packetIndex,
-                                  rawPacket.Timeval.Date.ToString(),
-                                  rawPacket.Timeval.Date.Millisecond,
-                                  ethernetPacket.SourceHardwareAddress,
-                                  ethernetPacket.DestinationHardwareAddress);                
-            }*/
-            
-            
             var type = rawPacket;
-            Console.WriteLine(type);
+            Console.WriteLine("Moj typ je nieco ako neviem co:" + type);
 
-            
             if (packet is ArpPacket)
             {
                 TypARP_in_A++;
+                F.Label_A_ARP_update(TypARP_in_A);
             }
             else if (packet is TcpPacket)
             {
                 TypTCP_in_A++;
+                F.Label_A_TCP_update(TypTCP_in_A);
             }
             else if (packet is UdpPacket)
             {
                 TypUDP_in_A++;
+                F.Label_A_UDP_update(TypUDP_in_A);
             }
             else if (rawPacket is IcmpV4Packet)
             {
                 TypICMP_in_A++;
+                F.Label_A_ICMP_update(TypICMP_in_A);
             }
             else if (packet is HttpStyleUriParser)
                 TypHTTP_in_A++;
-            
+                F.Label_A_HTTP_update(TypHTTP_in_A);
+
             packetIndex++;
         }
 
@@ -218,7 +185,8 @@ namespace My_PSIP_project
             var rawPacket = e.GetPacket();
             Console.WriteLine("I got packet B");
             var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
-            device_a.Open();   //open send packet close
+            int readTimeoutMilliseconds = 1000;
+            device_a.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal);   //open send packet close
             try
             {
                 //Send the packet out the network device
@@ -235,35 +203,53 @@ namespace My_PSIP_project
             
             
             var type = ethernetPacket.Type;
-            Console.WriteLine("my type is ethernet : " + type);
+            Console.WriteLine("Toto je moj typ pre B : " + type);
             if (packet is ArpPacket)
             {
                 TypARP_in_B++;
+                F.Label_B_ARP_update(TypARP_in_B);
             }
             else if (packet is TcpPacket)
             {
                 TypTCP_in_B++;
+                F.Label_B_TCP_update(TypTCP_in_B);
             }
             else if (packet is UdpPacket)
             {
                 TypUDP_in_B++;
+                F.Label_B_UDP_update(TypUDP_in_B);
             }
             else if (rawPacket is IcmpV4Packet)
             {
                 TypICMP_in_B++;
+                F.Label_B_ICMP_update(TypICMP_in_B);
             }
             else if (packet is HttpStyleUriParser)
                 TypHTTP_in_B++;
-            
+                F.Label_B_HTTP_update(TypHTTP_in_B);
+
         }
 
             public async void ControlWrite()
             {
-            //F.textBox1_TextChanged();
-                F.label1_update("fucking work");
-                //F.UpdateTextBox_1_2("This is my favorit text, folow him!\n\r");
-            }
-        
+            device_a.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal);
+            device_b.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal);
+            byte[] bytes = GetRandomPacket();
+                device_a.SendPacket(bytes);
+                device_b.SendPacket(bytes);
+            F.label1_update("Work!");
+            device_a.Close();
+            device_b.Close();
+        }
+
+        private static byte[] GetRandomPacket()
+        {
+            byte[] packet = new byte[200];
+            Random rand = new Random();
+            rand.NextBytes(packet);
+            return packet;
+        }
+
     }
 }
 //prevzate z: 

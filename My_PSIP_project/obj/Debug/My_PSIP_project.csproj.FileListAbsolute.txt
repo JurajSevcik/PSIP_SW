@@ -33,3 +33,13 @@ C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug
 C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\System.Text.Encoding.CodePages.xml
 C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\obj\Debug\My_PSIP_project.csproj.CopyComplete
+C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\Antlr3.Runtime.dll
+C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\Iesi.Collections.dll
+C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\NHibernate.dll
+C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\Remotion.Linq.dll
+C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\Remotion.Linq.EagerFetching.dll
+C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\Antlr3.Runtime.xml
+C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\Iesi.Collections.xml
+C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\NHibernate.xml
+C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\Remotion.Linq.xml
+C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\Remotion.Linq.EagerFetching.xml

@@ -148,7 +148,7 @@ namespace My_PSIP_project
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            this.textBox2.AppendText("Text");
+            //this.textBox2.AppendText("Text");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -159,6 +159,120 @@ namespace My_PSIP_project
         public void label1_update(string Text)
         {
             this.label1.Text += Text;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            
+        }
+
+        public void Label_B_ARP_update(int Text)
+        {
+            Label_B_ARP.Text = Text.ToString();
+        }
+
+        public void Label_B_TCP_update(int Text)
+        {
+            Label_B_TCP.Text = Text.ToString();
+        }
+
+        public void Label_B_UDP_update(int Text)
+        {
+            Label_B_UDP.Text = Text.ToString();
+        }
+
+        public void Label_B_ICMP_update(int Text)
+        {
+            Label_B_ICMP.Text = Text.ToString();
+        }
+        public void Label_B_HTTP_update(int Text)
+        {
+            Label_B_HTTP.Text = Text.ToString();
+        }
+
+        //
+
+        public void Label_A_ARP_update(int Text)
+        {
+            Label_A_ARP.Text = Text.ToString();
+        }
+
+        public void Label_A_TCP_update(int Text)
+        {
+            Label_A_TCP.Text = Text.ToString();
+        }
+
+        public void Label_A_UDP_update(int Text)
+        {
+            Label_A_UDP.Text = Text.ToString();
+        }
+
+        public void Label_A_ICMP_update(int Text)
+        {
+            Label_B_ICMP.Text = Text.ToString();
+        }
+        public void Label_A_HTTP_update(int Text)
+        {
+            Label_B_HTTP.Text = Text.ToString();
+        }
+
+
+
+
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label_B_UDP_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label_A_ARP_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 
