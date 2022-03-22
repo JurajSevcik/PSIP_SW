@@ -36,6 +36,7 @@ namespace My_PSIP_project
     internal class Libraly
     {
         public MacZaznam[] table = new MacZaznam[25];
+
         //public MacZaznam[] table = new MacZaznam[25];
         public string TextToDisplay;
         protected internal LibPcapLiveDevice device_a;  //loopback devices ....
