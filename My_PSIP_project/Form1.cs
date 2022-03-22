@@ -13,13 +13,14 @@ using SharpPcap.LibPcap;
 
 
 
-
 namespace My_PSIP_project
 {
     public partial class Form1 : Form
     {
         Libraly L = new Libraly();
-        private Thread thread2 = null;
+        table_class T = new table_class();
+        
+        //private Thread thread2 = null;
         private delegate void SafeCallDelegate(string text);
         delegate void SetTextCallback(string text);
         public Form1()
@@ -33,27 +34,7 @@ namespace My_PSIP_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /*
-            Libraly L = new Libraly();
-            Array var = L.Devices();
-            foreach (Libraly item in var)
-                textBox1.AppendText(var.ToString());
-            */
-            /*
-            var devices = CaptureDeviceList.Instance;
-            string[] array = new string[5];
-            foreach (var dev in devices)
-                textBox1.Append(dev.ToString());
-            */
-            //Console.WriteLine("{0}\n", dev.ToString());
             
-            //textBox1.AppendText(dev.ToString()+ "\r\n");
-            //    textBox1.AppendText("\r\n");
-
-            //Console.WriteLine("{0}\n", dev.ToString());
-            //textBox1.AppendText(L.captre);
-            //textBox1.AppendText(dev.ToString() + "\r\n");
-            //textBox1.AppendText("This shoud run some up, and showe mw a conection!\r\n");
         }
 
         public void lblHelloWorld_Click(object sender, EventArgs e)
@@ -69,11 +50,13 @@ namespace My_PSIP_project
 
         private void button2_Click(object sender, EventArgs e)//capture 
         {
-            thread2 = new Thread(new ThreadStart(L.capture));
-            thread2.Start();
+            //thread2 = new Thread(new ThreadStart(L.capture));
+            //thread2.Start();
 
             var devices = LibPcapLiveDeviceList.Instance; //list of all devices 
             //device_a = devices[8];
+            //T.emmpy();
+            L.capture();
             int i = 0;
             foreach (var dev in devices)
             {
@@ -100,17 +83,7 @@ namespace My_PSIP_project
         public void UpdateTextBox_1(string text)
         {
             textBox1.Text = L.TextToDisplay;
-            /*
-            if (textBox1.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(UpdateTextBox_1);
-                Invoke(d, new object[] { text });
-            }
-            else
-            {
-                textBox1.AppendText(text);
-            }
-            */
+ 
         }
 
         public void UpdateTextBox_1_2(string Text)
@@ -273,6 +246,11 @@ namespace My_PSIP_project
         private void button2_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            L.show_table();
         }
     }
 

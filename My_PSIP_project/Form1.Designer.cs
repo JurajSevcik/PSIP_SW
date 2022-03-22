@@ -106,6 +106,7 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label24 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -709,11 +710,22 @@
             this.label24.TabIndex = 53;
             this.label24.Text = "MacAddressTable";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1431, 419);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(132, 108);
+            this.button4.TabIndex = 54;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1633, 771);
+            this.ClientSize = new System.Drawing.Size(1662, 771);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.listView2);
             this.Controls.Add(this.listView1);
@@ -836,6 +848,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button button4;
     }
 }
 

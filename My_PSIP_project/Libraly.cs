@@ -10,23 +10,39 @@ using System.Threading;
 using System.Windows.Forms;
 
 
-//TODO: pozrieť sa kde sa nachádza súbor do ktorého chcem zapoiovaoť 
+//TODO: pozrieť sa kde sa nwachádza súbor do ktorého chcem zapoiovaoť 
 //TODO: presuńut vystup do okna ... možno skusiť ja pop-up
+class MacZaznam
+{
+    public string mac_addres = "empty"; //wher packet is from -- and wher i will send next one to this destination
+    public char M_interface = 'X'; //on whitch interface did i get packet   
+    public string destination = "empty";
+    
+    /*
+    MacZaznam(string x, char y, string z)
+    {
+        this.mac_addres = x;
+        M_interface = y;
+        destination = z;
+    }*/
+
+}
+
+
+
 
 namespace My_PSIP_project
 {
     internal class Libraly
     {
-        
+        public MacZaznam[] table = new MacZaznam[25];
+        //public MacZaznam[] table = new MacZaznam[25];
         public string TextToDisplay;
         protected internal LibPcapLiveDevice device_a;  //loopback devices ....
         protected internal LibPcapLiveDevice device_b;
-        table_class T = new table_class();
-        
-
         static Form1 F = new Form1();
+        table_class T = new table_class();
 
-        private static CaptureFileWriterDevice captureFileWriter;
         public Array Devices()
         {
             var devices = CaptureDeviceList.Instance;
@@ -68,10 +84,9 @@ namespace My_PSIP_project
 
             // Open device 
             int readTimeoutMilliseconds = 1000;
-            device_a.Open(mode: DeviceModes.Promiscuous /*| DeviceModes.DataTransferUdp */| DeviceModes.NoCaptureLocal, read_timeout: readTimeoutMilliseconds);
-            device_b.Open(mode: DeviceModes.Promiscuous /*| DeviceModes.DataTransferUdp */| DeviceModes.NoCaptureLocal, read_timeout: readTimeoutMilliseconds);
+            device_a.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal, read_timeout: readTimeoutMilliseconds);
+            device_b.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal, read_timeout: readTimeoutMilliseconds);
 
-            
             // Start capturing 
             device_a.StartCapture();
             device_b.StartCapture();
@@ -122,16 +137,27 @@ namespace My_PSIP_project
 
         private void device_OnPacketArrival_A(object sender, PacketCapture e)
         {
+            
+            PacketSender S = new PacketSender();
+            
             //var device = (ICaptureDevice)sender;
 
             // write the packet to the file
             var rawPacket = e.GetPacket();
             //add MAC to table (source)
-            T.GiveMeMyPacket(rawPacket, 'A'); //chceck mac address table and add or cheange log int there  ;
+            
+            
             Console.WriteLine("I got packet A");
             var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
-            int readTimeoutMilliseconds = 1000;
-            device_b.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal, read_timeout: readTimeoutMilliseconds);   //open send packet close
+
+            //TODO: move to sendnder class 
+            //TODO: add calss for sattictics
+            //TODO: move after statiscick
+            
+            T.GiveMeMyPacket(table, rawPacket, 'A'); //chceck mac address table and add or cheange log int there  ;
+            S.send(rawPacket, 'A', table);
+
+            device_b.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal, read_timeout: 1000);   //open send packet close
             try
             {
                 //Send the packet out the network device
@@ -178,6 +204,22 @@ namespace My_PSIP_project
                 F.Label_A_HTTP_update(TypHTTP_in_A);
 
             packetIndex++;
+        }
+
+        public void show_table()
+        {
+            //for (int i = 0; i <= size; i++)
+            int i = 0;
+            Console.WriteLine("My MAC table:");
+            while (table[i].mac_addres != "empty")
+            {
+                Console.WriteLine("{0}:\n MAC: {1}, des:{2}, interface:{3}", i, (table[i].mac_addres), (table[i].destination), (table[i].M_interface));
+                i++;
+            }
+            if (i == 0)
+            {
+                Console.WriteLine("empty");
+            }
         }
 
         private void device_OnPacketArrival_B(object sender, PacketCapture e)
@@ -230,16 +272,9 @@ namespace My_PSIP_project
 
         }
 
-            public async void ControlWrite()
-            {
-            device_a.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal);
-            device_b.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal);
-            byte[] bytes = GetRandomPacket();
-                device_a.SendPacket(bytes);
-                device_b.SendPacket(bytes);
-            F.label1_update("Work!");
-            device_a.Close();
-            device_b.Close();
+        public async void ControlWrite()
+        {
+            Console.WriteLine("I am working and i love it ");
         }
 
         private static byte[] GetRandomPacket()

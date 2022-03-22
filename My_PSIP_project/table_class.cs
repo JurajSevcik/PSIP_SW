@@ -11,12 +11,23 @@ using SharpPcap;
 using SharpPcap.LibPcap;
 using PacketDotNet;
 
-struct MacZaznam
+/*
+class MacZaznam
 {
-    public string mac_addres; //wher packet is from -- and wher i will send next one to this destination
-    public char M_interface; //on whitch interface did i get packet   
-    public string destination;
+    public string mac_addres = "empty"; //wher packet is from -- and wher i will send next one to this destination
+    public char M_interface = 'X'; //on whitch interface did i get packet   
+    public string destination = "empty";
+
+    MacZaznam(string x,char y,string z)
+    {
+        mac_addres = x;
+        M_interface = y;
+        destination = z;
+    }
+
 }
+*/
+//TODO: pridaj odstranenie / prehodenie kabla ...
 
 
 namespace My_PSIP_project
@@ -25,31 +36,23 @@ namespace My_PSIP_project
     internal class table_class
     {
         static int size = 25; //number of addreses in mac table s
-        protected MacZaznam[] table = new MacZaznam[size];
+        //public MacZaznam[] table = new MacZaznam[size];
+        //protected List<MacZaznam> table = new List<MacZaznam>;
+        
 
 
-        private void vyprazdny(MacZaznam[] table)  //vyprazdny my moju tabulku aby vyzeralal krajšie 
+        public void emmpy(MacZaznam[] table)  //vyprazdny my moju tabulku aby vyzeralal krajšie 
         {
             for(int i = 0; i <= size; i++)
             {
                 table[i].mac_addres = "empty";
                 table[i].destination = "empty";
-                table[i].M_interface = 0;
+                table[i].M_interface = 'X';
             }
         }
 
-        public void show_table()
-        {
-            for (int i = 0; i <= size; i++)
-            {
-                Console.WriteLine(i + ":\n");
-                Console.WriteLine(table[i].mac_addres);
-                Console.WriteLine(table[i].destination);
-                Console.WriteLine(table[i].M_interface);
-            }
-        }
-
-        public Boolean GiveMeMyPacket(SharpPcap.RawCapture rawPacket, char port )//get source mac and port 
+        
+        public Boolean GiveMeMyPacket(MacZaznam[] table,SharpPcap.RawCapture rawPacket, char port )//get source mac and port 
         {
             //port = 'A'; //TODO: prepisat na parameter 
             string MyMac = "...because c#,  thats why !!!";
@@ -99,7 +102,7 @@ namespace My_PSIP_project
         private bool Is_ther(MacZaznam[] table, string mac, char port) //chack if the address is known 
         {
             
-            for(int i = 0; i < size; i++)
+            for(int i = 0; i  < 25; i++)
             {
                 if (table[i].mac_addres == mac) // mac address is same 
                 {
@@ -145,9 +148,12 @@ namespace My_PSIP_project
             return false;
         }
 
-        public char WhereDoIGO(MacZaznam[] table, string mac) //destination mac address
+        public char WhereDoIGO(MacZaznam[] table,string mac) //destination mac address
         //return port where to send packet ...return X sa defolt when unknown --> brodcast
         {
+            if (mac == "ff:ff:ff:ff:ff:ff"){
+                return 'X';
+            }
             for (int i = 0; i < size; i++)
             {
                 if (table[i].mac_addres == mac) // mac address is same 

@@ -14,14 +14,14 @@ namespace My_PSIP_project
         Libraly L = new Libraly();
         table_class T = new table_class();
         
-        public void send(SharpPcap.RawCapture rawPacket, char port)  //get packet and where it come from
+        public void send(SharpPcap.RawCapture rawPacket, char port, MacZaznam[] table)  //get packet and where it come from
         {
             var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
             var ethernetPacket = (EthernetPacket)packet;
             string ToMac = (ethernetPacket.DestinationHardwareAddress).ToString();
             //todo: chack rouls for sending packets 
             //Console.WriteLine(L.device_a);
-            char intf = T.WhereDoIGO(ToMac);
+            char intf = T.WhereDoIGO(table, ToMac);
             LibPcapLiveDevice gate = L.device_a;
             //send packet to other port 
             if (intf == 'X') //no idead wher to go --> everywhere but home 
