@@ -11,10 +11,10 @@ namespace My_PSIP_project
 {
     internal class PacketSender
     {
-        Libraly L = new Libraly();
+        //Libraly L = new Libraly();
         table_class T = new table_class();
         
-        public void send(SharpPcap.RawCapture rawPacket, char port, MacZaznam[] table)  //get packet and where it come from
+        public void send(LibPcapLiveDevice device_a, LibPcapLiveDevice device_b, SharpPcap.RawCapture rawPacket, char port, List<MacZaznam> table)  //get packet and where it come from
         {
             var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
             var ethernetPacket = (EthernetPacket)packet;
@@ -22,21 +22,19 @@ namespace My_PSIP_project
             //todo: chack rouls for sending packets 
             //Console.WriteLine(L.device_a);
             char intf = T.WhereDoIGO(table, ToMac);
-            LibPcapLiveDevice gate = L.device_a;
+            
             //send packet to other port 
             if (intf == 'X') //no idead wher to go --> everywhere but home 
             {
-                if (port == 'A') { gate = L.device_b; } else { gate = L.device_a; }// other port 
-                go(gate, rawPacket);
+                if (port == 'A') { go(device_b, rawPacket); } else { go(device_a, rawPacket); }// other port 
+                
             }
-            else if(intf == 'A') { 
-                gate = L.device_a;
-                go(gate, rawPacket);
+            else if(intf == 'A') {
+                go(device_a, rawPacket);
             }
             else if (intf == 'B')
             {
-                gate = L.device_b;
-                go(gate, rawPacket);
+                go(device_b, rawPacket);
             }
 
         }

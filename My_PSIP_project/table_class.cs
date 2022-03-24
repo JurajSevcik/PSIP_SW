@@ -11,22 +11,7 @@ using SharpPcap;
 using SharpPcap.LibPcap;
 using PacketDotNet;
 
-/*
-class MacZaznam
-{
-    public string mac_addres = "empty"; //wher packet is from -- and wher i will send next one to this destination
-    public char M_interface = 'X'; //on whitch interface did i get packet   
-    public string destination = "empty";
 
-    MacZaznam(string x,char y,string z)
-    {
-        mac_addres = x;
-        M_interface = y;
-        destination = z;
-    }
-
-}
-*/
 //TODO: pridaj odstranenie / prehodenie kabla ...
 
 
@@ -39,20 +24,17 @@ namespace My_PSIP_project
         //public MacZaznam[] table = new MacZaznam[size];
         //protected List<MacZaznam> table = new List<MacZaznam>;
         
-
-
-        public void emmpy(MacZaznam[] table)  //vyprazdny my moju tabulku aby vyzeralal krajšie 
+        public void emmpy(List<MacZaznam> table)  //vyprazdny my moju tabulku aby vyzeralal krajšie 
         {
-            for(int i = 0; i <= size; i++)
+            foreach(MacZaznam zaznam in table)
             {
-                table[i].mac_addres = "empty";
-                table[i].destination = "empty";
-                table[i].M_interface = 'X';
+                zaznam.M_interface = 'X';
+                zaznam.mac_addres = "empty";
+                zaznam.destination = "empty";
             }
         }
-
-        
-        public Boolean GiveMeMyPacket(MacZaznam[] table,SharpPcap.RawCapture rawPacket, char port )//get source mac and port 
+ 
+        public Boolean GiveMeMyPacket(List<MacZaznam> table, SharpPcap.RawCapture rawPacket, char port )//get source mac and port 
         {
             //port = 'A'; //TODO: prepisat na parameter 
             string MyMac = "...because c#,  thats why !!!";
@@ -62,13 +44,11 @@ namespace My_PSIP_project
                 var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
                 var ethernetPacket = (EthernetPacket)packet;
                 MyMac =  (ethernetPacket.SourceHardwareAddress).ToString();
-                //var destinationMAC = ethernetPacket.DestinationHardwareAddress;
             }
             else
             {
                 return false; //it is not ethernet which is weerd ...ther is nothing else it could be !!!
             }
-
             bool isExisting = Is_ther(table, MyMac, port);
             if (isExisting)
             {
@@ -84,9 +64,11 @@ namespace My_PSIP_project
 
 
         //TODO: remove this usseles something
-        private void AddToTable(MacZaznam[] table, string mac, char port)  //check if mac exist in tabel and if so on what port, if not add to table.
+        private void AddToTable(List<MacZaznam> table, string mac, char port)  //check if mac exist in tabel and if so on what port, if not add to table.
         {
+            //table.Append();
             int i = 0;
+
             while(table[i].mac_addres != "empty")
             {
                 i++;
@@ -99,66 +81,40 @@ namespace My_PSIP_project
         //TODO: add cheange array to dynamic 
         //TODO: add time to table (cheangable)
         //check if mac exist in tabel and if so on what port, if not add to table.
-        private bool Is_ther(MacZaznam[] table, string mac, char port) //chack if the address is known 
+        private bool Is_ther(List<MacZaznam> table, string mac, char port) //chack if the address is known 
         {
-            
-            for(int i = 0; i  < 25; i++)
-            {
-                if (table[i].mac_addres == mac) // mac address is same 
+            foreach(MacZaznam zanznem in table)
+                if(zanznem.mac_addres == mac )
                 {
-                    if (table[i].M_interface == port)
+                    if(zanznem.M_interface == port)
                     {
-                        //TODO: reset timer
-                        return true; //ther is record and i know it 
-
-                    }
-                    else
-                    {
-                        table[i].mac_addres = mac;
-                        table[i].destination = "empty";
-                        table[i].M_interface = port;
-                        Console.WriteLine("There seem to be some misschief going on ( I know mac but ther was wrong port )");
-                        return false; 
-                        //it's a difrent port and i nead to cheange it 
-                        //is from difrent port --delete 
-                    }
-                }
-            }
-            int j = 0;  
-            while(table[j].mac_addres != "empty")  //add to first empty place //todo: afret dinamic just append
-            {
-                if (table[j].mac_addres == mac) // mac address is same 
-                {
-                    if(table[j].M_interface == port) //there alredy is record ..check for interface 
-                    {
-                        //todo: reset timer
                         return true;
                     }
                     else
                     {
-                        break;
+                        zanznem.mac_addres = mac;
+                        zanznem.destination = "empty";
+                        zanznem.M_interface = port;
+                        Console.WriteLine("There seem to be some misschief going on ( I know mac but ther was wrong port )");
+                        return false;
                     }
                 }
-                j++;            
-            }
-            table[j].mac_addres = mac;
-            table[j].destination = "empty";
-            table[j].M_interface = port;
-
+            MacZaznam zaznam = new MacZaznam() { destination = "empty", mac_addres = mac, M_interface=port};
+            table.Add(zaznam);
             return false;
         }
 
-        public char WhereDoIGO(MacZaznam[] table,string mac) //destination mac address
+        public char WhereDoIGO(List<MacZaznam> table, string mac) //destination mac address
         //return port where to send packet ...return X sa defolt when unknown --> brodcast
         {
             if (mac == "ff:ff:ff:ff:ff:ff"){
                 return 'X';
             }
-            for (int i = 0; i < size; i++)
+            foreach(MacZaznam zaznam in table)
             {
-                if (table[i].mac_addres == mac) // mac address is same 
+                if(zaznam.mac_addres == mac )
                 {
-                    return table[i].M_interface;
+                    return zaznam.M_interface;
                 }
             }
             return 'X'; //

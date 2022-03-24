@@ -14,18 +14,9 @@ using System.Windows.Forms;
 //TODO: presuńut vystup do okna ... možno skusiť ja pop-up
 class MacZaznam
 {
-    public string mac_addres = "empty"; //wher packet is from -- and wher i will send next one to this destination
-    public char M_interface = 'X'; //on whitch interface did i get packet   
-    public string destination = "empty";
-    
-    /*
-    MacZaznam(string x, char y, string z)
-    {
-        this.mac_addres = x;
-        M_interface = y;
-        destination = z;
-    }*/
-
+    public string mac_addres{ get; set; } //wher packet is from -- and wher i will send next one to this destination
+    public char M_interface { get; set; }//on whitch interface did i get packet   
+    public string destination { get; set; }
 }
 
 
@@ -35,9 +26,7 @@ namespace My_PSIP_project
 {
     internal class Libraly
     {
-        public MacZaznam[] table = new MacZaznam[25];
-
-        //public MacZaznam[] table = new MacZaznam[25];
+        public List<MacZaznam>  table = new List<MacZaznam>();
         public string TextToDisplay;
         protected internal LibPcapLiveDevice device_a;  //loopback devices ....
         protected internal LibPcapLiveDevice device_b;
@@ -77,11 +66,8 @@ namespace My_PSIP_project
             ChoseDevice_B();
 
             //handler function to the 'packet arrival' event
-            device_a.OnPacketArrival +=
-                new PacketArrivalEventHandler(device_OnPacketArrival_A);
-
-            device_b.OnPacketArrival +=
-                new PacketArrivalEventHandler(device_OnPacketArrival_B);
+            device_a.OnPacketArrival += new PacketArrivalEventHandler(device_OnPacketArrival_A);
+            device_b.OnPacketArrival += new PacketArrivalEventHandler(device_OnPacketArrival_B);
 
             // Open device 
             int readTimeoutMilliseconds = 1000;
@@ -138,16 +124,8 @@ namespace My_PSIP_project
 
         private void device_OnPacketArrival_A(object sender, PacketCapture e)
         {
-            
             PacketSender S = new PacketSender();
-            
-            //var device = (ICaptureDevice)sender;
-
-            // write the packet to the file
-            var rawPacket = e.GetPacket();
-            //add MAC to table (source)
-            
-            
+            var rawPacket = e.GetPacket();            
             Console.WriteLine("I got packet A");
             var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
 
@@ -156,27 +134,21 @@ namespace My_PSIP_project
             //TODO: move after statiscick
             
             T.GiveMeMyPacket(table, rawPacket, 'A'); //chceck mac address table and add or cheange log int there  ;
-            S.send(rawPacket, 'A', table);
+            S.send(device_a, device_b,   rawPacket, 'A', table);
 
+            /*
             device_b.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal, read_timeout: 1000);   //open send packet close
             try
             {
-                //Send the packet out the network device
-                device_b.SendPacket(rawPacket.Data);
-                
-                //Console.WriteLine("-- Packet sent successfuly.");
+                device_b.SendPacket(rawPacket.Data); //Send the packet out the network device
             }
             catch (Exception )
             {
                 Console.WriteLine("-- error");
-            }
+            }*/
             
             device_b.Close();
-            //captureFileWriter.Write(rawPacket);
-            //Console.WriteLine("Packet dumped to file.");
-            //var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
             var ethernetPacket = (EthernetPacket)packet;
-            
             var type = rawPacket;
             Console.WriteLine("Moj typ je nieco ako neviem co:" + type);
 
@@ -209,26 +181,27 @@ namespace My_PSIP_project
 
         public void show_table()
         {
-            //for (int i = 0; i <= size; i++)
             int i = 0;
             Console.WriteLine("My MAC table:");
-            while (table[i].mac_addres != "empty")
+            foreach(MacZaznam zaznam in table)
             {
-                Console.WriteLine("{0}:\n MAC: {1}, des:{2}, interface:{3}", i, (table[i].mac_addres), (table[i].destination), (table[i].M_interface));
+                Console.WriteLine("{0}: MAC: {1}, des:{2}, interface:{3}", i, (zaznam.mac_addres), (zaznam.destination), (zaznam.M_interface));
                 i++;
-            }
-            if (i == 0)
-            {
-                Console.WriteLine("empty");
             }
         }
 
         private void device_OnPacketArrival_B(object sender, PacketCapture e)
         {
+            PacketSender S = new PacketSender();
             var rawPacket = e.GetPacket();
             Console.WriteLine("I got packet B");
             var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
             int readTimeoutMilliseconds = 1000;
+
+            T.GiveMeMyPacket(table, rawPacket, 'B'); //chceck mac address table and add or cheange log int there  ;
+            S.send(device_a, device_b, rawPacket, 'B', table);
+
+            /*
             device_a.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal);   //open send packet close
             try
             {
@@ -240,7 +213,7 @@ namespace My_PSIP_project
             {
                 Console.WriteLine("-- error");
             }
-            device_a.Close();
+            device_a.Close();*/
 
             var ethernetPacket = (EthernetPacket)packet;
             
