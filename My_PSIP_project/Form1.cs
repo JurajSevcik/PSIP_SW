@@ -13,19 +13,24 @@ using SharpPcap.LibPcap;
 
 
 
+
+
 namespace My_PSIP_project
 {
     public partial class Form1 : Form
     {
-        Libraly L = new Libraly();
         table_class T = new table_class();
+        Libraly L = new Libraly();
         
+
+
         //private Thread thread2 = null;
         private delegate void SafeCallDelegate(string text);
         delegate void SetTextCallback(string text);
         public Form1()
         {
             InitializeComponent();
+            dataGridView1.DataSource = L.table;
             //backgroundWorker1.WorkerReportsProgress = true;
             //backgroundWorker1.WorkerSupportsCancellation = true;
         }
@@ -251,6 +256,28 @@ namespace My_PSIP_project
         private void button4_Click_1(object sender, EventArgs e)
         {
             L.show_table();
+        }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        public void DGW(List<MacZaznam> table)
+        {
+            dataGridView1.DataSource = table;
+        }
+
+        public void dataFridView1_update()
+        {
+            //dataGridView1.DataSource = table;
+            dataGridView1.Update();
+            dataGridView1.Refresh();
+        }
+
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 //TODO: pozrieť sa kde sa nwachádza súbor do ktorého chcem zapoiovaoť 
 //TODO: presuńut vystup do okna ... možno skusiť ja pop-up
-class MacZaznam
+public class MacZaznam
 {
     public string mac_addres{ get; set; } //wher packet is from -- and wher i will send next one to this destination
     public char M_interface { get; set; }//on whitch interface did i get packet   
@@ -26,12 +26,14 @@ namespace My_PSIP_project
 {
     internal class Libraly
     {
-        public List<MacZaznam>  table = new List<MacZaznam>();
+        public List<MacZaznam> table = new List<MacZaznam>();
         public string TextToDisplay;
         protected internal LibPcapLiveDevice device_a;  //loopback devices ....
         protected internal LibPcapLiveDevice device_b;
         static Form1 F = new Form1();
         table_class T = new table_class();
+        
+        
 
         public Array Devices()
         {
@@ -57,13 +59,16 @@ namespace My_PSIP_project
         private void ChoseDevice_B()
         {
             var devices = LibPcapLiveDeviceList.Instance; //list of all devices 
-            device_b = devices[9];
+            device_b = devices[7];
         }
 
         public void capture()
         {
+           
             ChoseDevice_A();
             ChoseDevice_B();
+
+            //F.dataFridView1_update();
 
             //handler function to the 'packet arrival' event
             device_a.OnPacketArrival += new PacketArrivalEventHandler(device_OnPacketArrival_A);
@@ -136,17 +141,6 @@ namespace My_PSIP_project
             T.GiveMeMyPacket(table, rawPacket, 'A'); //chceck mac address table and add or cheange log int there  ;
             S.send(device_a, device_b,   rawPacket, 'A', table);
 
-            /*
-            device_b.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal, read_timeout: 1000);   //open send packet close
-            try
-            {
-                device_b.SendPacket(rawPacket.Data); //Send the packet out the network device
-            }
-            catch (Exception )
-            {
-                Console.WriteLine("-- error");
-            }*/
-            
             device_b.Close();
             var ethernetPacket = (EthernetPacket)packet;
             var type = rawPacket;
@@ -177,12 +171,17 @@ namespace My_PSIP_project
                 F.Label_A_HTTP_update(TypHTTP_in_A);
 
             packetIndex++;
+            F.dataFridView1_update();
         }
 
         public void show_table()
         {
+            MacZaznam rec = new MacZaznam() { destination = "empty", mac_addres = "MAC", M_interface = 'Q' };
+            table.Add(rec);
+            F.DGW(table);
             int i = 0;
             Console.WriteLine("My MAC table:");
+            F.dataFridView1_update();
             foreach(MacZaznam zaznam in table)
             {
                 Console.WriteLine("{0}: MAC: {1}, des:{2}, interface:{3}", i, (zaznam.mac_addres), (zaznam.destination), (zaznam.M_interface));
@@ -200,23 +199,7 @@ namespace My_PSIP_project
 
             T.GiveMeMyPacket(table, rawPacket, 'B'); //chceck mac address table and add or cheange log int there  ;
             S.send(device_a, device_b, rawPacket, 'B', table);
-
-            /*
-            device_a.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal);   //open send packet close
-            try
-            {
-                //Send the packet out the network device
-                device_a.SendPacket(rawPacket.Data);
-                Console.WriteLine("-- Packet sent successfuly.");
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("-- error");
-            }
-            device_a.Close();*/
-
             var ethernetPacket = (EthernetPacket)packet;
-            
             
             var type = ethernetPacket.Type;
             Console.WriteLine("Toto je moj typ pre B : " + type);
@@ -243,7 +226,7 @@ namespace My_PSIP_project
             else if (packet is HttpStyleUriParser)
                 TypHTTP_in_B++;
                 F.Label_B_HTTP_update(TypHTTP_in_B);
-
+            F.dataFridView1_update();
         }
 
         public async void ControlWrite()

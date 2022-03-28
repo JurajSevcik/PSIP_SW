@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.read_button = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -107,9 +108,12 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label24 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label25 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // read_button
@@ -127,6 +131,7 @@
             // textBox1
             // 
             this.textBox1.AcceptsReturn = true;
+            this.textBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.textBox1.HideSelection = false;
             this.textBox1.Location = new System.Drawing.Point(236, 40);
             this.textBox1.MinimumSize = new System.Drawing.Size(500, 300);
@@ -695,16 +700,17 @@
             this.columnHeader10});
             this.listView2.FullRowSelect = true;
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(968, 79);
+            this.listView2.Location = new System.Drawing.Point(826, 247);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(604, 300);
+            this.listView2.Size = new System.Drawing.Size(93, 113);
             this.listView2.TabIndex = 52;
             this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(965, 60);
+            this.label24.Location = new System.Drawing.Point(965, 43);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(120, 16);
             this.label24.TabIndex = 53;
@@ -712,19 +718,42 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(1431, 419);
+            this.button4.Location = new System.Drawing.Point(1415, 384);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(132, 108);
             this.button4.TabIndex = 54;
-            this.button4.Text = "button4";
+            this.button4.Text = "showMACtable";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeight = 29;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView1.Location = new System.Drawing.Point(968, 60);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(491, 300);
+            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(799, 228);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(120, 16);
+            this.label25.TabIndex = 55;
+            this.label25.Text = "MacAddressTable";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1662, 771);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.listView2);
@@ -753,9 +782,10 @@
             this.Controls.Add(this.Capture_button);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.read_button);
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(18, 47);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "My Asome Application";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -763,6 +793,7 @@
             this.panel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -849,6 +880,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label25;
     }
 }
 

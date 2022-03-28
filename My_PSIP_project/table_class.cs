@@ -20,10 +20,7 @@ namespace My_PSIP_project
 
     internal class table_class
     {
-        static int size = 25; //number of addreses in mac table s
-        //public MacZaznam[] table = new MacZaznam[size];
-        //protected List<MacZaznam> table = new List<MacZaznam>;
-        
+
         public void emmpy(List<MacZaznam> table)  //vyprazdny my moju tabulku aby vyzeralal krajšie 
         {
             foreach(MacZaznam zaznam in table)
