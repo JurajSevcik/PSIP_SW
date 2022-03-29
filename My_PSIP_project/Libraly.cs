@@ -162,15 +162,16 @@ namespace My_PSIP_project
             //TODO: move after statiscick
             PacketSender S = new PacketSender();
             var rawPacket = e.GetPacket();         //zachytenie packetu        
-            /*
+            
+            //filtrovanie packetov len na tiek ktore ma zaujimaju 
             var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
             var ethernetPacket = (EthernetPacket)packet;
             List<string> MacDev = new List<String> { "005079666800", "005079666801", "005079666802" };
             string MyMac = (ethernetPacket.SourceHardwareAddress).ToString();
-            if (MacDev.Contains(MyMac) != true)
+            if (MacDev.Contains(MyMac) != true) // ak nie  je z niektorej mac vysie je premna useless
             {
                 return;
-            }*/
+            }
 
 
             T.GiveMeMyPacket( rawPacket, 'A'); //chceck mac address table and add or cheange log int there  ;
@@ -240,15 +241,16 @@ namespace My_PSIP_project
             T.GiveMeMyPacket( rawPacket, 'B'); //chceck mac address table and add or cheange log int there  ;
             S.send(device_a, device_b, rawPacket, 'B');
             //device_a.Close();
-            
-
 
             //var ethernetPacket = (EthernetPacket)packet;
             //var tcp = packet.PayloadPacket.PayloadPacket.PayloadData;
             //var type = ethernetPacket.Type;
-            
+
             //Console.WriteLine("Toto je moj typ pre B : " + tcp);
-            
+            var pppc = packet.ToString();
+            Console.WriteLine(pppc);
+            //PacketDotNet.EthernetType.IPv4.
+
             if (packet is PacketDotNet.ArpPacket)
             {
                 ARP_in_B++;
@@ -264,16 +266,12 @@ namespace My_PSIP_project
                 UDP_in_B++;
                 F.Label_B_UDP_update(UDP_in_B);
             }
-            else if (rawPacket is PacketDotNet.IcmpV4Packet)
+            else if (packet is PacketDotNet.IcmpV4Packet)
             {
                 ICMP_in_B++;
                 F.Label_B_ICMP_update(ICMP_in_B);
             }
-            /*
-            else if (packet is PacketDotNet.HttpStyleUriParser)
-                HTTP_in_B++;
-                F.Label_B_HTTP_update(HTTP_in_B);
-            */
+
             F.DGW();
         }
 
