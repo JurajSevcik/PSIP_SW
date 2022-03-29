@@ -26,7 +26,7 @@ namespace My_PSIP_project
 {
     internal class Libraly
     {
-        public List<MacZaznam> table = new List<MacZaznam>();
+        public static List<MacZaznam> table = new List<MacZaznam>();
         public string TextToDisplay;
         protected internal LibPcapLiveDevice device_a;  //loopback devices ....
         protected internal LibPcapLiveDevice device_b;
@@ -62,7 +62,7 @@ namespace My_PSIP_project
             device_b = devices[7];
         }
 
-        public void capture()
+        public List<MacZaznam> capture()
         {
            
             ChoseDevice_A();
@@ -82,6 +82,8 @@ namespace My_PSIP_project
             // Start capturing 
             device_a.StartCapture();
             device_b.StartCapture();
+
+            return table;
         }
 
         public void Stop()  //Stop devices   //TODO:add exaption catcher ...if devices are offline 
@@ -89,42 +91,44 @@ namespace My_PSIP_project
             F.UpdateTextBox_1("Stop");
             device_a.StopCapture();
             device_b.StopCapture();
-            Console.WriteLine("A:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n", TypARP_in_A, TypTCP_in_A, TypUDP_in_A, TypICMP_in_A, TypHTTP_in_A);
-            Console.WriteLine("B:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n", TypARP_in_B, TypTCP_in_B, TypUDP_in_B, TypICMP_in_B, TypHTTP_in_B);
+            Console.WriteLine("A:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n", ARP_in_A, TCP_in_A, UDP_in_A, ICMP_in_A, HTTP_in_A);
+            Console.WriteLine("B:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n", ARP_in_B, TCP_in_B, UDP_in_B, ICMP_in_B, HTTP_in_B);
         }
 
 
         private static int packetIndex = 0;
-        private static int TypARP_in_A  = 0;
-        private static int TypTCP_in_A  = 0;
-        private static int TypUDP_in_A = 0;
-        private static int TypICMP_in_A = 0;
-        private static int TypHTTP_in_A = 0;
-        private static int TypHTTPS_in_A = 0;
+        private static int EthernetII_in_A = 0;
+        private static int ARP_in_A  = 0;
+        private static int TCP_in_A  = 0;
+        private static int UDP_in_A = 0;
+        private static int ICMP_in_A = 0;
+        private static int HTTP_in_A = 0;
+        private static int HTTPS_in_A = 0;
 
-        private static int TypARP_in_B = 0;
-        private static int TypTCP_in_B = 0;
-        private static int TypUDP_in_B = 0;
-        private static int TypICMP_in_B = 0;
-        private static int TypHTTP_in_B = 0;
-        private static int TypHTTPS_in_B = 0;
+        private static int EthernetII_in_B = 0;
+        private static int ARP_in_B = 0;
+        private static int TCP_in_B = 0;
+        private static int UDP_in_B = 0;
+        private static int ICMP_in_B = 0;
+        private static int HTTP_in_B = 0;
+        private static int HTTPS_in_B = 0;
 
 
         private void reset()
         {
-            TypARP_in_A  = 0;
-            TypTCP_in_A  = 0;
-            TypUDP_in_A = 0;
-            TypICMP_in_A = 0;
-            TypHTTP_in_A = 0;
-            TypHTTPS_in_A = 0;
+            ARP_in_A  = 0;
+            TCP_in_A  = 0;
+            UDP_in_A = 0;
+            ICMP_in_A = 0;
+            HTTP_in_A = 0;
+            HTTPS_in_A = 0;
 
-            TypARP_in_B = 0;
-            TypTCP_in_B = 0;
-            TypUDP_in_B = 0;
-            TypICMP_in_B = 0;
-            TypHTTP_in_B = 0;
-            TypHTTPS_in_B = 0;
+            ARP_in_B = 0;
+            TCP_in_B = 0;
+            UDP_in_B = 0;
+            ICMP_in_B = 0;
+            HTTP_in_B = 0;
+            HTTPS_in_B = 0;
         }
 
         private void device_OnPacketArrival_A(object sender, PacketCapture e)
@@ -148,27 +152,27 @@ namespace My_PSIP_project
 
             if (packet is ArpPacket)
             {
-                TypARP_in_A++;
-                F.Label_A_ARP_update(TypARP_in_A);
+                ARP_in_A++;
+                F.Label_A_ARP_update(ARP_in_A);
             }
             else if (packet is TcpPacket)
             {
-                TypTCP_in_A++;
-                F.Label_A_TCP_update(TypTCP_in_A);
+                TCP_in_A++;
+                F.Label_A_TCP_update(TCP_in_A);
             }
             else if (packet is UdpPacket)
             {
-                TypUDP_in_A++;
-                F.Label_A_UDP_update(TypUDP_in_A);
+                UDP_in_A++;
+                F.Label_A_UDP_update(UDP_in_A);
             }
             else if (rawPacket is IcmpV4Packet)
             {
-                TypICMP_in_A++;
-                F.Label_A_ICMP_update(TypICMP_in_A);
+                ICMP_in_A++;
+                F.Label_A_ICMP_update(ICMP_in_A);
             }
             else if (packet is HttpStyleUriParser)
-                TypHTTP_in_A++;
-                F.Label_A_HTTP_update(TypHTTP_in_A);
+                HTTP_in_A++;
+                F.Label_A_HTTP_update(HTTP_in_A);
 
             packetIndex++;
             F.dataFridView1_update();
@@ -177,12 +181,12 @@ namespace My_PSIP_project
         public void show_table()
         {
             MacZaznam rec = new MacZaznam() { destination = "empty", mac_addres = "MAC", M_interface = 'Q' };
-            table.Add(rec);
-            F.DGW(table);
+            //table.Add(rec);
+            //F.DGW(table);
             int i = 0;
             Console.WriteLine("My MAC table:");
-            F.dataFridView1_update();
-            foreach(MacZaznam zaznam in table)
+            //F.dataFridView1_update();
+            foreach(MacZaznam zaznam in Libraly.table)
             {
                 Console.WriteLine("{0}: MAC: {1}, des:{2}, interface:{3}", i, (zaznam.mac_addres), (zaznam.destination), (zaznam.M_interface));
                 i++;
@@ -205,27 +209,27 @@ namespace My_PSIP_project
             Console.WriteLine("Toto je moj typ pre B : " + type);
             if (packet is ArpPacket)
             {
-                TypARP_in_B++;
-                F.Label_B_ARP_update(TypARP_in_B);
+                ARP_in_B++;
+                F.Label_B_ARP_update(ARP_in_B);
             }
             else if (packet is TcpPacket)
             {
-                TypTCP_in_B++;
-                F.Label_B_TCP_update(TypTCP_in_B);
+                TCP_in_B++;
+                F.Label_B_TCP_update(TCP_in_B);
             }
             else if (packet is UdpPacket)
             {
-                TypUDP_in_B++;
-                F.Label_B_UDP_update(TypUDP_in_B);
+                UDP_in_B++;
+                F.Label_B_UDP_update(UDP_in_B);
             }
             else if (rawPacket is IcmpV4Packet)
             {
-                TypICMP_in_B++;
-                F.Label_B_ICMP_update(TypICMP_in_B);
+                ICMP_in_B++;
+                F.Label_B_ICMP_update(ICMP_in_B);
             }
             else if (packet is HttpStyleUriParser)
-                TypHTTP_in_B++;
-                F.Label_B_HTTP_update(TypHTTP_in_B);
+                HTTP_in_B++;
+                F.Label_B_HTTP_update(HTTP_in_B);
             F.dataFridView1_update();
         }
 

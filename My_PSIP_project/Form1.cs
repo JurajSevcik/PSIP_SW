@@ -21,16 +21,13 @@ namespace My_PSIP_project
     {
         table_class T = new table_class();
         Libraly L = new Libraly();
-        
-
 
         //private Thread thread2 = null;
         private delegate void SafeCallDelegate(string text);
         delegate void SetTextCallback(string text);
-        public Form1()
+        public Form1()  
         {
             InitializeComponent();
-            dataGridView1.DataSource = L.table;
             //backgroundWorker1.WorkerReportsProgress = true;
             //backgroundWorker1.WorkerSupportsCancellation = true;
         }
@@ -61,7 +58,7 @@ namespace My_PSIP_project
             var devices = LibPcapLiveDeviceList.Instance; //list of all devices 
             //device_a = devices[8];
             //T.emmpy();
-            L.capture();
+            List<MacZaznam> t = L.capture();
             int i = 0;
             foreach (var dev in devices)
             {
@@ -69,7 +66,8 @@ namespace My_PSIP_project
                 textBox1.AppendText("\n");
                 i++;
             }
-
+            dataGridView1.DataSource = t;
+            
 
             //L.capture();
         }
@@ -256,6 +254,13 @@ namespace My_PSIP_project
         private void button4_Click_1(object sender, EventArgs e)
         {
             L.show_table();
+            int i = 0;
+            Console.WriteLine("My MAC table(form):");
+            foreach (MacZaznam zaznam in Libraly.table)
+            {
+                Console.WriteLine("{0}: MAC: {1}, des:{2}, interface:{3}", i, (zaznam.mac_addres), (zaznam.destination), (zaznam.M_interface));
+                i++;
+            }
         }
 
         private void listView2_SelectedIndexChanged(object sender, EventArgs e)
@@ -264,12 +269,13 @@ namespace My_PSIP_project
         }
         public void DGW(List<MacZaznam> table)
         {
-            dataGridView1.DataSource = table;
+            
+            dataGridView1.DataSource = Libraly.table;
         }
 
         public void dataFridView1_update()
         {
-            //dataGridView1.DataSource = table;
+            dataGridView1.DataSource = Libraly.table;
             dataGridView1.Update();
             dataGridView1.Refresh();
         }

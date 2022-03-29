@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.read_button = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -134,11 +133,11 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.textBox1.HideSelection = false;
             this.textBox1.Location = new System.Drawing.Point(236, 40);
-            this.textBox1.MinimumSize = new System.Drawing.Size(500, 300);
+            this.textBox1.MinimumSize = new System.Drawing.Size(300, 300);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(500, 300);
+            this.textBox1.Size = new System.Drawing.Size(300, 300);
             this.textBox1.TabIndex = 3;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -154,7 +153,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(751, 14);
+            this.button3.Location = new System.Drawing.Point(567, 14);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(155, 23);
             this.button3.TabIndex = 5;
@@ -164,7 +163,7 @@
             // 
             // clear_button
             // 
-            this.clear_button.Location = new System.Drawing.Point(730, 337);
+            this.clear_button.Location = new System.Drawing.Point(461, 346);
             this.clear_button.Name = "clear_button";
             this.clear_button.Size = new System.Drawing.Size(75, 23);
             this.clear_button.TabIndex = 6;
@@ -184,7 +183,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(912, 14);
+            this.textBox2.Location = new System.Drawing.Point(741, 12);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(199, 22);
             this.textBox2.TabIndex = 8;
@@ -202,7 +201,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(759, 60);
+            this.label2.Location = new System.Drawing.Point(582, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 16);
             this.label2.TabIndex = 10;
@@ -427,7 +426,7 @@
             this.panel1.Controls.Add(this.Label_B_UDP);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Location = new System.Drawing.Point(762, 103);
+            this.panel1.Location = new System.Drawing.Point(574, 106);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 100);
             this.panel1.TabIndex = 33;
@@ -700,7 +699,7 @@
             this.columnHeader10});
             this.listView2.FullRowSelect = true;
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(826, 247);
+            this.listView2.Location = new System.Drawing.Point(585, 256);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(93, 113);
             this.listView2.TabIndex = 52;
@@ -718,7 +717,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(1415, 384);
+            this.button4.Location = new System.Drawing.Point(1216, 456);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(132, 108);
             this.button4.TabIndex = 54;
@@ -730,7 +729,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeight = 29;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.Location = new System.Drawing.Point(968, 60);
+            this.dataGridView1.Location = new System.Drawing.Point(787, 88);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(491, 300);
@@ -740,7 +739,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(799, 228);
+            this.label25.Location = new System.Drawing.Point(577, 226);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(120, 16);
             this.label25.TabIndex = 55;
@@ -751,7 +750,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1662, 771);
+            this.ClientSize = new System.Drawing.Size(1368, 771);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
@@ -782,7 +781,6 @@
             this.Controls.Add(this.Capture_button);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.read_button);
-            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(18, 47);
             this.Name = "Form1";
             this.Text = "My Asome Application";

@@ -42,4 +42,4 @@ C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug
 C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\NHibernate.xml
 C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\Remotion.Linq.xml
 C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\bin\Debug\Remotion.Linq.EagerFetching.xml
-C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\obj\Debug\MacZaznam_f.resources
+C:\Users\jurse\Desktop\4_semester\PSIP\My_PSIP_project\My_PSIP_project\obj\Debug\My_PSIP_project.Form1.resources
