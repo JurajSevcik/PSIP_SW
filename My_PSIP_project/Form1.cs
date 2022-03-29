@@ -25,11 +25,20 @@ namespace My_PSIP_project
         //private Thread thread2 = null;
         private delegate void SafeCallDelegate(string text);
         delegate void SetTextCallback(string text);
+        public static BindingSource bindingSource1 = new BindingSource();
         public Form1()  
         {
             InitializeComponent();
             //backgroundWorker1.WorkerReportsProgress = true;
             //backgroundWorker1.WorkerSupportsCancellation = true;
+            //pridelenie textu na statistiky (TODO:dokoncit --pridat B in/out ----nebud lenivé prasa ...smille ) 
+            
+            Label_A_ARP.Text = ST_class.ARP_in_A.ToString();
+            Label_A_TCP.Text = ST_class.TCP_in_A.ToString();
+            bindingSource1.DataSource = ST_class.table;
+            dataGridView1.DataSource = bindingSource1;
+            //dataGridView1.DataSource = ST_class.table;
+
         }
 
        
@@ -66,9 +75,9 @@ namespace My_PSIP_project
                 textBox1.AppendText("\n");
                 i++;
             }
-            dataGridView1.DataSource = t;
             
-
+            //dataGridView1.DataSource = ST_class.table.ToList();
+            //dataGridView1.DataBi
             //L.capture();
         }
 
@@ -175,7 +184,7 @@ namespace My_PSIP_project
 
         public void Label_A_ARP_update(int Text)
         {
-            Label_A_ARP.Text = Text.ToString();
+            Label_A_ARP.Text = ST_class.ARP_in_A.ToString();
         }
 
         public void Label_A_TCP_update(int Text)
@@ -254,36 +263,88 @@ namespace My_PSIP_project
         private void button4_Click_1(object sender, EventArgs e)
         {
             L.show_table();
+            
             int i = 0;
-            Console.WriteLine("My MAC table(form):");
-            foreach (MacZaznam zaznam in Libraly.table)
-            {
-                Console.WriteLine("{0}: MAC: {1}, des:{2}, interface:{3}", i, (zaznam.mac_addres), (zaznam.destination), (zaznam.M_interface));
-                i++;
-            }
+            //dataGridView1.DataSource = ST_class.table.ToList();
+            dataGridView1.Update();
+            
+            
         }
 
         private void listView2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-        public void DGW(List<MacZaznam> table)
+        public void DGW()
         {
             
-            dataGridView1.DataSource = Libraly.table;
+            //L.show_table();
+            //dataGridView1.DataSource = null;
+            //int i = 0;
+            //dataGridView1.DataSource = ST_class.table.ToList();
+            dataGridView1.Update();
+            dataGridView1.Refresh();
+
         }
 
         public void dataFridView1_update()
         {
-            dataGridView1.DataSource = Libraly.table;
-            dataGridView1.Update();
-            dataGridView1.Refresh();
+            //dataGridView1.DataSource = ST_class.table;
+            //dataGridView1.Update();
+            //dataGridView1.Refresh();
         }
 
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            dataGridView1.DataSource = ST_class.table;
+            dataFridView1_update(); 
+            
+        }
 
+        private void label23_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ST_class.rm();
         }
     }
 

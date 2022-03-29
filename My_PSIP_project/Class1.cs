@@ -13,37 +13,42 @@ namespace My_PSIP_project
     {
         table_class T = new table_class();
         
-        public void send(LibPcapLiveDevice device_a, LibPcapLiveDevice device_b, SharpPcap.RawCapture rawPacket, char port, List<MacZaznam> table)  //get packet and where it come from
+        public void send(LibPcapLiveDevice device_a, LibPcapLiveDevice device_b, SharpPcap.RawCapture rawPacket, char port)  //get packet and where it come from
         {
+            
             var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
             var ethernetPacket = (EthernetPacket)packet;
             string ToMac = (ethernetPacket.DestinationHardwareAddress).ToString();
+     
             //todo: chack rouls for sending packets 
-            char intf = T.WhereDoIGO(table, ToMac);
+            char intf = T.WhereDoIGO(ToMac);
+
             
             //send packet to other port 
-            if (intf == 'X') //no idead wher to go --> everywhere but home 
-            {
-                if (port == 'A') { go(device_b, rawPacket); } else { go(device_a, rawPacket); }// other port 
-            }
-            else if(intf == 'A') {
-                go(device_a, rawPacket);
+            if(intf == 'A') {
+                go(device_b, rawPacket);
             }
             else if (intf == 'B')
             {
-                go(device_b, rawPacket);
+                go(device_a, rawPacket);
+            }
+            else
+            {
+                //Console.WriteLine((ethernetPacket.SourceHardwareAddress).ToString());
+                if (port == 'A') { go(device_b, rawPacket); } else { go(device_a, rawPacket); }// other port 
             }
         }
 
         private void go(LibPcapLiveDevice gate, SharpPcap.RawCapture rawPacket)
         {
-            gate.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal, read_timeout: 1000);   //open send packet close
+            //gate.Open(mode: DeviceModes.Promiscuous, 1000);   //open send packet close
             try
             {
-                gate.SendPacket(rawPacket.Data);
+                gate.SendPacket(rawPacket);
+                //Console.WriteLine("you did it ? ");
             }
             catch (Exception) { Console.WriteLine("-- error"); }
-            gate.Close();
+            //gate.Close();
         }
     }
 }

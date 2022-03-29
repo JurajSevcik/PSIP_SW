@@ -10,14 +10,13 @@ using NHibernate.Mapping;
 using SharpPcap;
 using SharpPcap.LibPcap;
 using PacketDotNet;
-
+using System.Timers;
 
 //TODO: pridaj odstranenie / prehodenie kabla ...
 
 
 namespace My_PSIP_project
 {
-
     internal class table_class
     {
 
@@ -27,43 +26,52 @@ namespace My_PSIP_project
             {
                 zaznam.M_interface = 'X';
                 zaznam.mac_addres = "empty";
-                zaznam.destination = "empty";
+               
             }
         }
  
-        public Boolean GiveMeMyPacket(List<MacZaznam> table, SharpPcap.RawCapture rawPacket, char port )//get source mac and port 
+        public Boolean GiveMeMyPacket( SharpPcap.RawCapture rawPacket, char port )//get source mac and port 
         {
             //port = 'A'; //TODO: prepisat na parameter 
             string MyMac = "...because c#,  thats why !!!";
+            List<string> MacDev = new List<String> { "005079666800", "005079666801", "005079666802" };
 
             if (rawPacket.LinkLayerType == PacketDotNet.LinkLayers.Ethernet)  //it should be always thrue
             {
                 var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
                 var ethernetPacket = (EthernetPacket)packet;
                 MyMac =  (ethernetPacket.SourceHardwareAddress).ToString();
+                if (MacDev.Contains(MyMac))
+                {
+                    //Console.WriteLine("Som tam");
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 return false; //it is not ethernet which is weerd ...ther is nothing else it could be !!!
             }
-            bool isExisting = Is_ther(table, MyMac, port);
+            bool isExisting = Is_ther( MyMac, port);
             if (isExisting)
             {
-                Console.WriteLine("Jop, not creazy .... yet,   and i also added it to mac table ");
+                //Console.WriteLine("Jop, not creazy .... yet,   and i also added it to mac table ");
                 //mal by som vrátiť kam sa má poslať 
             }
             else //Adresu nepoznam 
             {
-                Console.WriteLine("proste, NIE !!!, ");
+                //Console.WriteLine("proste, NIE !!!, ");
             }
             return true;
         }
 
+ 
 
         //TODO: remove this usseles something
         private void AddToTable(List<MacZaznam> table, string mac, char port)  //check if mac exist in tabel and if so on what port, if not add to table.
         {
-            //table.Append();
             int i = 0;
 
             while(table[i].mac_addres != "empty")
@@ -71,16 +79,25 @@ namespace My_PSIP_project
                 i++;
             }
             table[i].mac_addres = mac;
-            table[i].destination = "ja neviem uz";
+            table[i].timer.Start();
+            //table[i].destination = "ja neviem uz";
             table[i].M_interface = port;
+        }
+
+
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}", e.SignalTime);
         }
 
         //TODO: add cheange array to dynamic 
         //TODO: add time to table (cheangable)
         //check if mac exist in tabel and if so on what port, if not add to table.
-        private bool Is_ther(List<MacZaznam> table, string mac, char port) //chack if the address is known 
+        private bool Is_ther( string mac, char port) //chack if the address is known 
         {
-            foreach(MacZaznam zanznem in table)
+            time_classcs Tm = new time_classcs();
+
+            foreach(MacZaznam zanznem in ST_class.table)
                 if(zanznem.mac_addres == mac )
                 {
                     if(zanznem.M_interface == port)
@@ -90,24 +107,26 @@ namespace My_PSIP_project
                     else
                     {
                         zanznem.mac_addres = mac;
-                        zanznem.destination = "empty";
+                        //Tm.start_tiemer();
+                        //zanznem.timer.Start();
                         zanznem.M_interface = port;
-                        Console.WriteLine("There seem to be some misschief going on ( I know mac but ther was wrong port )");
+                        //Console.WriteLine("There seem to be some misschief going on ( I know mac but ther was wrong port )");
                         return false;
                     }
                 }
-            MacZaznam zaznam = new MacZaznam() { destination = "empty", mac_addres = mac, M_interface=port};
-            table.Add(zaznam);
+            MacZaznam zaznam = new MacZaznam() { mac_addres = mac, M_interface=port};
+            ST_class.table.Add(zaznam);
             return false;
         }
 
-        public char WhereDoIGO(List<MacZaznam> table, string mac) //destination mac address
+        public char WhereDoIGO(string mac) //destination mac address
         //return port where to send packet ...return X sa defolt when unknown --> brodcast
         {
-            if (mac == "ff:ff:ff:ff:ff:ff"){
+            if (mac == "FFFFFFFFFFFF")
+            {
                 return 'X';
             }
-            foreach(MacZaznam zaznam in table)
+            foreach(MacZaznam zaznam in ST_class.table)
             {
                 if(zaznam.mac_addres == mac )
                 {

@@ -12,15 +12,18 @@ namespace My_PSIP_project
 {
     internal static class Program
     {
+        public static BindingSource bs = new BindingSource();
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
          static void Main()
         {
+            bs.DataSource = ST_class.table.ToList();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            bs.ResetBindings(false);
             //Application.Run(new InvokeThreadSafeForm());
         }
     }

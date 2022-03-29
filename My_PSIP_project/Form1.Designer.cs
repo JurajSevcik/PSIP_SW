@@ -109,6 +109,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label25 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -118,7 +119,7 @@
             // read_button
             // 
             this.read_button.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.read_button.Location = new System.Drawing.Point(12, 13);
+            this.read_button.Location = new System.Drawing.Point(6, 0);
             this.read_button.MinimumSize = new System.Drawing.Size(80, 0);
             this.read_button.Name = "read_button";
             this.read_button.Size = new System.Drawing.Size(155, 23);
@@ -132,18 +133,17 @@
             this.textBox1.AcceptsReturn = true;
             this.textBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.textBox1.HideSelection = false;
-            this.textBox1.Location = new System.Drawing.Point(236, 40);
-            this.textBox1.MinimumSize = new System.Drawing.Size(300, 300);
+            this.textBox1.Location = new System.Drawing.Point(1042, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(300, 300);
+            this.textBox1.Size = new System.Drawing.Size(300, 36);
             this.textBox1.TabIndex = 3;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Capture_button
             // 
-            this.Capture_button.Location = new System.Drawing.Point(236, 14);
+            this.Capture_button.Location = new System.Drawing.Point(421, 31);
             this.Capture_button.Name = "Capture_button";
             this.Capture_button.Size = new System.Drawing.Size(88, 23);
             this.Capture_button.TabIndex = 4;
@@ -153,7 +153,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(567, 14);
+            this.button3.Location = new System.Drawing.Point(1187, 40);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(155, 23);
             this.button3.TabIndex = 5;
@@ -163,7 +163,7 @@
             // 
             // clear_button
             // 
-            this.clear_button.Location = new System.Drawing.Point(461, 346);
+            this.clear_button.Location = new System.Drawing.Point(1102, 40);
             this.clear_button.Name = "clear_button";
             this.clear_button.Size = new System.Drawing.Size(75, 23);
             this.clear_button.TabIndex = 6;
@@ -173,7 +173,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(330, 14);
+            this.button1.Location = new System.Drawing.Point(525, 31);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 7;
@@ -183,7 +183,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(741, 12);
+            this.textBox2.Location = new System.Drawing.Point(837, 12);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(199, 22);
             this.textBox2.TabIndex = 8;
@@ -192,7 +192,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(722, 115);
+            this.label1.Location = new System.Drawing.Point(1150, 132);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 16);
             this.label1.TabIndex = 9;
@@ -201,7 +201,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(582, 75);
+            this.label2.Location = new System.Drawing.Point(1010, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 16);
             this.label2.TabIndex = 10;
@@ -299,7 +299,7 @@
             // Label_B_ICMP
             // 
             this.Label_B_ICMP.AutoSize = true;
-            this.Label_B_ICMP.Location = new System.Drawing.Point(143, 48);
+            this.Label_B_ICMP.Location = new System.Drawing.Point(143, 49);
             this.Label_B_ICMP.Name = "Label_B_ICMP";
             this.Label_B_ICMP.Size = new System.Drawing.Size(14, 16);
             this.Label_B_ICMP.TabIndex = 20;
@@ -426,7 +426,7 @@
             this.panel1.Controls.Add(this.Label_B_UDP);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Location = new System.Drawing.Point(574, 106);
+            this.panel1.Location = new System.Drawing.Point(1002, 123);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 100);
             this.panel1.TabIndex = 33;
@@ -443,9 +443,9 @@
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.Label_A_UDP);
-            this.panel2.Location = new System.Drawing.Point(18, 103);
+            this.panel2.Location = new System.Drawing.Point(17, 123);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 100);
+            this.panel2.Size = new System.Drawing.Size(173, 103);
             this.panel2.TabIndex = 34;
             // 
             // comboBox1
@@ -473,10 +473,11 @@
             this.flowLayoutPanel1.Controls.Add(this.textBox6);
             this.flowLayoutPanel1.Controls.Add(this.textBox7);
             this.flowLayoutPanel1.Controls.Add(this.textBox8);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 419);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 532);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1113, 31);
             this.flowLayoutPanel1.TabIndex = 36;
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // comboBox2
             // 
@@ -560,7 +561,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(12, 400);
+            this.label14.Location = new System.Drawing.Point(5, 513);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(85, 16);
             this.label14.TabIndex = 40;
@@ -570,34 +571,37 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(301, 400);
+            this.label15.Location = new System.Drawing.Point(294, 513);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(57, 16);
             this.label15.TabIndex = 41;
             this.label15.Text = "Protocol";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(174, 400);
+            this.label16.Location = new System.Drawing.Point(167, 513);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(83, 16);
             this.label16.TabIndex = 42;
             this.label16.Text = "Permyt/dany";
+            this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(103, 400);
+            this.label17.Location = new System.Drawing.Point(96, 513);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(53, 16);
             this.label17.TabIndex = 43;
             this.label17.Text = "IN/OUT";
+            this.label17.Click += new System.EventHandler(this.label17_Click);
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(428, 403);
+            this.label18.Location = new System.Drawing.Point(421, 516);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(48, 16);
             this.label18.TabIndex = 44;
@@ -607,25 +611,27 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(571, 400);
+            this.label19.Location = new System.Drawing.Point(564, 513);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(65, 16);
             this.label19.TabIndex = 45;
             this.label19.Text = "from:MAC";
+            this.label19.Click += new System.EventHandler(this.label19_Click);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(718, 400);
+            this.label20.Location = new System.Drawing.Point(711, 513);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(59, 16);
             this.label20.TabIndex = 46;
             this.label20.Text = "from:port";
+            this.label20.Click += new System.EventHandler(this.label20_Click);
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(784, 402);
+            this.label21.Location = new System.Drawing.Point(777, 515);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(33, 16);
             this.label21.TabIndex = 47;
@@ -635,24 +641,26 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(911, 403);
+            this.label22.Location = new System.Drawing.Point(904, 516);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(50, 16);
             this.label22.TabIndex = 48;
             this.label22.Text = "to:MAC";
+            this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(1049, 400);
+            this.label23.Location = new System.Drawing.Point(1042, 513);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(44, 16);
             this.label23.TabIndex = 49;
             this.label23.Text = "to:port";
+            this.label23.Click += new System.EventHandler(this.label23_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1131, 427);
+            this.button2.Location = new System.Drawing.Point(1124, 540);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(121, 23);
             this.button2.TabIndex = 50;
@@ -676,9 +684,9 @@
             this.toPort});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 456);
+            this.listView1.Location = new System.Drawing.Point(12, 568);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1165, 230);
+            this.listView1.Size = new System.Drawing.Size(1165, 118);
             this.listView1.TabIndex = 51;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -699,7 +707,7 @@
             this.columnHeader10});
             this.listView2.FullRowSelect = true;
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(585, 256);
+            this.listView2.Location = new System.Drawing.Point(1057, 288);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(93, 113);
             this.listView2.TabIndex = 52;
@@ -709,7 +717,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(965, 43);
+            this.label24.Location = new System.Drawing.Point(402, 73);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(120, 16);
             this.label24.TabIndex = 53;
@@ -717,7 +725,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(1216, 456);
+            this.button4.Location = new System.Drawing.Point(1113, 423);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(132, 108);
             this.button4.TabIndex = 54;
@@ -729,21 +737,32 @@
             // 
             this.dataGridView1.ColumnHeadersHeight = 29;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.Location = new System.Drawing.Point(787, 88);
+            this.dataGridView1.Location = new System.Drawing.Point(312, 92);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(491, 300);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(542, 262);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(577, 226);
+            this.label25.Location = new System.Drawing.Point(1049, 258);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(120, 16);
             this.label25.TabIndex = 55;
             this.label25.Text = "MacAddressTable";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(554, 360);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 56;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
@@ -751,6 +770,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1368, 771);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
@@ -878,8 +898,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button button5;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
