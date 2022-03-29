@@ -8,7 +8,7 @@ public class MacZaznam
 {
     public string mac_addres { get; set; } //wher packet is from -- and wher i will send next one to this destination
     public char M_interface { get; set; }//on whitch interface did i get packet   
-    public System.Windows.Forms.Timer timer;
+    public int timer = 15;
 }
 
 namespace My_PSIP_project

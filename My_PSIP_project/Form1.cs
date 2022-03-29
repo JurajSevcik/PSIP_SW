@@ -35,8 +35,7 @@ namespace My_PSIP_project
             
             Label_A_ARP.Text = ST_class.ARP_in_A.ToString();
             Label_A_TCP.Text = ST_class.TCP_in_A.ToString();
-            bindingSource1.DataSource = ST_class.table;
-            dataGridView1.DataSource = bindingSource1;
+            dataGridView1.DataSource = ST_class.table;
             //dataGridView1.DataSource = ST_class.table;
 
         }
@@ -290,15 +289,16 @@ namespace My_PSIP_project
         public void dataFridView1_update()
         {
             //dataGridView1.DataSource = ST_class.table;
-            //dataGridView1.Update();
-            //dataGridView1.Refresh();
+            dataGridView1.Update();
+            dataGridView1.Refresh();
         }
 
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            dataGridView1.DataSource = ST_class.table;
-            dataFridView1_update(); 
+            //dataGridView1.DataSource = ST_class.table;
+            
+            
             
         }
 

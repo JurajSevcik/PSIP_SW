@@ -79,7 +79,7 @@ namespace My_PSIP_project
                 i++;
             }
             table[i].mac_addres = mac;
-            table[i].timer.Start();
+            //[i].timer.Start();
             //table[i].destination = "ja neviem uz";
             table[i].M_interface = port;
         }
@@ -102,14 +102,15 @@ namespace My_PSIP_project
                 {
                     if(zanznem.M_interface == port)
                     {
+                        zanznem.timer = 15; // reset timer when get new packet from same source 
                         return true;
                     }
-                    else
+                    else  //mam rozdoelny port .....it's aproblem babe ..
                     {
+                        RM_CB(port);
                         zanznem.mac_addres = mac;
-                        //Tm.start_tiemer();
-                        //zanznem.timer.Start();
                         zanznem.M_interface = port;
+                        //TODO: remove all on interface
                         //Console.WriteLine("There seem to be some misschief going on ( I know mac but ther was wrong port )");
                         return false;
                     }
@@ -118,6 +119,17 @@ namespace My_PSIP_project
             ST_class.table.Add(zaznam);
             return false;
         }
+
+        private void RM_CB(char port)// someone removed my cable .... no touchy !
+        {
+            for (int i = ST_class.table.Count - 1; i >= 0; i--)
+            {
+                if (ST_class.table[i].M_interface == port)
+                    ST_class.table.RemoveAt(i);
+            }
+        }
+
+
 
         public char WhereDoIGO(string mac) //destination mac address
         //return port where to send packet ...return X sa defolt when unknown --> brodcast

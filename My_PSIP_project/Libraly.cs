@@ -58,10 +58,10 @@ namespace My_PSIP_project
             device_b = devices[9];
         }
         
-        public static void tim() 
+        public static void tim()  //timer to chceck age of mac table content ....
         {
             aTimer = new System.Timers.Timer();
-            aTimer.Interval = 2000;
+            aTimer.Interval = 1000;
 
             // Hook up the Elapsed event for the timer. 
             aTimer.Elapsed += OnTimedEvent;
@@ -74,15 +74,24 @@ namespace My_PSIP_project
         }
         private static void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            Console.WriteLine("The Elapsed event was raised at {0}", e.SignalTime);
+            foreach(MacZaznam tab in ST_class.table )
+            {
+                if(tab.timer < 1)
+                {
+                    ST_class.table.Remove(tab);
+                    break;
+                }
+                tab.timer--;
+               
+            }
         }
         public List<MacZaznam> capture()
         {
-            tim();
+            tim(); //check every second and sub one second from  age of mac table row
             ChoseDevice_A();
             ChoseDevice_B();
 
-            TM.start_tiemer(56);
+            //TM.start_tiemer(56);  //useles
             //F.dataFridView1_update();
 
             //handler function to the 'packet arrival' event
@@ -208,7 +217,7 @@ namespace My_PSIP_project
 
             foreach(MacZaznam zaznam in ST_class.table)
             {
-                Console.WriteLine("{0}: MAC: {1}, interface:{2}", i, (zaznam.mac_addres), (zaznam.M_interface));
+                Console.WriteLine("{0}: MAC: {1}, interface:{2}, timer: {3}", i, (zaznam.mac_addres), (zaznam.M_interface), zaznam.timer.ToString());
                 i++;
             }
         }

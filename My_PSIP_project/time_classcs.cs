@@ -26,7 +26,7 @@ namespace My_PSIP_project
             counter--;
             if (counter == 0)
                 timer1.Stop();
-            Console.WriteLine(counter.ToString());
+            //Console.WriteLine(counter.ToString());
         }
     }
 }
