@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using SharpPcap;
 using SharpPcap.LibPcap;
 using PacketDotNet;
+
 using System.Threading;
 using System.Windows.Forms;
 using System.Timers;
 //using System.Timers;
-
+//TODO: kontrola ci sa packet este neodoslal -- hashocvanica tabulka :::ň
+//TODO: vlasná kontrola isEuel --- na byty nefunguje .- override 
 
 //TODO: pozrieť sa kde sa nwachádza súbor do ktorého chcem zapoiovaoť 
 //TODO: presuńut vystup do okna ... možno skusiť ja pop-up
@@ -50,12 +52,14 @@ namespace My_PSIP_project
                 Console.WriteLine("{0}) {1}", i, dev.Description);
                 i++;
             }
+            //Console.WriteLine(device_a.ToString());
         }
 
         private void ChoseDevice_B()
         {
             var devices = LibPcapLiveDeviceList.Instance; //list of all devices 
-            device_b = devices[9];
+            device_b = devices[7];
+            //Console.WriteLine(device_b.ToString());
         }
         
         public static void tim()  //timer to chceck age of mac table content ....
@@ -74,8 +78,11 @@ namespace My_PSIP_project
         }
         private static void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
+
             foreach(MacZaznam tab in ST_class.table )
             {
+                //TODO: intable as string and and cheange hear and back 
+
                 if(tab.timer < 1)
                 {
                     ST_class.table.Remove(tab);
@@ -95,9 +102,9 @@ namespace My_PSIP_project
             //F.dataFridView1_update();
 
             //handler function to the 'packet arrival' event
-            device_a.OnPacketArrival += new PacketArrivalEventHandler(device_OnPacketArrival_A);
-            device_b.OnPacketArrival += new PacketArrivalEventHandler(device_OnPacketArrival_B);
-
+            device_a.OnPacketArrival += new PacketArrivalEventHandler(GottaCatchEmAll);
+            device_b.OnPacketArrival += new PacketArrivalEventHandler(GottaCatchEmAll);
+            
             // Open device 
             int readTimeoutMilliseconds = 1000;
             device_a.Open(mode: DeviceModes.Promiscuous | DeviceModes.DataTransferUdp | DeviceModes.NoCaptureLocal | DeviceModes.NoCaptureRemote, read_timeout: readTimeoutMilliseconds);
@@ -115,93 +122,102 @@ namespace My_PSIP_project
             F.UpdateTextBox_1("Stop");
             device_a.StopCapture();
             device_b.StopCapture();
-            Console.WriteLine("A:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n", ARP_in_A, TCP_in_A, UDP_in_A, ICMP_in_A, HTTP_in_A);
-            Console.WriteLine("B:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n", ARP_in_B, TCP_in_B, UDP_in_B, ICMP_in_B, HTTP_in_B);
+
+            Console.WriteLine("IN\nA:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n",
+                ST_class.ARP_in_A, ST_class.TCP_in_A, ST_class.UDP_in_A, ST_class.ICMP_in_A, ST_class.HTTP_in_A);
+            Console.WriteLine("B:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n", 
+                ST_class.ARP_in_B, ST_class.TCP_in_B, ST_class.UDP_in_B, ST_class.ICMP_in_B, ST_class.HTTP_in_B);
+
+            Console.WriteLine("OUT\nA:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n",
+                ST_class.ARP_out_A, ST_class.TCP_out_A, ST_class.UDP_out_A, ST_class.ICMP_out_A, ST_class.HTTP_out_A);
+            Console.WriteLine("B:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n",
+                ST_class.ARP_out_B, ST_class.TCP_out_B, ST_class.UDP_out_B, ST_class.ICMP_out_B, ST_class.HTTP_out_B);
         }
 
-
+        //useless
         private static int packetIndex = 0;
-        private static int EthernetII_in_A = 0;
-        private static int ARP_in_A  = 0;
-        private static int TCP_in_A  = 0;
-        private static int UDP_in_A = 0;
-        private static int ICMP_in_A = 0;
-        private static int HTTP_in_A = 0;
-        private static int HTTPS_in_A = 0;
 
-        private static int EthernetII_in_B = 0;
-        private static int ARP_in_B = 0;
-        private static int TCP_in_B = 0;
-        private static int UDP_in_B = 0;
-        private static int ICMP_in_B = 0;
-        private static int HTTP_in_B = 0;
-        private static int HTTPS_in_B = 0;
-
-
-        private void reset()
+        private void GottaCatchEmAll(object sender, PacketCapture e)
         {
-            ARP_in_A  = 0;
-            TCP_in_A  = 0;
-            UDP_in_A = 0;
-            ICMP_in_A = 0;
-            HTTP_in_A = 0;
-            HTTPS_in_A = 0;
+            PacketSender S = new PacketSender();
+            var rawPacket = e.GetPacket();         //zachytenie packetu
+            if (sender == device_a)
+            {
+                device_OnPacketArrival_A(rawPacket);
+            }
+            if(sender == device_b)
+            {
+                device_OnPacketArrival_B(rawPacket);
+            }
 
-            ARP_in_B = 0;
-            TCP_in_B = 0;
-            UDP_in_B = 0;
-            ICMP_in_B = 0;
-            HTTP_in_B = 0;
-            HTTPS_in_B = 0;
         }
 
-        private void device_OnPacketArrival_A(object sender, PacketCapture e)
+        private void device_OnPacketArrival_A(RawCapture rawPacket)
         {
+           
             //TODO: move to sendnder class 
             //TODO: add calss for sattictics
             //TODO: move after statiscick
             PacketSender S = new PacketSender();
-            var rawPacket = e.GetPacket();         //zachytenie packetu        
+            var rrt = rawPacket.Data;
+            var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
+            var rrte = packet.Bytes;
+            var wwq = packet.GetHashCode();
+
+
             
             //filtrovanie packetov len na tiek ktore ma zaujimaju 
-            var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
             var ethernetPacket = (EthernetPacket)packet;
             List<string> MacDev = new List<String> { "005079666800", "005079666801", "005079666802" };
             string MyMac = (ethernetPacket.SourceHardwareAddress).ToString();
-            if (MacDev.Contains(MyMac) != true) // ak nie  je z niektorej mac vysie je premna useless
+            if (MacDev[0] == MyMac || MacDev[1] == MyMac || MacDev[2] == MyMac)
+            {
+
+            }
+            else
             {
                 return;
             }
+            //var time = e.Header.Timeval.Date;
+            //ethernetPacket.PrintHex();
+
+            string t = ethernetPacket.PrintHex().ToString();
+            ST_class.watch.Add(t); //cheack if it isnt same packet
+            if (ST_class.circle(packet)) //it's samo one again 
+            {
+                return;
+            }    
 
 
             T.GiveMeMyPacket( rawPacket, 'A'); //chceck mac address table and add or cheange log int there  ;
+            Console.WriteLine("Posielam z A");
             S.send(device_a, device_b, rawPacket, 'A');   //odoslanie packetu 
             //device_b.Close();
             //var ethernetPacket = (EthernetPacket)packet;
             
             var type = rawPacket;
-            //Console.WriteLine("Moj typ je nieco ako neviem co:" + ethernetPacket);
-            /*
-            if (packet is ArpPacket)
+            var tempPacket = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
+            while (tempPacket.PayloadPacket != null)
+            {
+                tempPacket = tempPacket.PayloadPacket;
+            }
+
+            if (tempPacket is PacketDotNet.ArpPacket)
             {
                 ST_class.ARP_in_A++;
             }
-            else if (packet is TcpPacket)
+            else if (tempPacket is PacketDotNet.TcpPacket)
             {
                 ST_class.TCP_in_A++;
             }
-            else if (packet is UdpPacket)
+            else if (tempPacket is PacketDotNet.UdpPacket)
             {
                 ST_class.UDP_in_A++;
             }
-            else if (rawPacket is IcmpV4Packet)
+            else if (tempPacket is PacketDotNet.IcmpV4Packet)
             {
                 ST_class.ICMP_in_A++;
             }
-            else if (packet is HttpStyleUriParser)
-                ST_class.HTTP_in_A++; 
-            */    
-
             packetIndex++;
             F.DGW();
         }
@@ -223,23 +239,45 @@ namespace My_PSIP_project
             }
         }
 
-        private void device_OnPacketArrival_B(object sender, PacketCapture e)
-        {
-            PacketSender S = new PacketSender();
-            var rawPacket = e.GetPacket();         //zachytenie packetu  
+        private void device_OnPacketArrival_B(RawCapture rawPacket)
+        {            
             var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
-
+            PacketSender S = new PacketSender();
             var ethernetPacket = (EthernetPacket)packet;
-            /*
+            
             List<string> MacDev = new List<String> { "005079666800", "005079666801", "005079666802" };
             string MyMac = (ethernetPacket.SourceHardwareAddress).ToString();
-            if (MacDev.Contains(MyMac) != true)
+            
+                if(MacDev[0] == MyMac || MacDev[1] == MyMac || MacDev[2] == MyMac)
+                {
+                    
+                }
+                else
+                {
+                    return;
+                }
+            
+            
+            if (ST_class.circle(packet)) //it's samo one again 
             {
                 return;
-            }*/
-
+            }
+            //Console.WriteLine(packet.Ethernet.IpV4.Protocol.ToString());
             T.GiveMeMyPacket( rawPacket, 'B'); //chceck mac address table and add or cheange log int there  ;
-            S.send(device_a, device_b, rawPacket, 'B');
+            Console.WriteLine("Posoelam z B");
+            Console.WriteLine("Packet dumped to file.");
+
+            if (rawPacket.LinkLayerType == PacketDotNet.LinkLayers.Ethernet)
+            {
+                Console.WriteLine("{0} At: {1}:{2}: MAC:{3} -> MAC:{4}",
+                                  packetIndex,
+                                  rawPacket.Timeval.Date.ToString(),
+                                  rawPacket.Timeval.Date.Millisecond,
+                                  ethernetPacket.SourceHardwareAddress,
+                                  ethernetPacket.DestinationHardwareAddress);
+                packetIndex++;
+                S.send(device_a, device_b, rawPacket, 'B');
+            }
             //device_a.Close();
 
             //var ethernetPacket = (EthernetPacket)packet;
@@ -248,28 +286,32 @@ namespace My_PSIP_project
 
             //Console.WriteLine("Toto je moj typ pre B : " + tcp);
             var pppc = packet.ToString();
-            Console.WriteLine(pppc);
-            //PacketDotNet.EthernetType.IPv4.
 
-            if (packet is PacketDotNet.ArpPacket)
+            var tempPacket = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
+            while (tempPacket.PayloadPacket != null)
             {
-                ARP_in_B++;
-                F.Label_B_ARP_update(ARP_in_B);
+                tempPacket = tempPacket.PayloadPacket;
             }
-            else if (packet is PacketDotNet.TcpPacket)
+
+            if (tempPacket is PacketDotNet.ArpPacket)
             {
-                TCP_in_B++;
-                F.Label_B_TCP_update(TCP_in_B);
+                ST_class.ARP_in_B++;
+                
             }
-            else if (packet is PacketDotNet.UdpPacket)
+            else if (tempPacket is PacketDotNet.TcpPacket)
             {
-                UDP_in_B++;
-                F.Label_B_UDP_update(UDP_in_B);
+                ST_class.TCP_in_B++;
+                
             }
-            else if (packet is PacketDotNet.IcmpV4Packet)
+            else if (tempPacket is PacketDotNet.UdpPacket)
             {
-                ICMP_in_B++;
-                F.Label_B_ICMP_update(ICMP_in_B);
+                ST_class.UDP_in_B++;
+                
+            }
+            else if (tempPacket is PacketDotNet.IcmpV4Packet)
+            {
+                ST_class.ICMP_in_B++;
+                
             }
 
             F.DGW();

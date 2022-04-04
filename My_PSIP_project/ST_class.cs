@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public class MacZaznam
 {
@@ -16,12 +13,43 @@ namespace My_PSIP_project
     internal class ST_class
     {
         public static List<MacZaznam> table = new List<MacZaznam>();
+        public static Array[] SixPack = new Array[] { };
+        public static List<string> b = new List<string>();
+        public static List<string> watch = new List<string>();
+
+        public static bool circle(PacketDotNet.Packet raw) // chceck if it's not the same packet ....
+        {
+            return false;
+            var w = raw.PayloadPacket;
+            
+            //watch.Add(w.ToString());
+            if (b.Count == 0)
+            {
+                b.Add(raw.Bytes.ToString());
+                return false;
+            }
+            //SixPack.Append(raw);
+            //byte[] a1 = raw.Data;
+
+
+            string a1 = raw.Bytes.ToString();
+            foreach (string lis in b)
+            {
+                if (lis.Equals(a1))
+                {
+                    //tento som uz videl ...i de o rovanky packet 
+                    return true;
+                }
+            }
+            b.Add(a1);
+            return false;
+
+        }
 
         public static void rm()
         {
             table.Clear();
         }
-
 
 
         public static int packetIndex_in_A = 0;

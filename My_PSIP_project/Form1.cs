@@ -36,6 +36,41 @@ namespace My_PSIP_project
             Label_A_ARP.Text = ST_class.ARP_in_A.ToString();
             Label_A_TCP.Text = ST_class.TCP_in_A.ToString();
             dataGridView1.DataSource = ST_class.table;
+
+            int i = 0;
+            foreach(MacZaznam mac in ST_class.table)
+            {
+            listView3.Items.Add(ST_class.table[i].mac_addres.ToString());
+           
+            listView3.Items.Add(ST_class.table[i].M_interface.ToString());
+            listView3.Items.Add(ST_class.table[i].timer.ToString());
+             i++;
+            }
+
+
+            Label_B_ARP.Text = ST_class.ARP_in_B.ToString();
+            Label_B_TCP.Text = ST_class.TCP_in_B.ToString();
+            Label_B_UDP.Text = ST_class.UDP_in_B.ToString();
+            Label_B_ICMP.Text = ST_class.ICMP_in_B.ToString();
+            Label_B_HTTP.Text = ST_class.HTTPS_in_B.ToString();
+
+            Label_A_ARP.Text = ST_class.ARP_in_A.ToString();
+            Label_A_TCP.Text = ST_class.TCP_in_A.ToString();
+            Label_A_UDP.Text = ST_class.UDP_in_A.ToString();
+            Label_B_ICMP.Text = ST_class.ICMP_in_A.ToString();
+            Label_B_HTTP.Text = ST_class.HTTPS_in_A.ToString();
+
+            lable_A_arp_out.Text = ST_class.ARP_in_A.ToString();
+            lable_A_tcp_out.Text = ST_class.TCP_in_A.ToString();    
+            lable_A_icmp_out.Text = ST_class.ICMP_in_A.ToString();
+            lable_A_http_out.Text = ST_class.HTTP_out_A.ToString();
+            lable_A_udp_out.Text = ST_class.UDP_in_A.ToString();
+
+            lable_B_arp_out.Text = ST_class.ARP_in_B.ToString();
+            lable_B_tcp_out.Text = ST_class.TCP_in_B.ToString();
+            lable_B_icmp_out.Text = ST_class.ICMP_in_B.ToString();
+            //lable_B_http_out.Text = ST_class.HTTP_out_B.ToString();
+            lable_B_udp_out.Text = ST_class.UDP_in_B.ToString();
             //dataGridView1.DataSource = ST_class.table;
 
         }
@@ -49,7 +84,6 @@ namespace My_PSIP_project
 
         public void lblHelloWorld_Click(object sender, EventArgs e)
         {
-
         }
 
         public void textBox1_TextChanged(object sender, EventArgs e)
@@ -155,55 +189,9 @@ namespace My_PSIP_project
             
         }
 
-        public void Label_B_ARP_update(int Text)
-        {
-            Label_B_ARP.Text = Text.ToString();
-        }
 
-        public void Label_B_TCP_update(int Text)
-        {
-            Label_B_TCP.Text = Text.ToString();
-        }
-
-        public void Label_B_UDP_update(int Text)
-        {
-            Label_B_UDP.Text = Text.ToString();
-        }
-
-        public void Label_B_ICMP_update(int Text)
-        {
-            Label_B_ICMP.Text = Text.ToString();
-        }
-        public void Label_B_HTTP_update(int Text)
-        {
-            Label_B_HTTP.Text = Text.ToString();
-        }
-
-        //
-
-        public void Label_A_ARP_update(int Text)
-        {
-            Label_A_ARP.Text = ST_class.ARP_in_A.ToString();
-        }
-
-        public void Label_A_TCP_update(int Text)
-        {
-            Label_A_TCP.Text = Text.ToString();
-        }
-
-        public void Label_A_UDP_update(int Text)
-        {
-            Label_A_UDP.Text = Text.ToString();
-        }
-
-        public void Label_A_ICMP_update(int Text)
-        {
-            Label_B_ICMP.Text = Text.ToString();
-        }
-        public void Label_A_HTTP_update(int Text)
-        {
-            Label_B_HTTP.Text = Text.ToString();
-        }
+            
+        
 
 
 

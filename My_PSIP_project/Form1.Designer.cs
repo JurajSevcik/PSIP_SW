@@ -110,10 +110,39 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label25 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
+            this.listView3 = new System.Windows.Forms.ListView();
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.lable_B_arp_out = new System.Windows.Forms.LinkLabel();
+            this.lable_B_http_out = new System.Windows.Forms.LinkLabel();
+            this.label27 = new System.Windows.Forms.Label();
+            this.lable_B_icmp_out = new System.Windows.Forms.LinkLabel();
+            this.lable_B_tcp_out = new System.Windows.Forms.LinkLabel();
+            this.label28 = new System.Windows.Forms.Label();
+            this.lable_B_udp_out = new System.Windows.Forms.LinkLabel();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.lable_A_arp_out = new System.Windows.Forms.LinkLabel();
+            this.lable_A_icmp_out = new System.Windows.Forms.LinkLabel();
+            this.label33 = new System.Windows.Forms.Label();
+            this.lable_A_http_out = new System.Windows.Forms.LinkLabel();
+            this.lable_A_tcp_out = new System.Windows.Forms.LinkLabel();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.lable_A_udp_out = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // read_button
@@ -211,7 +240,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 60);
+            this.label3.Location = new System.Drawing.Point(164, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 16);
             this.label3.TabIndex = 11;
@@ -426,9 +455,9 @@
             this.panel1.Controls.Add(this.Label_B_UDP);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Location = new System.Drawing.Point(1002, 123);
+            this.panel1.Location = new System.Drawing.Point(872, 132);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.Size = new System.Drawing.Size(164, 94);
             this.panel1.TabIndex = 33;
             // 
             // panel2
@@ -707,7 +736,7 @@
             this.columnHeader10});
             this.listView2.FullRowSelect = true;
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(1057, 288);
+            this.listView2.Location = new System.Drawing.Point(1233, 304);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(93, 113);
             this.listView2.TabIndex = 52;
@@ -725,7 +754,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(1113, 423);
+            this.button4.Location = new System.Drawing.Point(872, 275);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(132, 108);
             this.button4.TabIndex = 54;
@@ -737,18 +766,18 @@
             // 
             this.dataGridView1.ColumnHeadersHeight = 29;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.Location = new System.Drawing.Point(312, 92);
+            this.dataGridView1.Location = new System.Drawing.Point(375, 92);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(542, 262);
+            this.dataGridView1.Size = new System.Drawing.Size(479, 305);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(1049, 258);
+            this.label25.Location = new System.Drawing.Point(1206, 285);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(120, 16);
             this.label25.TabIndex = 55;
@@ -756,7 +785,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(554, 360);
+            this.button5.Location = new System.Drawing.Point(554, 403);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 56;
@@ -764,12 +793,256 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // listView3
+            // 
+            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13,
+            this.columnHeader14});
+            this.listView3.HideSelection = false;
+            this.listView3.Location = new System.Drawing.Point(8, 370);
+            this.listView3.Name = "listView3";
+            this.listView3.Size = new System.Drawing.Size(361, 140);
+            this.listView3.TabIndex = 57;
+            this.listView3.UseCompatibleStateImageBehavior = false;
+            this.listView3.View = System.Windows.Forms.View.Details;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label26);
+            this.panel3.Controls.Add(this.lable_B_arp_out);
+            this.panel3.Controls.Add(this.lable_B_http_out);
+            this.panel3.Controls.Add(this.label27);
+            this.panel3.Controls.Add(this.lable_B_icmp_out);
+            this.panel3.Controls.Add(this.lable_B_tcp_out);
+            this.panel3.Controls.Add(this.label28);
+            this.panel3.Controls.Add(this.lable_B_udp_out);
+            this.panel3.Controls.Add(this.label29);
+            this.panel3.Controls.Add(this.label30);
+            this.panel3.Location = new System.Drawing.Point(1087, 132);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(200, 94);
+            this.panel3.TabIndex = 34;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(3, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(92, 16);
+            this.label26.TabIndex = 13;
+            this.label26.Text = "Label_B_ARP";
+            // 
+            // lable_B_arp_out
+            // 
+            this.lable_B_arp_out.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.lable_B_arp_out.AutoSize = true;
+            this.lable_B_arp_out.Location = new System.Drawing.Point(143, 0);
+            this.lable_B_arp_out.Name = "lable_B_arp_out";
+            this.lable_B_arp_out.Size = new System.Drawing.Size(14, 16);
+            this.lable_B_arp_out.TabIndex = 12;
+            this.lable_B_arp_out.TabStop = true;
+            this.lable_B_arp_out.Text = "0";
+            // 
+            // lable_B_http_out
+            // 
+            this.lable_B_http_out.AutoSize = true;
+            this.lable_B_http_out.Location = new System.Drawing.Point(143, 64);
+            this.lable_B_http_out.Name = "lable_B_http_out";
+            this.lable_B_http_out.Size = new System.Drawing.Size(14, 16);
+            this.lable_B_http_out.TabIndex = 21;
+            this.lable_B_http_out.TabStop = true;
+            this.lable_B_http_out.Text = "0";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(4, 16);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(91, 16);
+            this.label27.TabIndex = 14;
+            this.label27.Text = "Label_B_TCP";
+            // 
+            // lable_B_icmp_out
+            // 
+            this.lable_B_icmp_out.AutoSize = true;
+            this.lable_B_icmp_out.Location = new System.Drawing.Point(143, 49);
+            this.lable_B_icmp_out.Name = "lable_B_icmp_out";
+            this.lable_B_icmp_out.Size = new System.Drawing.Size(14, 16);
+            this.lable_B_icmp_out.TabIndex = 20;
+            this.lable_B_icmp_out.TabStop = true;
+            this.lable_B_icmp_out.Text = "0";
+            // 
+            // lable_B_tcp_out
+            // 
+            this.lable_B_tcp_out.AutoSize = true;
+            this.lable_B_tcp_out.Location = new System.Drawing.Point(143, 16);
+            this.lable_B_tcp_out.Name = "lable_B_tcp_out";
+            this.lable_B_tcp_out.Size = new System.Drawing.Size(14, 16);
+            this.lable_B_tcp_out.TabIndex = 18;
+            this.lable_B_tcp_out.TabStop = true;
+            this.lable_B_tcp_out.Text = "0";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(3, 64);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(101, 16);
+            this.label28.TabIndex = 17;
+            this.label28.Text = "Label_B_HTTP";
+            // 
+            // lable_B_udp_out
+            // 
+            this.lable_B_udp_out.AutoSize = true;
+            this.lable_B_udp_out.Location = new System.Drawing.Point(143, 32);
+            this.lable_B_udp_out.Name = "lable_B_udp_out";
+            this.lable_B_udp_out.Size = new System.Drawing.Size(14, 16);
+            this.lable_B_udp_out.TabIndex = 19;
+            this.lable_B_udp_out.TabStop = true;
+            this.lable_B_udp_out.Text = "0";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(4, 48);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(96, 16);
+            this.label29.TabIndex = 16;
+            this.label29.Text = "Label_B_ICMP";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(4, 32);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(93, 16);
+            this.label30.TabIndex = 15;
+            this.label30.Text = "Label_B_UDP";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label31);
+            this.panel4.Controls.Add(this.label32);
+            this.panel4.Controls.Add(this.lable_A_arp_out);
+            this.panel4.Controls.Add(this.lable_A_icmp_out);
+            this.panel4.Controls.Add(this.label33);
+            this.panel4.Controls.Add(this.lable_A_http_out);
+            this.panel4.Controls.Add(this.lable_A_tcp_out);
+            this.panel4.Controls.Add(this.label34);
+            this.panel4.Controls.Add(this.label35);
+            this.panel4.Controls.Add(this.lable_A_udp_out);
+            this.panel4.Location = new System.Drawing.Point(196, 123);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(173, 103);
+            this.panel4.TabIndex = 35;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(2, 3);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(92, 16);
+            this.label31.TabIndex = 23;
+            this.label31.Text = "Label_A_ARP";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(3, 52);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(101, 16);
+            this.label32.TabIndex = 27;
+            this.label32.Text = "Label_A_HTTP";
+            // 
+            // lable_A_arp_out
+            // 
+            this.lable_A_arp_out.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.lable_A_arp_out.AutoSize = true;
+            this.lable_A_arp_out.Location = new System.Drawing.Point(118, 0);
+            this.lable_A_arp_out.Name = "lable_A_arp_out";
+            this.lable_A_arp_out.Size = new System.Drawing.Size(14, 16);
+            this.lable_A_arp_out.TabIndex = 22;
+            this.lable_A_arp_out.TabStop = true;
+            this.lable_A_arp_out.Text = "0";
+            // 
+            // lable_A_icmp_out
+            // 
+            this.lable_A_icmp_out.AutoSize = true;
+            this.lable_A_icmp_out.Location = new System.Drawing.Point(118, 68);
+            this.lable_A_icmp_out.Name = "lable_A_icmp_out";
+            this.lable_A_icmp_out.Size = new System.Drawing.Size(14, 16);
+            this.lable_A_icmp_out.TabIndex = 31;
+            this.lable_A_icmp_out.TabStop = true;
+            this.lable_A_icmp_out.Text = "0";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(2, 20);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(91, 16);
+            this.label33.TabIndex = 24;
+            this.label33.Text = "Label_A_TCP";
+            // 
+            // lable_A_http_out
+            // 
+            this.lable_A_http_out.AutoSize = true;
+            this.lable_A_http_out.Location = new System.Drawing.Point(118, 52);
+            this.lable_A_http_out.Name = "lable_A_http_out";
+            this.lable_A_http_out.Size = new System.Drawing.Size(14, 16);
+            this.lable_A_http_out.TabIndex = 30;
+            this.lable_A_http_out.TabStop = true;
+            this.lable_A_http_out.Text = "0";
+            // 
+            // lable_A_tcp_out
+            // 
+            this.lable_A_tcp_out.AutoSize = true;
+            this.lable_A_tcp_out.Location = new System.Drawing.Point(118, 20);
+            this.lable_A_tcp_out.Name = "lable_A_tcp_out";
+            this.lable_A_tcp_out.Size = new System.Drawing.Size(14, 16);
+            this.lable_A_tcp_out.TabIndex = 28;
+            this.lable_A_tcp_out.TabStop = true;
+            this.lable_A_tcp_out.Text = "0";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(3, 68);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(96, 16);
+            this.label34.TabIndex = 26;
+            this.label34.Text = "Label_A_ICMP";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(3, 36);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(93, 16);
+            this.label35.TabIndex = 25;
+            this.label35.Text = "Label_A_UDP";
+            // 
+            // lable_A_udp_out
+            // 
+            this.lable_A_udp_out.AutoSize = true;
+            this.lable_A_udp_out.Location = new System.Drawing.Point(118, 36);
+            this.lable_A_udp_out.Name = "lable_A_udp_out";
+            this.lable_A_udp_out.Size = new System.Drawing.Size(14, 16);
+            this.lable_A_udp_out.TabIndex = 29;
+            this.lable_A_udp_out.TabStop = true;
+            this.lable_A_udp_out.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1368, 771);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.listView3);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.dataGridView1);
@@ -812,6 +1085,10 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -901,6 +1178,33 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button button5;
         public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ListView listView3;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.LinkLabel lable_B_arp_out;
+        private System.Windows.Forms.LinkLabel lable_B_http_out;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.LinkLabel lable_B_icmp_out;
+        private System.Windows.Forms.LinkLabel lable_B_tcp_out;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.LinkLabel lable_B_udp_out;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.LinkLabel lable_A_arp_out;
+        private System.Windows.Forms.LinkLabel lable_A_icmp_out;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.LinkLabel lable_A_http_out;
+        private System.Windows.Forms.LinkLabel lable_A_tcp_out;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.LinkLabel lable_A_udp_out;
     }
 }
 

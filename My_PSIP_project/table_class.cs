@@ -41,14 +41,15 @@ namespace My_PSIP_project
                 var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
                 var ethernetPacket = (EthernetPacket)packet;
                 MyMac =  (ethernetPacket.SourceHardwareAddress).ToString();
-                if (MacDev.Contains(MyMac))
+                if (MacDev[0] == MyMac || MacDev[1] == MyMac || MacDev[2] == MyMac) //I know this mac ...go ahead
                 {
-                    //Console.WriteLine("Som tam");
+
                 }
-                else
+                else   //nope 
                 {
                     return false;
                 }
+
             }
             else
             {
@@ -87,7 +88,7 @@ namespace My_PSIP_project
 
         private static void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}", e.SignalTime);
+            //Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}", e.SignalTime);
         }
 
         //TODO: add cheange array to dynamic 
@@ -95,12 +96,12 @@ namespace My_PSIP_project
         //check if mac exist in tabel and if so on what port, if not add to table.
         private bool Is_ther( string mac, char port) //chack if the address is known 
         {
-            time_classcs Tm = new time_classcs();
-
+            //time_classcs Tm = new time_classcs();
+            //TODO: check the logic .... i am not shure about that ...!
             foreach(MacZaznam zanznem in ST_class.table)
-                if(zanznem.mac_addres == mac )
+                if(zanznem.mac_addres == mac ) //našiels som mac 
                 {
-                    if(zanznem.M_interface == port)
+                    if(zanznem.M_interface == port) // it shouls 
                     {
                         zanznem.timer = 15; // reset timer when get new packet from same source 
                         return true;
@@ -122,6 +123,7 @@ namespace My_PSIP_project
 
         private void RM_CB(char port)// someone removed my cable .... no touchy !
         {
+            //Console.WriteLine("Mazem vsetko");
             for (int i = ST_class.table.Count - 1; i >= 0; i--)
             {
                 if (ST_class.table[i].M_interface == port)
@@ -129,7 +131,15 @@ namespace My_PSIP_project
             }
         }
 
+        private bool IsEmpty<T>(List<T> list)
+        {
+            if (list == null)
+            {
+                return true;
+            }
 
+            return !list.Any();
+        }
 
         public char WhereDoIGO(string mac) //destination mac address
         //return port where to send packet ...return X sa defolt when unknown --> brodcast
@@ -138,10 +148,16 @@ namespace My_PSIP_project
             {
                 return 'X';
             }
+            bool isEmpty = IsEmpty(ST_class.table);
+            if(isEmpty)
+            {
+                return 'X';
+            }
             foreach(MacZaznam zaznam in ST_class.table)
             {
                 if(zaznam.mac_addres == mac )
                 {
+                    Console.WriteLine("From {0}, Going to: {1}, (table_class/WhereDoIGO/foreach)",mac,  zaznam.M_interface);
                     return zaznam.M_interface;
                 }
             }
