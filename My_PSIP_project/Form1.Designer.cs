@@ -39,28 +39,22 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.Label_B_ARP = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.Label_B_TCP = new System.Windows.Forms.LinkLabel();
-            this.Label_B_UDP = new System.Windows.Forms.LinkLabel();
-            this.Label_B_ICMP = new System.Windows.Forms.LinkLabel();
-            this.Label_B_HTTP = new System.Windows.Forms.LinkLabel();
-            this.Label_A_HTTP = new System.Windows.Forms.LinkLabel();
-            this.Label_A_ICMP = new System.Windows.Forms.LinkLabel();
-            this.Label_A_UDP = new System.Windows.Forms.LinkLabel();
-            this.Label_A_TCP = new System.Windows.Forms.LinkLabel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.Label_A_ARP = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.textBox_B_out_HTTP = new System.Windows.Forms.TextBox();
+            this.textBox_B_out_ICMP = new System.Windows.Forms.TextBox();
+            this.textBox_B_out_UDP = new System.Windows.Forms.TextBox();
+            this.textBox_B_out_TCP = new System.Windows.Forms.TextBox();
+            this.textBox_B_out_ARP = new System.Windows.Forms.TextBox();
+            this.textBox_B_in_ARP = new System.Windows.Forms.TextBox();
+            this.textBox_B_in_TCP = new System.Windows.Forms.TextBox();
+            this.textBox_B_in_UDP = new System.Windows.Forms.TextBox();
+            this.textBox_B_in_ICMP = new System.Windows.Forms.TextBox();
+            this.textBox_B_in_HTTP = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -94,55 +88,39 @@
             this.ToIP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ToMAC = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toPort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label24 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label25 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.listView3 = new System.Windows.Forms.ListView();
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.textBox_A_in_ARP = new System.Windows.Forms.TextBox();
+            this.textBox_A_in_TCP = new System.Windows.Forms.TextBox();
+            this.textBox_A_in_DUP = new System.Windows.Forms.TextBox();
+            this.textBox_A_in_HTTP = new System.Windows.Forms.TextBox();
+            this.textBox_A_in_ICMP = new System.Windows.Forms.TextBox();
+            this.textBox_A_out_ICMP = new System.Windows.Forms.TextBox();
+            this.textBox_A_out_HTTP = new System.Windows.Forms.TextBox();
+            this.textBox_A_out_UDP = new System.Windows.Forms.TextBox();
+            this.textBox_A_out_TCP = new System.Windows.Forms.TextBox();
+            this.textBox_A_out_ARP = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.lable_B_arp_out = new System.Windows.Forms.LinkLabel();
-            this.lable_B_http_out = new System.Windows.Forms.LinkLabel();
             this.label27 = new System.Windows.Forms.Label();
-            this.lable_B_icmp_out = new System.Windows.Forms.LinkLabel();
-            this.lable_B_tcp_out = new System.Windows.Forms.LinkLabel();
             this.label28 = new System.Windows.Forms.Label();
-            this.lable_B_udp_out = new System.Windows.Forms.LinkLabel();
             this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.lable_A_arp_out = new System.Windows.Forms.LinkLabel();
-            this.lable_A_icmp_out = new System.Windows.Forms.LinkLabel();
-            this.label33 = new System.Windows.Forms.Label();
-            this.lable_A_http_out = new System.Windows.Forms.LinkLabel();
-            this.lable_A_tcp_out = new System.Windows.Forms.LinkLabel();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.lable_A_udp_out = new System.Windows.Forms.LinkLabel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // read_button
@@ -166,23 +144,24 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(300, 36);
+            this.textBox1.Size = new System.Drawing.Size(76, 36);
             this.textBox1.TabIndex = 3;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Capture_button
             // 
-            this.Capture_button.Location = new System.Drawing.Point(421, 31);
+            this.Capture_button.BackColor = System.Drawing.Color.Lime;
+            this.Capture_button.Location = new System.Drawing.Point(458, 12);
             this.Capture_button.Name = "Capture_button";
-            this.Capture_button.Size = new System.Drawing.Size(88, 23);
+            this.Capture_button.Size = new System.Drawing.Size(126, 50);
             this.Capture_button.TabIndex = 4;
             this.Capture_button.Text = "START";
-            this.Capture_button.UseVisualStyleBackColor = true;
+            this.Capture_button.UseVisualStyleBackColor = false;
             this.Capture_button.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1187, 40);
+            this.button3.Location = new System.Drawing.Point(925, 39);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(155, 23);
             this.button3.TabIndex = 5;
@@ -192,7 +171,7 @@
             // 
             // clear_button
             // 
-            this.clear_button.Location = new System.Drawing.Point(1102, 40);
+            this.clear_button.Location = new System.Drawing.Point(844, 40);
             this.clear_button.Name = "clear_button";
             this.clear_button.Size = new System.Drawing.Size(75, 23);
             this.clear_button.TabIndex = 6;
@@ -202,12 +181,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(525, 31);
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.Location = new System.Drawing.Point(590, 13);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(115, 49);
             this.button1.TabIndex = 7;
             this.button1.Text = "STOP";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // textBox2
@@ -230,7 +210,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1010, 92);
+            this.label2.Location = new System.Drawing.Point(985, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 16);
             this.label2.TabIndex = 10;
@@ -240,242 +220,171 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(164, 92);
+            this.label3.Location = new System.Drawing.Point(154, 73);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 16);
             this.label3.TabIndex = 11;
             this.label3.Text = "Device A";
             // 
-            // Label_B_ARP
-            // 
-            this.Label_B_ARP.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.Label_B_ARP.AutoSize = true;
-            this.Label_B_ARP.Location = new System.Drawing.Point(143, 0);
-            this.Label_B_ARP.Name = "Label_B_ARP";
-            this.Label_B_ARP.Size = new System.Drawing.Size(14, 16);
-            this.Label_B_ARP.TabIndex = 12;
-            this.Label_B_ARP.TabStop = true;
-            this.Label_B_ARP.Text = "0";
-            this.Label_B_ARP.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Location = new System.Drawing.Point(3, 6);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 16);
+            this.label4.Size = new System.Drawing.Size(35, 16);
             this.label4.TabIndex = 13;
-            this.label4.Text = "Label_B_ARP";
+            this.label4.Text = "ARP";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 16);
+            this.label5.Location = new System.Drawing.Point(4, 32);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 16);
+            this.label5.Size = new System.Drawing.Size(34, 16);
             this.label5.TabIndex = 14;
-            this.label5.Text = "Label_B_TCP";
+            this.label5.Text = "TCP";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 32);
+            this.label6.Location = new System.Drawing.Point(-1, 59);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 16);
+            this.label6.Size = new System.Drawing.Size(36, 16);
             this.label6.TabIndex = 15;
-            this.label6.Text = "Label_B_UDP";
+            this.label6.Text = "UDP";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 48);
+            this.label7.Location = new System.Drawing.Point(-1, 93);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 16);
+            this.label7.Size = new System.Drawing.Size(39, 16);
             this.label7.TabIndex = 16;
-            this.label7.Text = "Label_B_ICMP";
+            this.label7.Text = "ICMP";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 64);
+            this.label8.Location = new System.Drawing.Point(3, 121);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(101, 16);
+            this.label8.Size = new System.Drawing.Size(44, 16);
             this.label8.TabIndex = 17;
-            this.label8.Text = "Label_B_HTTP";
-            // 
-            // Label_B_TCP
-            // 
-            this.Label_B_TCP.AutoSize = true;
-            this.Label_B_TCP.Location = new System.Drawing.Point(143, 16);
-            this.Label_B_TCP.Name = "Label_B_TCP";
-            this.Label_B_TCP.Size = new System.Drawing.Size(14, 16);
-            this.Label_B_TCP.TabIndex = 18;
-            this.Label_B_TCP.TabStop = true;
-            this.Label_B_TCP.Text = "0";
-            // 
-            // Label_B_UDP
-            // 
-            this.Label_B_UDP.AutoSize = true;
-            this.Label_B_UDP.Location = new System.Drawing.Point(143, 32);
-            this.Label_B_UDP.Name = "Label_B_UDP";
-            this.Label_B_UDP.Size = new System.Drawing.Size(14, 16);
-            this.Label_B_UDP.TabIndex = 19;
-            this.Label_B_UDP.TabStop = true;
-            this.Label_B_UDP.Text = "0";
-            this.Label_B_UDP.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Label_B_UDP_LinkClicked);
-            // 
-            // Label_B_ICMP
-            // 
-            this.Label_B_ICMP.AutoSize = true;
-            this.Label_B_ICMP.Location = new System.Drawing.Point(143, 49);
-            this.Label_B_ICMP.Name = "Label_B_ICMP";
-            this.Label_B_ICMP.Size = new System.Drawing.Size(14, 16);
-            this.Label_B_ICMP.TabIndex = 20;
-            this.Label_B_ICMP.TabStop = true;
-            this.Label_B_ICMP.Text = "0";
-            // 
-            // Label_B_HTTP
-            // 
-            this.Label_B_HTTP.AutoSize = true;
-            this.Label_B_HTTP.Location = new System.Drawing.Point(143, 64);
-            this.Label_B_HTTP.Name = "Label_B_HTTP";
-            this.Label_B_HTTP.Size = new System.Drawing.Size(14, 16);
-            this.Label_B_HTTP.TabIndex = 21;
-            this.Label_B_HTTP.TabStop = true;
-            this.Label_B_HTTP.Text = "0";
-            // 
-            // Label_A_HTTP
-            // 
-            this.Label_A_HTTP.AutoSize = true;
-            this.Label_A_HTTP.Location = new System.Drawing.Point(118, 68);
-            this.Label_A_HTTP.Name = "Label_A_HTTP";
-            this.Label_A_HTTP.Size = new System.Drawing.Size(14, 16);
-            this.Label_A_HTTP.TabIndex = 31;
-            this.Label_A_HTTP.TabStop = true;
-            this.Label_A_HTTP.Text = "0";
-            // 
-            // Label_A_ICMP
-            // 
-            this.Label_A_ICMP.AutoSize = true;
-            this.Label_A_ICMP.Location = new System.Drawing.Point(118, 52);
-            this.Label_A_ICMP.Name = "Label_A_ICMP";
-            this.Label_A_ICMP.Size = new System.Drawing.Size(14, 16);
-            this.Label_A_ICMP.TabIndex = 30;
-            this.Label_A_ICMP.TabStop = true;
-            this.Label_A_ICMP.Text = "0";
-            // 
-            // Label_A_UDP
-            // 
-            this.Label_A_UDP.AutoSize = true;
-            this.Label_A_UDP.Location = new System.Drawing.Point(118, 36);
-            this.Label_A_UDP.Name = "Label_A_UDP";
-            this.Label_A_UDP.Size = new System.Drawing.Size(14, 16);
-            this.Label_A_UDP.TabIndex = 29;
-            this.Label_A_UDP.TabStop = true;
-            this.Label_A_UDP.Text = "0";
-            // 
-            // Label_A_TCP
-            // 
-            this.Label_A_TCP.AutoSize = true;
-            this.Label_A_TCP.Location = new System.Drawing.Point(118, 20);
-            this.Label_A_TCP.Name = "Label_A_TCP";
-            this.Label_A_TCP.Size = new System.Drawing.Size(14, 16);
-            this.Label_A_TCP.TabIndex = 28;
-            this.Label_A_TCP.TabStop = true;
-            this.Label_A_TCP.Text = "0";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 52);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(101, 16);
-            this.label9.TabIndex = 27;
-            this.label9.Text = "Label_A_HTTP";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 68);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(96, 16);
-            this.label10.TabIndex = 26;
-            this.label10.Text = "Label_A_ICMP";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 36);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(93, 16);
-            this.label11.TabIndex = 25;
-            this.label11.Text = "Label_A_UDP";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(2, 20);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(91, 16);
-            this.label12.TabIndex = 24;
-            this.label12.Text = "Label_A_TCP";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(2, 3);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(92, 16);
-            this.label13.TabIndex = 23;
-            this.label13.Text = "Label_A_ARP";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
-            // 
-            // Label_A_ARP
-            // 
-            this.Label_A_ARP.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.Label_A_ARP.AutoSize = true;
-            this.Label_A_ARP.Location = new System.Drawing.Point(118, 0);
-            this.Label_A_ARP.Name = "Label_A_ARP";
-            this.Label_A_ARP.Size = new System.Drawing.Size(14, 16);
-            this.Label_A_ARP.TabIndex = 22;
-            this.Label_A_ARP.TabStop = true;
-            this.Label_A_ARP.Text = "0";
-            this.Label_A_ARP.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Label_A_ARP_LinkClicked);
+            this.label8.Text = "HTTP";
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textBox_B_out_HTTP);
+            this.panel1.Controls.Add(this.textBox_B_out_ICMP);
+            this.panel1.Controls.Add(this.textBox_B_out_UDP);
+            this.panel1.Controls.Add(this.textBox_B_out_TCP);
+            this.panel1.Controls.Add(this.textBox_B_out_ARP);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.Label_B_ARP);
-            this.panel1.Controls.Add(this.Label_B_HTTP);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.Label_B_ICMP);
-            this.panel1.Controls.Add(this.Label_B_TCP);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.Label_B_UDP);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.textBox_B_in_ARP);
+            this.panel1.Controls.Add(this.textBox_B_in_TCP);
+            this.panel1.Controls.Add(this.textBox_B_in_UDP);
+            this.panel1.Controls.Add(this.textBox_B_in_ICMP);
+            this.panel1.Controls.Add(this.textBox_B_in_HTTP);
             this.panel1.Location = new System.Drawing.Point(872, 132);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(164, 94);
+            this.panel1.Size = new System.Drawing.Size(272, 150);
             this.panel1.TabIndex = 33;
             // 
-            // panel2
+            // textBox_B_out_HTTP
             // 
-            this.panel2.Controls.Add(this.label13);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.Label_A_ARP);
-            this.panel2.Controls.Add(this.Label_A_HTTP);
-            this.panel2.Controls.Add(this.label12);
-            this.panel2.Controls.Add(this.Label_A_ICMP);
-            this.panel2.Controls.Add(this.Label_A_TCP);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.Label_A_UDP);
-            this.panel2.Location = new System.Drawing.Point(17, 123);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(173, 103);
-            this.panel2.TabIndex = 34;
+            this.textBox_B_out_HTTP.Location = new System.Drawing.Point(152, 118);
+            this.textBox_B_out_HTTP.Name = "textBox_B_out_HTTP";
+            this.textBox_B_out_HTTP.ReadOnly = true;
+            this.textBox_B_out_HTTP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_B_out_HTTP.TabIndex = 77;
+            this.textBox_B_out_HTTP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_B_out_ICMP
+            // 
+            this.textBox_B_out_ICMP.Location = new System.Drawing.Point(149, 87);
+            this.textBox_B_out_ICMP.Name = "textBox_B_out_ICMP";
+            this.textBox_B_out_ICMP.ReadOnly = true;
+            this.textBox_B_out_ICMP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_B_out_ICMP.TabIndex = 76;
+            this.textBox_B_out_ICMP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_B_out_UDP
+            // 
+            this.textBox_B_out_UDP.Location = new System.Drawing.Point(152, 59);
+            this.textBox_B_out_UDP.Name = "textBox_B_out_UDP";
+            this.textBox_B_out_UDP.ReadOnly = true;
+            this.textBox_B_out_UDP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_B_out_UDP.TabIndex = 75;
+            this.textBox_B_out_UDP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_B_out_TCP
+            // 
+            this.textBox_B_out_TCP.Location = new System.Drawing.Point(150, 31);
+            this.textBox_B_out_TCP.Name = "textBox_B_out_TCP";
+            this.textBox_B_out_TCP.ReadOnly = true;
+            this.textBox_B_out_TCP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_B_out_TCP.TabIndex = 74;
+            this.textBox_B_out_TCP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_B_out_ARP
+            // 
+            this.textBox_B_out_ARP.Location = new System.Drawing.Point(152, 3);
+            this.textBox_B_out_ARP.Name = "textBox_B_out_ARP";
+            this.textBox_B_out_ARP.ReadOnly = true;
+            this.textBox_B_out_ARP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_B_out_ARP.TabIndex = 73;
+            this.textBox_B_out_ARP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_B_in_ARP
+            // 
+            this.textBox_B_in_ARP.Location = new System.Drawing.Point(44, 3);
+            this.textBox_B_in_ARP.Name = "textBox_B_in_ARP";
+            this.textBox_B_in_ARP.ReadOnly = true;
+            this.textBox_B_in_ARP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_B_in_ARP.TabIndex = 68;
+            this.textBox_B_in_ARP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_B_in_TCP
+            // 
+            this.textBox_B_in_TCP.Location = new System.Drawing.Point(44, 31);
+            this.textBox_B_in_TCP.Name = "textBox_B_in_TCP";
+            this.textBox_B_in_TCP.ReadOnly = true;
+            this.textBox_B_in_TCP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_B_in_TCP.TabIndex = 69;
+            this.textBox_B_in_TCP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_B_in_UDP
+            // 
+            this.textBox_B_in_UDP.Location = new System.Drawing.Point(44, 59);
+            this.textBox_B_in_UDP.Name = "textBox_B_in_UDP";
+            this.textBox_B_in_UDP.ReadOnly = true;
+            this.textBox_B_in_UDP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_B_in_UDP.TabIndex = 70;
+            this.textBox_B_in_UDP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_B_in_ICMP
+            // 
+            this.textBox_B_in_ICMP.Location = new System.Drawing.Point(44, 87);
+            this.textBox_B_in_ICMP.Name = "textBox_B_in_ICMP";
+            this.textBox_B_in_ICMP.ReadOnly = true;
+            this.textBox_B_in_ICMP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_B_in_ICMP.TabIndex = 71;
+            this.textBox_B_in_ICMP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_B_in_HTTP
+            // 
+            this.textBox_B_in_HTTP.Location = new System.Drawing.Point(44, 118);
+            this.textBox_B_in_HTTP.Name = "textBox_B_in_HTTP";
+            this.textBox_B_in_HTTP.ReadOnly = true;
+            this.textBox_B_in_HTTP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_B_in_HTTP.TabIndex = 72;
+            this.textBox_B_in_HTTP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // comboBox1
             // 
@@ -720,29 +629,6 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // listView2
-            // 
-            this.listView2.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10});
-            this.listView2.FullRowSelect = true;
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(1233, 304);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(93, 113);
-            this.listView2.TabIndex = 52;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
-            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -754,7 +640,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(872, 275);
+            this.button4.Location = new System.Drawing.Point(863, 289);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(132, 108);
             this.button4.TabIndex = 54;
@@ -764,24 +650,18 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeight = 29;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.Location = new System.Drawing.Point(375, 92);
+            this.dataGridView1.Location = new System.Drawing.Point(396, 92);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(479, 305);
+            this.dataGridView1.Size = new System.Drawing.Size(435, 305);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(1206, 285);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(120, 16);
-            this.label25.TabIndex = 55;
-            this.label25.Text = "MacAddressTable";
             // 
             // button5
             // 
@@ -789,7 +669,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 56;
-            this.button5.Text = "button5";
+            this.button5.Text = "Clear MAC Table";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -801,254 +681,223 @@
             this.columnHeader13,
             this.columnHeader14});
             this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(8, 370);
+            this.listView3.Location = new System.Drawing.Point(863, 444);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(361, 140);
+            this.listView3.Size = new System.Drawing.Size(343, 66);
             this.listView3.TabIndex = 57;
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
             // 
-            // panel3
+            // textBox_A_in_ARP
             // 
-            this.panel3.Controls.Add(this.label26);
-            this.panel3.Controls.Add(this.lable_B_arp_out);
-            this.panel3.Controls.Add(this.lable_B_http_out);
-            this.panel3.Controls.Add(this.label27);
-            this.panel3.Controls.Add(this.lable_B_icmp_out);
-            this.panel3.Controls.Add(this.lable_B_tcp_out);
-            this.panel3.Controls.Add(this.label28);
-            this.panel3.Controls.Add(this.lable_B_udp_out);
-            this.panel3.Controls.Add(this.label29);
-            this.panel3.Controls.Add(this.label30);
-            this.panel3.Location = new System.Drawing.Point(1087, 132);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 94);
-            this.panel3.TabIndex = 34;
+            this.textBox_A_in_ARP.Location = new System.Drawing.Point(66, 3);
+            this.textBox_A_in_ARP.Name = "textBox_A_in_ARP";
+            this.textBox_A_in_ARP.ReadOnly = true;
+            this.textBox_A_in_ARP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_A_in_ARP.TabIndex = 58;
+            this.textBox_A_in_ARP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_A_in_TCP
+            // 
+            this.textBox_A_in_TCP.Location = new System.Drawing.Point(66, 31);
+            this.textBox_A_in_TCP.Name = "textBox_A_in_TCP";
+            this.textBox_A_in_TCP.ReadOnly = true;
+            this.textBox_A_in_TCP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_A_in_TCP.TabIndex = 59;
+            this.textBox_A_in_TCP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_A_in_DUP
+            // 
+            this.textBox_A_in_DUP.Location = new System.Drawing.Point(66, 59);
+            this.textBox_A_in_DUP.Name = "textBox_A_in_DUP";
+            this.textBox_A_in_DUP.ReadOnly = true;
+            this.textBox_A_in_DUP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_A_in_DUP.TabIndex = 60;
+            this.textBox_A_in_DUP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_A_in_HTTP
+            // 
+            this.textBox_A_in_HTTP.Location = new System.Drawing.Point(66, 87);
+            this.textBox_A_in_HTTP.Name = "textBox_A_in_HTTP";
+            this.textBox_A_in_HTTP.ReadOnly = true;
+            this.textBox_A_in_HTTP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_A_in_HTTP.TabIndex = 61;
+            this.textBox_A_in_HTTP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_A_in_ICMP
+            // 
+            this.textBox_A_in_ICMP.Location = new System.Drawing.Point(66, 115);
+            this.textBox_A_in_ICMP.Name = "textBox_A_in_ICMP";
+            this.textBox_A_in_ICMP.ReadOnly = true;
+            this.textBox_A_in_ICMP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_A_in_ICMP.TabIndex = 62;
+            this.textBox_A_in_ICMP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_A_out_ICMP
+            // 
+            this.textBox_A_out_ICMP.Location = new System.Drawing.Point(168, 115);
+            this.textBox_A_out_ICMP.Name = "textBox_A_out_ICMP";
+            this.textBox_A_out_ICMP.ReadOnly = true;
+            this.textBox_A_out_ICMP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_A_out_ICMP.TabIndex = 67;
+            this.textBox_A_out_ICMP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_A_out_HTTP
+            // 
+            this.textBox_A_out_HTTP.Location = new System.Drawing.Point(168, 87);
+            this.textBox_A_out_HTTP.Name = "textBox_A_out_HTTP";
+            this.textBox_A_out_HTTP.ReadOnly = true;
+            this.textBox_A_out_HTTP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_A_out_HTTP.TabIndex = 66;
+            this.textBox_A_out_HTTP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_A_out_UDP
+            // 
+            this.textBox_A_out_UDP.Location = new System.Drawing.Point(168, 59);
+            this.textBox_A_out_UDP.Name = "textBox_A_out_UDP";
+            this.textBox_A_out_UDP.ReadOnly = true;
+            this.textBox_A_out_UDP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_A_out_UDP.TabIndex = 65;
+            this.textBox_A_out_UDP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_A_out_TCP
+            // 
+            this.textBox_A_out_TCP.Location = new System.Drawing.Point(168, 31);
+            this.textBox_A_out_TCP.Name = "textBox_A_out_TCP";
+            this.textBox_A_out_TCP.ReadOnly = true;
+            this.textBox_A_out_TCP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_A_out_TCP.TabIndex = 64;
+            this.textBox_A_out_TCP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_A_out_ARP
+            // 
+            this.textBox_A_out_ARP.AcceptsReturn = true;
+            this.textBox_A_out_ARP.Location = new System.Drawing.Point(168, 3);
+            this.textBox_A_out_ARP.Name = "textBox_A_out_ARP";
+            this.textBox_A_out_ARP.ReadOnly = true;
+            this.textBox_A_out_ARP.Size = new System.Drawing.Size(100, 22);
+            this.textBox_A_out_ARP.TabIndex = 63;
+            this.textBox_A_out_ARP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(955, 113);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(20, 16);
+            this.label36.TabIndex = 68;
+            this.label36.Text = "IN";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(1050, 113);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(36, 16);
+            this.label37.TabIndex = 69;
+            this.label37.Text = "OUT";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(3, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(35, 16);
+            this.label25.TabIndex = 78;
+            this.label25.Text = "ARP";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(3, 0);
+            this.label26.Location = new System.Drawing.Point(4, 26);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(92, 16);
-            this.label26.TabIndex = 13;
-            this.label26.Text = "Label_B_ARP";
-            // 
-            // lable_B_arp_out
-            // 
-            this.lable_B_arp_out.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.lable_B_arp_out.AutoSize = true;
-            this.lable_B_arp_out.Location = new System.Drawing.Point(143, 0);
-            this.lable_B_arp_out.Name = "lable_B_arp_out";
-            this.lable_B_arp_out.Size = new System.Drawing.Size(14, 16);
-            this.lable_B_arp_out.TabIndex = 12;
-            this.lable_B_arp_out.TabStop = true;
-            this.lable_B_arp_out.Text = "0";
-            // 
-            // lable_B_http_out
-            // 
-            this.lable_B_http_out.AutoSize = true;
-            this.lable_B_http_out.Location = new System.Drawing.Point(143, 64);
-            this.lable_B_http_out.Name = "lable_B_http_out";
-            this.lable_B_http_out.Size = new System.Drawing.Size(14, 16);
-            this.lable_B_http_out.TabIndex = 21;
-            this.lable_B_http_out.TabStop = true;
-            this.lable_B_http_out.Text = "0";
+            this.label26.Size = new System.Drawing.Size(34, 16);
+            this.label26.TabIndex = 79;
+            this.label26.Text = "TCP";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(4, 16);
+            this.label27.Location = new System.Drawing.Point(3, 115);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(91, 16);
-            this.label27.TabIndex = 14;
-            this.label27.Text = "Label_B_TCP";
-            // 
-            // lable_B_icmp_out
-            // 
-            this.lable_B_icmp_out.AutoSize = true;
-            this.lable_B_icmp_out.Location = new System.Drawing.Point(143, 49);
-            this.lable_B_icmp_out.Name = "lable_B_icmp_out";
-            this.lable_B_icmp_out.Size = new System.Drawing.Size(14, 16);
-            this.lable_B_icmp_out.TabIndex = 20;
-            this.lable_B_icmp_out.TabStop = true;
-            this.lable_B_icmp_out.Text = "0";
-            // 
-            // lable_B_tcp_out
-            // 
-            this.lable_B_tcp_out.AutoSize = true;
-            this.lable_B_tcp_out.Location = new System.Drawing.Point(143, 16);
-            this.lable_B_tcp_out.Name = "lable_B_tcp_out";
-            this.lable_B_tcp_out.Size = new System.Drawing.Size(14, 16);
-            this.lable_B_tcp_out.TabIndex = 18;
-            this.lable_B_tcp_out.TabStop = true;
-            this.lable_B_tcp_out.Text = "0";
+            this.label27.Size = new System.Drawing.Size(44, 16);
+            this.label27.TabIndex = 82;
+            this.label27.Text = "HTTP";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(3, 64);
+            this.label28.Location = new System.Drawing.Point(-1, 87);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(101, 16);
-            this.label28.TabIndex = 17;
-            this.label28.Text = "Label_B_HTTP";
-            // 
-            // lable_B_udp_out
-            // 
-            this.lable_B_udp_out.AutoSize = true;
-            this.lable_B_udp_out.Location = new System.Drawing.Point(143, 32);
-            this.lable_B_udp_out.Name = "lable_B_udp_out";
-            this.lable_B_udp_out.Size = new System.Drawing.Size(14, 16);
-            this.lable_B_udp_out.TabIndex = 19;
-            this.lable_B_udp_out.TabStop = true;
-            this.lable_B_udp_out.Text = "0";
+            this.label28.Size = new System.Drawing.Size(39, 16);
+            this.label28.TabIndex = 81;
+            this.label28.Text = "ICMP";
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(4, 48);
+            this.label29.Location = new System.Drawing.Point(-1, 53);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(96, 16);
-            this.label29.TabIndex = 16;
-            this.label29.Text = "Label_B_ICMP";
+            this.label29.Size = new System.Drawing.Size(36, 16);
+            this.label29.TabIndex = 80;
+            this.label29.Text = "UDP";
             // 
-            // label30
+            // panel2
             // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(4, 32);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(93, 16);
-            this.label30.TabIndex = 15;
-            this.label30.Text = "Label_B_UDP";
+            this.panel2.Controls.Add(this.label25);
+            this.panel2.Controls.Add(this.label29);
+            this.panel2.Controls.Add(this.label26);
+            this.panel2.Controls.Add(this.textBox_A_out_ICMP);
+            this.panel2.Controls.Add(this.label28);
+            this.panel2.Controls.Add(this.textBox_A_out_HTTP);
+            this.panel2.Controls.Add(this.label27);
+            this.panel2.Controls.Add(this.textBox_A_out_UDP);
+            this.panel2.Controls.Add(this.textBox_A_in_ARP);
+            this.panel2.Controls.Add(this.textBox_A_out_TCP);
+            this.panel2.Controls.Add(this.textBox_A_in_TCP);
+            this.panel2.Controls.Add(this.textBox_A_out_ARP);
+            this.panel2.Controls.Add(this.textBox_A_in_DUP);
+            this.panel2.Controls.Add(this.textBox_A_in_ICMP);
+            this.panel2.Controls.Add(this.textBox_A_in_HTTP);
+            this.panel2.Location = new System.Drawing.Point(50, 132);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(271, 149);
+            this.panel2.TabIndex = 83;
             // 
-            // panel4
+            // label9
             // 
-            this.panel4.Controls.Add(this.label31);
-            this.panel4.Controls.Add(this.label32);
-            this.panel4.Controls.Add(this.lable_A_arp_out);
-            this.panel4.Controls.Add(this.lable_A_icmp_out);
-            this.panel4.Controls.Add(this.label33);
-            this.panel4.Controls.Add(this.lable_A_http_out);
-            this.panel4.Controls.Add(this.lable_A_tcp_out);
-            this.panel4.Controls.Add(this.label34);
-            this.panel4.Controls.Add(this.label35);
-            this.panel4.Controls.Add(this.lable_A_udp_out);
-            this.panel4.Location = new System.Drawing.Point(196, 123);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(173, 103);
-            this.panel4.TabIndex = 35;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(154, 113);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(20, 16);
+            this.label9.TabIndex = 84;
+            this.label9.Text = "IN";
             // 
-            // label31
+            // label10
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(2, 3);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(92, 16);
-            this.label31.TabIndex = 23;
-            this.label31.Text = "Label_A_ARP";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(3, 52);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(101, 16);
-            this.label32.TabIndex = 27;
-            this.label32.Text = "Label_A_HTTP";
-            // 
-            // lable_A_arp_out
-            // 
-            this.lable_A_arp_out.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.lable_A_arp_out.AutoSize = true;
-            this.lable_A_arp_out.Location = new System.Drawing.Point(118, 0);
-            this.lable_A_arp_out.Name = "lable_A_arp_out";
-            this.lable_A_arp_out.Size = new System.Drawing.Size(14, 16);
-            this.lable_A_arp_out.TabIndex = 22;
-            this.lable_A_arp_out.TabStop = true;
-            this.lable_A_arp_out.Text = "0";
-            // 
-            // lable_A_icmp_out
-            // 
-            this.lable_A_icmp_out.AutoSize = true;
-            this.lable_A_icmp_out.Location = new System.Drawing.Point(118, 68);
-            this.lable_A_icmp_out.Name = "lable_A_icmp_out";
-            this.lable_A_icmp_out.Size = new System.Drawing.Size(14, 16);
-            this.lable_A_icmp_out.TabIndex = 31;
-            this.lable_A_icmp_out.TabStop = true;
-            this.lable_A_icmp_out.Text = "0";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(2, 20);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(91, 16);
-            this.label33.TabIndex = 24;
-            this.label33.Text = "Label_A_TCP";
-            // 
-            // lable_A_http_out
-            // 
-            this.lable_A_http_out.AutoSize = true;
-            this.lable_A_http_out.Location = new System.Drawing.Point(118, 52);
-            this.lable_A_http_out.Name = "lable_A_http_out";
-            this.lable_A_http_out.Size = new System.Drawing.Size(14, 16);
-            this.lable_A_http_out.TabIndex = 30;
-            this.lable_A_http_out.TabStop = true;
-            this.lable_A_http_out.Text = "0";
-            // 
-            // lable_A_tcp_out
-            // 
-            this.lable_A_tcp_out.AutoSize = true;
-            this.lable_A_tcp_out.Location = new System.Drawing.Point(118, 20);
-            this.lable_A_tcp_out.Name = "lable_A_tcp_out";
-            this.lable_A_tcp_out.Size = new System.Drawing.Size(14, 16);
-            this.lable_A_tcp_out.TabIndex = 28;
-            this.lable_A_tcp_out.TabStop = true;
-            this.lable_A_tcp_out.Text = "0";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(3, 68);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(96, 16);
-            this.label34.TabIndex = 26;
-            this.label34.Text = "Label_A_ICMP";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(3, 36);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(93, 16);
-            this.label35.TabIndex = 25;
-            this.label35.Text = "Label_A_UDP";
-            // 
-            // lable_A_udp_out
-            // 
-            this.lable_A_udp_out.AutoSize = true;
-            this.lable_A_udp_out.Location = new System.Drawing.Point(118, 36);
-            this.lable_A_udp_out.Name = "lable_A_udp_out";
-            this.lable_A_udp_out.Size = new System.Drawing.Size(14, 16);
-            this.lable_A_udp_out.TabIndex = 29;
-            this.lable_A_udp_out.TabStop = true;
-            this.lable_A_udp_out.Text = "0";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(252, 113);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(36, 16);
+            this.label10.TabIndex = 85;
+            this.label10.Text = "OUT";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1368, 771);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
+            this.ClientSize = new System.Drawing.Size(1255, 771);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.label37);
+            this.Controls.Add(this.label36);
             this.Controls.Add(this.listView3);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.label25);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label24);
-            this.Controls.Add(this.listView2);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label23);
@@ -1061,7 +910,6 @@
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -1080,15 +928,11 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1107,28 +951,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.LinkLabel Label_B_ARP;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.LinkLabel Label_B_TCP;
-        private System.Windows.Forms.LinkLabel Label_B_UDP;
-        private System.Windows.Forms.LinkLabel Label_B_ICMP;
-        private System.Windows.Forms.LinkLabel Label_B_HTTP;
-        private System.Windows.Forms.LinkLabel Label_A_HTTP;
-        private System.Windows.Forms.LinkLabel Label_A_ICMP;
-        private System.Windows.Forms.LinkLabel Label_A_UDP;
-        private System.Windows.Forms.LinkLabel Label_A_TCP;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.LinkLabel Label_A_ARP;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ComboBox comboBox2;
@@ -1162,20 +990,8 @@
         private System.Windows.Forms.ColumnHeader ToIP;
         private System.Windows.Forms.ColumnHeader ToMAC;
         private System.Windows.Forms.ColumnHeader toPort;
-        private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button button5;
         public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ListView listView3;
@@ -1183,28 +999,36 @@
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox textBox_A_in_ARP;
+        private System.Windows.Forms.TextBox textBox_A_in_TCP;
+        private System.Windows.Forms.TextBox textBox_A_in_DUP;
+        private System.Windows.Forms.TextBox textBox_A_in_HTTP;
+        private System.Windows.Forms.TextBox textBox_A_in_ICMP;
+        private System.Windows.Forms.TextBox textBox_A_out_ICMP;
+        private System.Windows.Forms.TextBox textBox_A_out_HTTP;
+        private System.Windows.Forms.TextBox textBox_A_out_UDP;
+        private System.Windows.Forms.TextBox textBox_A_out_TCP;
+        private System.Windows.Forms.TextBox textBox_A_out_ARP;
+        private System.Windows.Forms.TextBox textBox_B_out_HTTP;
+        private System.Windows.Forms.TextBox textBox_B_out_ICMP;
+        private System.Windows.Forms.TextBox textBox_B_out_UDP;
+        private System.Windows.Forms.TextBox textBox_B_out_TCP;
+        private System.Windows.Forms.TextBox textBox_B_out_ARP;
+        private System.Windows.Forms.TextBox textBox_B_in_HTTP;
+        private System.Windows.Forms.TextBox textBox_B_in_ICMP;
+        private System.Windows.Forms.TextBox textBox_B_in_UDP;
+        private System.Windows.Forms.TextBox textBox_B_in_TCP;
+        private System.Windows.Forms.TextBox textBox_B_in_ARP;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.LinkLabel lable_B_arp_out;
-        private System.Windows.Forms.LinkLabel lable_B_http_out;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.LinkLabel lable_B_icmp_out;
-        private System.Windows.Forms.LinkLabel lable_B_tcp_out;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.LinkLabel lable_B_udp_out;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.LinkLabel lable_A_arp_out;
-        private System.Windows.Forms.LinkLabel lable_A_icmp_out;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.LinkLabel lable_A_http_out;
-        private System.Windows.Forms.LinkLabel lable_A_tcp_out;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.LinkLabel lable_A_udp_out;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
 

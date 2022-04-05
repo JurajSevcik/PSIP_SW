@@ -14,7 +14,6 @@ using System.Timers;
 
 //TODO: pridaj odstranenie / prehodenie kabla ...
 
-
 namespace My_PSIP_project
 {
     internal class table_class
@@ -157,7 +156,7 @@ namespace My_PSIP_project
             {
                 if(zaznam.mac_addres == mac )
                 {
-                    Console.WriteLine("From {0}, Going to: {1}, (table_class/WhereDoIGO/foreach)",mac,  zaznam.M_interface);
+                    //Console.WriteLine("From {0}, Going to: {1}, (table_class/WhereDoIGO/foreach)",mac,  zaznam.M_interface);
                     return zaznam.M_interface;
                 }
             }

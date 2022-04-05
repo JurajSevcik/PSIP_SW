@@ -26,15 +26,15 @@ namespace My_PSIP_project
         private delegate void SafeCallDelegate(string text);
         delegate void SetTextCallback(string text);
         public static BindingSource bindingSource1 = new BindingSource();
+        private static System.Timers.Timer bTimer;
         public Form1()  
         {
             InitializeComponent();
             //backgroundWorker1.WorkerReportsProgress = true;
             //backgroundWorker1.WorkerSupportsCancellation = true;
             //pridelenie textu na statistiky (TODO:dokoncit --pridat B in/out ----nebud lenivé prasa ...smille ) 
-            
-            Label_A_ARP.Text = ST_class.ARP_in_A.ToString();
-            Label_A_TCP.Text = ST_class.TCP_in_A.ToString();
+
+
             dataGridView1.DataSource = ST_class.table;
 
             int i = 0;
@@ -48,34 +48,56 @@ namespace My_PSIP_project
             }
 
 
-            Label_B_ARP.Text = ST_class.ARP_in_B.ToString();
-            Label_B_TCP.Text = ST_class.TCP_in_B.ToString();
-            Label_B_UDP.Text = ST_class.UDP_in_B.ToString();
-            Label_B_ICMP.Text = ST_class.ICMP_in_B.ToString();
-            Label_B_HTTP.Text = ST_class.HTTPS_in_B.ToString();
 
-            Label_A_ARP.Text = ST_class.ARP_in_A.ToString();
-            Label_A_TCP.Text = ST_class.TCP_in_A.ToString();
-            Label_A_UDP.Text = ST_class.UDP_in_A.ToString();
-            Label_B_ICMP.Text = ST_class.ICMP_in_A.ToString();
-            Label_B_HTTP.Text = ST_class.HTTPS_in_A.ToString();
-
-            lable_A_arp_out.Text = ST_class.ARP_in_A.ToString();
-            lable_A_tcp_out.Text = ST_class.TCP_in_A.ToString();    
-            lable_A_icmp_out.Text = ST_class.ICMP_in_A.ToString();
-            lable_A_http_out.Text = ST_class.HTTP_out_A.ToString();
-            lable_A_udp_out.Text = ST_class.UDP_in_A.ToString();
-
-            lable_B_arp_out.Text = ST_class.ARP_in_B.ToString();
-            lable_B_tcp_out.Text = ST_class.TCP_in_B.ToString();
-            lable_B_icmp_out.Text = ST_class.ICMP_in_B.ToString();
-            //lable_B_http_out.Text = ST_class.HTTP_out_B.ToString();
-            lable_B_udp_out.Text = ST_class.UDP_in_B.ToString();
             //dataGridView1.DataSource = ST_class.table;
 
+            // TExtbox ...
+            textBox_B_in_ARP.Text = ST_class.ARP_in_B.ToString();
+            textBox_B_in_TCP.Text = ST_class.TCP_in_B.ToString();
+            textBox_B_in_UDP.Text = ST_class.UDP_in_B.ToString();
+            textBox_B_in_ICMP.Text = ST_class.ICMP_in_B.ToString();
+            textBox_B_in_HTTP.Text = ST_class.HTTPS_in_B.ToString();
+
+            textBox_A_in_ARP.Text = ST_class.ARP_in_A.ToString();
+            textBox_A_in_TCP.Text = ST_class.TCP_in_A.ToString();
+            textBox_A_in_DUP.Text = ST_class.UDP_in_A.ToString();
+            textBox_A_in_ICMP.Text = ST_class.ICMP_in_A.ToString();
+            textBox_A_in_HTTP.Text = ST_class.HTTPS_in_A.ToString();
+
+            textBox_A_out_ARP.Text = ST_class.ARP_out_A.ToString();
+            textBox_A_out_TCP.Text = ST_class.TCP_out_A.ToString();
+            textBox_A_out_ICMP.Text = ST_class.ICMP_out_A.ToString();
+            textBox_A_out_HTTP.Text = ST_class.HTTP_out_A.ToString();
+            textBox_A_out_UDP.Text = ST_class.UDP_out_A.ToString();
+
+            textBox_B_out_ARP.Text = ST_class.ARP_out_B.ToString();
+            textBox_B_out_TCP.Text = ST_class.TCP_out_B.ToString();
+            textBox_B_out_ICMP.Text = ST_class.ICMP_out_B.ToString();
+            textBox_B_out_HTTP.Text = ST_class.HTTP_out_B.ToString();
+            textBox_B_out_UDP.Text = ST_class.UDP_out_B.ToString();
+
+        }
+        private void tim()  //timer to chceck age of mac table content ....
+        {
+            bTimer = new System.Timers.Timer();
+            bTimer.Interval = 1000;
+
+            // Hook up the Elapsed event for the timer. 
+            bTimer.Elapsed += OnTimedEvent;
+
+            // Have the timer fire repeated events (true is the default)
+            bTimer.AutoReset = true;
+
+            // Start the timer
+            bTimer.Enabled = true;
+        }
+        private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            //do something 
+            update_text_stat();
+            DGW();
         }
 
-       
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -96,7 +118,7 @@ namespace My_PSIP_project
         {
             //thread2 = new Thread(new ThreadStart(L.capture));
             //thread2.Start();
-
+            tim();
             var devices = LibPcapLiveDeviceList.Instance; //list of all devices 
             //device_a = devices[8];
             //T.emmpy();
@@ -166,7 +188,7 @@ namespace My_PSIP_project
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            //this.textBox2.AppendText("Text");
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -189,13 +211,46 @@ namespace My_PSIP_project
             
         }
 
+        public void update_text_stat()
+        {
 
-            
-        
+            textBox_B_in_ARP.Text = ST_class.ARP_in_B.ToString();
+            textBox_B_in_TCP.Text = ST_class.TCP_in_B.ToString();
+            textBox_B_in_UDP.Text = ST_class.UDP_in_B.ToString();
+            textBox_B_in_ICMP.Text = ST_class.ICMP_in_B.ToString();
+            textBox_B_in_HTTP.Text = ST_class.HTTPS_in_B.ToString();
 
+            textBox_A_in_ARP.Text = ST_class.ARP_in_A.ToString();
+            textBox_A_in_TCP.Text = ST_class.TCP_in_A.ToString();
+            textBox_A_in_DUP.Text = ST_class.UDP_in_A.ToString();
+            textBox_A_in_ICMP.Text = ST_class.ICMP_in_A.ToString();
+            textBox_A_in_HTTP.Text = ST_class.HTTPS_in_A.ToString();
 
+            textBox_A_in_ARP.Update();
+            textBox_A_in_TCP.Update();
+            textBox_A_in_DUP.Update();
+            textBox_A_in_ICMP.Update();
+            textBox_A_in_HTTP.Update();
 
+            textBox_A_in_ARP.Refresh();
+            textBox_A_in_TCP.Refresh();
+            textBox_A_in_DUP.Refresh();
+            textBox_A_in_ICMP.Refresh();
+            textBox_A_in_HTTP.Refresh();
+            //textBox_A_in_ARP.BeginInvoke();
 
+            textBox_A_out_ARP.Text = ST_class.ARP_out_A.ToString();
+            textBox_A_out_TCP.Text = ST_class.TCP_out_A.ToString();
+            textBox_A_out_ICMP.Text = ST_class.ICMP_out_A.ToString();
+            textBox_A_out_HTTP.Text = ST_class.HTTP_out_A.ToString();
+            textBox_A_out_UDP.Text = ST_class.UDP_out_A.ToString();
+
+            textBox_B_out_ARP.Text = ST_class.ARP_out_B.ToString();
+            textBox_B_out_TCP.Text = ST_class.TCP_out_B.ToString();
+            textBox_B_out_ICMP.Text = ST_class.ICMP_out_B.ToString();
+            textBox_B_out_HTTP.Text = ST_class.HTTP_out_B.ToString();
+            textBox_B_out_UDP.Text = ST_class.UDP_out_B.ToString();
+        }
 
         private void label4_Click(object sender, EventArgs e)
         {
@@ -250,9 +305,11 @@ namespace My_PSIP_project
         private void button4_Click_1(object sender, EventArgs e)
         {
             L.show_table();
-            
-            int i = 0;
+
+            //int i = 0;
+
             //dataGridView1.DataSource = ST_class.table.ToList();
+            dataGridView1.Invoke(new Action(() => dataGridView1.DataSource = ST_class.table.ToList()));
             dataGridView1.Update();
             
             
@@ -264,13 +321,14 @@ namespace My_PSIP_project
         }
         public void DGW()
         {
-            
+
             //L.show_table();
             //dataGridView1.DataSource = null;
             //int i = 0;
             //dataGridView1.DataSource = ST_class.table.ToList();
+            //dataGridView1.Invoke(new Action(() => dataGridView1.DataSource = null));
+            dataGridView1.Invoke(new Action(() => dataGridView1.DataSource = ST_class.table.ToList()))  ;
             dataGridView1.Update();
-            dataGridView1.Refresh();
 
         }
 
@@ -333,6 +391,16 @@ namespace My_PSIP_project
         private void button5_Click(object sender, EventArgs e)
         {
             ST_class.rm();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

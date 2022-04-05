@@ -12,9 +12,6 @@ using System.Windows.Forms;
 using System.Timers;
 //using System.Timers;
 //TODO: kontrola ci sa packet este neodoslal -- hashocvanica tabulka :::ň
-//TODO: vlasná kontrola isEuel --- na byty nefunguje .- override 
-
-//TODO: pozrieť sa kde sa nwachádza súbor do ktorého chcem zapoiovaoť 
 //TODO: presuńut vystup do okna ... možno skusiť ja pop-up
 
 
@@ -22,7 +19,6 @@ namespace My_PSIP_project
 {
     internal class Libraly
     {
-        
         public string TextToDisplay;
         protected LibPcapLiveDevice device_a;  //loopback devices ....
         protected LibPcapLiveDevice device_b;
@@ -30,8 +26,13 @@ namespace My_PSIP_project
         table_class T = new table_class();
         time_classcs TM = new time_classcs();
         private static System.Timers.Timer aTimer;
-
-
+        //ako dlho musí byť port neaktívny aby sa jeho tabulka vymazala  
+        private static int TimeOut = 10;
+        private static int cabel_a = TimeOut;
+        private static int cabel_b = TimeOut;
+        private static int repete = 5;
+        private static int a = 7; //index of devices that will be used (list of devices in consoe after start )
+        private static int b = 6;
         public Array Devices()
         {
             var devices = CaptureDeviceList.Instance;
@@ -44,7 +45,7 @@ namespace My_PSIP_project
         private void ChoseDevice_A()   //TODO: make dinamic 
         {
             var devices = LibPcapLiveDeviceList.Instance; //list of all devices 
-            device_a = devices[8];
+            device_a = devices[a];
             
             int i = 0;
             foreach (var dev in devices)
@@ -58,7 +59,7 @@ namespace My_PSIP_project
         private void ChoseDevice_B()
         {
             var devices = LibPcapLiveDeviceList.Instance; //list of all devices 
-            device_b = devices[7];
+            device_b = devices[b];
             //Console.WriteLine(device_b.ToString());
         }
         
@@ -78,7 +79,13 @@ namespace My_PSIP_project
         }
         private static void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-
+            
+            repete --;
+            if (repete ==0 )
+            {
+                //ST_class.b.Clear();
+                repete = 5;
+            }
             foreach(MacZaznam tab in ST_class.table )
             {
                 //TODO: intable as string and and cheange hear and back 
@@ -86,11 +93,29 @@ namespace My_PSIP_project
                 if(tab.timer < 1)
                 {
                     ST_class.table.Remove(tab);
+                    ST_class.b.Clear();
                     break;
                 }
                 tab.timer--;
-               
             }
+            
+
+            if (cabel_a < 1) // if cabel dead ... remove 
+            {   
+                ST_class.rm_port('A');
+                ST_class.b.Clear();
+            }
+            if (cabel_b < 1)
+            {
+                ST_class.rm_port('B');
+                ST_class.b.Clear();
+            }
+            cabel_a--;
+            cabel_b--;
+
+            F.update_text_stat(); //update satistic every second
+            F.DGW();
+            Application.DoEvents();
         }
         public List<MacZaznam> capture()
         {
@@ -123,15 +148,6 @@ namespace My_PSIP_project
             device_a.StopCapture();
             device_b.StopCapture();
 
-            Console.WriteLine("IN\nA:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n",
-                ST_class.ARP_in_A, ST_class.TCP_in_A, ST_class.UDP_in_A, ST_class.ICMP_in_A, ST_class.HTTP_in_A);
-            Console.WriteLine("B:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n", 
-                ST_class.ARP_in_B, ST_class.TCP_in_B, ST_class.UDP_in_B, ST_class.ICMP_in_B, ST_class.HTTP_in_B);
-
-            Console.WriteLine("OUT\nA:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n",
-                ST_class.ARP_out_A, ST_class.TCP_out_A, ST_class.UDP_out_A, ST_class.ICMP_out_A, ST_class.HTTP_out_A);
-            Console.WriteLine("B:\n ARP {0}\n TCP {1}\n UDP {2}\n ICMP {3}\n HTTP {4}\n",
-                ST_class.ARP_out_B, ST_class.TCP_out_B, ST_class.UDP_out_B, ST_class.ICMP_out_B, ST_class.HTTP_out_B);
         }
 
         //useless
@@ -139,33 +155,29 @@ namespace My_PSIP_project
 
         private void GottaCatchEmAll(object sender, PacketCapture e)
         {
-            PacketSender S = new PacketSender();
             var rawPacket = e.GetPacket();         //zachytenie packetu
             if (sender == device_a)
             {
+                cabel_a = TimeOut; // interface is UP 
                 device_OnPacketArrival_A(rawPacket);
+                rawPacket = null;
             }
             if(sender == device_b)
             {
+                cabel_b = TimeOut; // interface is UP 
                 device_OnPacketArrival_B(rawPacket);
+                rawPacket = null;
             }
-
         }
 
         private void device_OnPacketArrival_A(RawCapture rawPacket)
         {
-           
-            //TODO: move to sendnder class 
-            //TODO: add calss for sattictics
-            //TODO: move after statiscick
             PacketSender S = new PacketSender();
             var rrt = rawPacket.Data;
             var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
             var rrte = packet.Bytes;
             var wwq = packet.GetHashCode();
 
-
-            
             //filtrovanie packetov len na tiek ktore ma zaujimaju 
             var ethernetPacket = (EthernetPacket)packet;
             List<string> MacDev = new List<String> { "005079666800", "005079666801", "005079666802" };
@@ -178,23 +190,17 @@ namespace My_PSIP_project
             {
                 return;
             }
-            //var time = e.Header.Timeval.Date;
-            //ethernetPacket.PrintHex();
 
             string t = ethernetPacket.PrintHex().ToString();
             ST_class.watch.Add(t); //cheack if it isnt same packet
             if (ST_class.circle(packet)) //it's samo one again 
             {
+                Console.WriteLine("duplicitny packet");
                 return;
             }    
 
-
             T.GiveMeMyPacket( rawPacket, 'A'); //chceck mac address table and add or cheange log int there  ;
-            Console.WriteLine("Posielam z A");
             S.send(device_a, device_b, rawPacket, 'A');   //odoslanie packetu 
-            //device_b.Close();
-            //var ethernetPacket = (EthernetPacket)packet;
-            
             var type = rawPacket;
             var tempPacket = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
             while (tempPacket.PayloadPacket != null)
@@ -219,7 +225,10 @@ namespace My_PSIP_project
                 ST_class.ICMP_in_A++;
             }
             packetIndex++;
+            F.update_text_stat();
             F.DGW();
+            F.dataFridView1_update();
+            //Application.DoEvents();
         }
 
         public void show_table()
@@ -256,25 +265,24 @@ namespace My_PSIP_project
                 {
                     return;
                 }
-            
-            
             if (ST_class.circle(packet)) //it's samo one again 
             {
+                Console.WriteLine("Duplicitny packet  - B");
                 return;
             }
             //Console.WriteLine(packet.Ethernet.IpV4.Protocol.ToString());
             T.GiveMeMyPacket( rawPacket, 'B'); //chceck mac address table and add or cheange log int there  ;
-            Console.WriteLine("Posoelam z B");
-            Console.WriteLine("Packet dumped to file.");
+            //Console.WriteLine("Posoelam z B");
+            
 
             if (rawPacket.LinkLayerType == PacketDotNet.LinkLayers.Ethernet)
             {
-                Console.WriteLine("{0} At: {1}:{2}: MAC:{3} -> MAC:{4}",
+                /*Console.WriteLine("{0} At: {1}:{2}: MAC:{3} -> MAC:{4}",
                                   packetIndex,
                                   rawPacket.Timeval.Date.ToString(),
                                   rawPacket.Timeval.Date.Millisecond,
                                   ethernetPacket.SourceHardwareAddress,
-                                  ethernetPacket.DestinationHardwareAddress);
+                                  ethernetPacket.DestinationHardwareAddress);*/
                 packetIndex++;
                 S.send(device_a, device_b, rawPacket, 'B');
             }
@@ -313,8 +321,8 @@ namespace My_PSIP_project
                 ST_class.ICMP_in_B++;
                 
             }
-
-            F.DGW();
+            F.update_text_stat();
+            F.DGW();    
         }
 
         public async void ControlWrite()
@@ -329,10 +337,6 @@ namespace My_PSIP_project
             rand.NextBytes(packet);
             return packet;
         }
-
     }
 }
-//prevzate z: 
-//https://github.com/dotpcap/sharppcap/blob/master/Examples/CreatingCaptureFile/Program.cs --github interessting code
-
 

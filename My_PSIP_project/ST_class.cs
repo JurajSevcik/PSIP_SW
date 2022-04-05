@@ -13,42 +13,79 @@ namespace My_PSIP_project
     internal class ST_class
     {
         public static List<MacZaznam> table = new List<MacZaznam>();
-        public static Array[] SixPack = new Array[] { };
-        public static List<string> b = new List<string>();
+        public static Array[] SixPack = new Array[] {};
+        public static List<byte[]> b = new List<byte[]>();
         public static List<string> watch = new List<string>();
 
         public static bool circle(PacketDotNet.Packet raw) // chceck if it's not the same packet ....
         {
-            return false;
-            var w = raw.PayloadPacket;
+            //return false;
             
+            var w = raw.Bytes;
+            ///var rawPacket = raw.data();
+            //var packet = PacketDotNet.Packet.ParsePacket(raw.LinkLayerType, rawPacket.Data);
             //watch.Add(w.ToString());
             if (b.Count == 0)
             {
-                b.Add(raw.Bytes.ToString());
+                b.Add(raw.HeaderData);
                 return false;
             }
             //SixPack.Append(raw);
             //byte[] a1 = raw.Data;
 
 
-            string a1 = raw.Bytes.ToString();
-            foreach (string lis in b)
+            byte[] a1 = raw.Bytes;
+            //nt i = 0;
+            //return false;
+            for (int i = b.Count - 1; i >= 0; i--)
             {
-                if (lis.Equals(a1))
+                int control = b[i].Length;
+                if (control == a1.Length)
                 {
-                    //tento som uz videl ...i de o rovanky packet 
-                    return true;
+                    for (int j = b[i].Length-1; j > 0; j--)
+
+                        if (b[i][j] != a1[j])//ther is a difreance --> it's not a same one ...he cheanged 
+                        {
+                            control--;
+                        }
+                    if (control == b[i].Length)
+                    {
+                        
+                        return true;
+                    }
                 }
             }
             b.Add(a1);
             return false;
+            
+            /*
+            foreach (byte[] lis in b)
+            {
+                if (lis[i] == a1[i])
+                    i++;
+                else
+                {
+                    b.Add(a1);
+                    return false;}
+                
+            }*/
+            //return true;
 
         }
 
         public static void rm()
         {
             table.Clear();
+        }
+
+        public static void rm_port(char x)
+        {
+            //remove all information from interface ...if cable was removed f
+            for (int i = table.Count - 1; i >= 0; i--)
+            {
+                if (table[i].M_interface == x)
+                    table.RemoveAt(i);
+            }            
         }
 
 
