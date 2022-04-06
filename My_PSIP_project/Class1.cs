@@ -27,13 +27,13 @@ namespace My_PSIP_project
             
             //send packet to other port 
             if(intf == 'A') {
-                go(device_b, rawPacket);
+                go(device_a, rawPacket);
                 stat('A', rawPacket);
 
             }
             else if (intf == 'B')
             {
-                go(device_a, rawPacket);
+                go(device_b, rawPacket);
                 stat('B', rawPacket);
 
             }

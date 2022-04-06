@@ -30,9 +30,9 @@ namespace My_PSIP_project
         private static int TimeOut = 10;
         private static int cabel_a = TimeOut;
         private static int cabel_b = TimeOut;
-        private static int repete = 5;
+        private static int repete = 10;
         private static int a = 7; //index of devices that will be used (list of devices in consoe after start )
-        private static int b = 6;
+        private static int b = 8;
         public Array Devices()
         {
             var devices = CaptureDeviceList.Instance;
