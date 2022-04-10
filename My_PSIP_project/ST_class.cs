@@ -5,7 +5,20 @@ public class MacZaznam
 {
     public string mac_addres { get; set; } //wher packet is from -- and wher i will send next one to this destination
     public char M_interface { get; set; }//on whitch interface did i get packet   
-    public int timer = 15;
+    public int timer = 300;
+}
+public class AddFilter
+{
+    public string port { get; set; }
+    public string way { get; set; }
+    public string YesNo { get; set; }
+    public string protocol { get; set; }
+    public string ip_from { get; set; }
+    public string mac_from { get; set; }
+    public string port_from { get; set; }
+    public string ip_to { get; set; }
+    public string mac_to { get; set; }
+    public string port_to { get; set; }
 }
 
 namespace My_PSIP_project
@@ -16,27 +29,17 @@ namespace My_PSIP_project
         public static Array[] SixPack = new Array[] {};
         public static List<byte[]> b = new List<byte[]>();
         public static List<string> watch = new List<string>();
+        public static List<AddFilter> filtre = new List<AddFilter>();
 
         public static bool circle(PacketDotNet.Packet raw) // chceck if it's not the same packet ....
         {
-            //return false;
-            
             var w = raw.Bytes;
-            ///var rawPacket = raw.data();
-            //var packet = PacketDotNet.Packet.ParsePacket(raw.LinkLayerType, rawPacket.Data);
-            //watch.Add(w.ToString());
             if (b.Count == 0)
             {
                 b.Add(raw.HeaderData);
                 return false;
             }
-            //SixPack.Append(raw);
-            //byte[] a1 = raw.Data;
-
-
             byte[] a1 = raw.Bytes;
-            //nt i = 0;
-            //return false;
             for (int i = b.Count - 1; i >= 0; i--)
             {
                 int control = b[i].Length;
@@ -50,27 +53,12 @@ namespace My_PSIP_project
                         }
                     if (control == b[i].Length)
                     {
-                        
                         return true;
                     }
                 }
             }
             b.Add(a1);
             return false;
-            
-            /*
-            foreach (byte[] lis in b)
-            {
-                if (lis[i] == a1[i])
-                    i++;
-                else
-                {
-                    b.Add(a1);
-                    return false;}
-                
-            }*/
-            //return true;
-
         }
 
         public static void rm()

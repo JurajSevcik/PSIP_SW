@@ -34,8 +34,8 @@ namespace My_PSIP_project
             //backgroundWorker1.WorkerSupportsCancellation = true;
             //pridelenie textu na statistiky (TODO:dokoncit --pridat B in/out ----nebud lenivé prasa ...smille ) 
 
-
             dataGridView1.DataSource = ST_class.table;
+            dataGridView2.DataSource = ST_class.filtre;
 
             int i = 0;
             foreach(MacZaznam mac in ST_class.table)
@@ -96,6 +96,7 @@ namespace My_PSIP_project
             //do something 
             update_text_stat();
             DGW();
+
         }
 
 
@@ -299,7 +300,22 @@ namespace My_PSIP_project
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-
+            //rull
+            AddFilter Fi = new AddFilter() {};
+            Fi.port = comboBox1.SelectedItem.ToString();
+            Fi.way = comboBox2.SelectedItem.ToString();
+            Fi.YesNo = comboBox3.SelectedItem.ToString();
+            Fi.protocol = comboBox4.SelectedItem.ToString();
+            Fi.ip_from = textBox3.Text;
+            Fi.mac_from = textBox4.Text;
+            Fi.port_from = textBox5.Text;
+            Fi.ip_to = textBox6.Text;
+            Fi.mac_to = textBox7.Text;
+            Fi.port_to = textBox8.Text;
+            ST_class.filtre.Add(Fi);
+            dataGridView2.Invoke(new Action(() => dataGridView2.DataSource = ST_class.filtre.ToList()));
+            dataGridView2.Update();
+            dataGridView2.Refresh();
         }
 
         private void button4_Click_1(object sender, EventArgs e)
@@ -401,6 +417,19 @@ namespace My_PSIP_project
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void MacTimerUpdate_Click(object sender, EventArgs e)
+        {
+            //TODO: tu som skoncit ... napojit timer na cas 
+            var time = timer.Text;
+            
         }
     }
 

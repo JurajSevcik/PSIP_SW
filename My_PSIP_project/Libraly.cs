@@ -31,6 +31,7 @@ namespace My_PSIP_project
         private static int cabel_a = TimeOut;
         private static int cabel_b = TimeOut;
         private static int repete = 10;
+        public static int timer = 20;
         private static int a = 7; //index of devices that will be used (list of devices in consoe after start )
         private static int b = 8;
         public Array Devices()
@@ -159,11 +160,18 @@ namespace My_PSIP_project
             if (sender == device_a)
             {
                 cabel_a = TimeOut; // interface is UP 
+
+                filtracia fi = new filtracia();
+                fi.filtruj_in(rawPacket, "A");
+
                 device_OnPacketArrival_A(rawPacket);
                 rawPacket = null;
             }
             if(sender == device_b)
             {
+                filtracia fi = new filtracia();
+                fi.filtruj_in(rawPacket, "B");
+
                 cabel_b = TimeOut; // interface is UP 
                 device_OnPacketArrival_B(rawPacket);
                 rawPacket = null;

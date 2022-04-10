@@ -77,17 +77,6 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.port = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.way = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.value = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.protocol = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.fromIP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.fromMAC = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.fromPort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ToIP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ToMAC = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.toPort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label24 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -117,10 +106,16 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.TextBox();
+            this.MacTableTimer = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.MacTimerUpdate = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // read_button
@@ -411,7 +406,7 @@
             this.flowLayoutPanel1.Controls.Add(this.textBox6);
             this.flowLayoutPanel1.Controls.Add(this.textBox7);
             this.flowLayoutPanel1.Controls.Add(this.textBox8);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 532);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(13, 461);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1113, 31);
             this.flowLayoutPanel1.TabIndex = 36;
@@ -499,7 +494,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(5, 513);
+            this.label14.Location = new System.Drawing.Point(13, 442);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(85, 16);
             this.label14.TabIndex = 40;
@@ -509,7 +504,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(294, 513);
+            this.label15.Location = new System.Drawing.Point(302, 442);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(57, 16);
             this.label15.TabIndex = 41;
@@ -519,7 +514,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(167, 513);
+            this.label16.Location = new System.Drawing.Point(175, 442);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(83, 16);
             this.label16.TabIndex = 42;
@@ -529,7 +524,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(96, 513);
+            this.label17.Location = new System.Drawing.Point(104, 442);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(53, 16);
             this.label17.TabIndex = 43;
@@ -539,7 +534,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(421, 516);
+            this.label18.Location = new System.Drawing.Point(429, 445);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(48, 16);
             this.label18.TabIndex = 44;
@@ -549,7 +544,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(564, 513);
+            this.label19.Location = new System.Drawing.Point(572, 442);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(65, 16);
             this.label19.TabIndex = 45;
@@ -559,7 +554,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(711, 513);
+            this.label20.Location = new System.Drawing.Point(719, 442);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(59, 16);
             this.label20.TabIndex = 46;
@@ -569,7 +564,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(777, 515);
+            this.label21.Location = new System.Drawing.Point(785, 444);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(33, 16);
             this.label21.TabIndex = 47;
@@ -579,7 +574,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(904, 516);
+            this.label22.Location = new System.Drawing.Point(912, 445);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(50, 16);
             this.label22.TabIndex = 48;
@@ -589,7 +584,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(1042, 513);
+            this.label23.Location = new System.Drawing.Point(1050, 442);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(44, 16);
             this.label23.TabIndex = 49;
@@ -598,36 +593,13 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1124, 540);
+            this.button2.Location = new System.Drawing.Point(1132, 465);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(121, 23);
             this.button2.TabIndex = 50;
             this.button2.Text = "ADD_RULE ";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
-            // listView1
-            // 
-            this.listView1.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.port,
-            this.way,
-            this.value,
-            this.protocol,
-            this.fromIP,
-            this.fromMAC,
-            this.fromPort,
-            this.ToIP,
-            this.ToMAC,
-            this.toPort});
-            this.listView1.FullRowSelect = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 568);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1165, 118);
-            this.listView1.TabIndex = 51;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // label24
             // 
@@ -665,7 +637,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(554, 403);
+            this.button5.Location = new System.Drawing.Point(756, 403);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 56;
@@ -681,7 +653,7 @@
             this.columnHeader13,
             this.columnHeader14});
             this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(863, 444);
+            this.listView3.Location = new System.Drawing.Point(28, 307);
             this.listView3.Name = "listView3";
             this.listView3.Size = new System.Drawing.Size(343, 66);
             this.listView3.TabIndex = 57;
@@ -882,12 +854,63 @@
             this.label10.TabIndex = 85;
             this.label10.Text = "OUT";
             // 
+            // timer
+            // 
+            this.timer.Location = new System.Drawing.Point(503, 400);
+            this.timer.Name = "timer";
+            this.timer.Size = new System.Drawing.Size(100, 22);
+            this.timer.TabIndex = 86;
+            // 
+            // MacTableTimer
+            // 
+            this.MacTableTimer.AutoSize = true;
+            this.MacTableTimer.Location = new System.Drawing.Point(393, 403);
+            this.MacTableTimer.Name = "MacTableTimer";
+            this.MacTableTimer.Size = new System.Drawing.Size(104, 16);
+            this.MacTableTimer.TabIndex = 87;
+            this.MacTableTimer.Text = "MacTableTimer";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(609, 406);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(14, 16);
+            this.label11.TabIndex = 88;
+            this.label11.Text = "s";
+            // 
+            // MacTimerUpdate
+            // 
+            this.MacTimerUpdate.Location = new System.Drawing.Point(629, 399);
+            this.MacTimerUpdate.Name = "MacTimerUpdate";
+            this.MacTimerUpdate.Size = new System.Drawing.Size(75, 23);
+            this.MacTimerUpdate.TabIndex = 89;
+            this.MacTimerUpdate.Text = "update";
+            this.MacTimerUpdate.UseVisualStyleBackColor = true;
+            this.MacTimerUpdate.Click += new System.EventHandler(this.MacTimerUpdate_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(13, 499);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(1113, 153);
+            this.dataGridView2.TabIndex = 90;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1255, 771);
+            this.ClientSize = new System.Drawing.Size(1256, 664);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.MacTimerUpdate);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.MacTableTimer);
+            this.Controls.Add(this.timer);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panel2);
@@ -898,7 +921,6 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label24);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label22);
@@ -933,6 +955,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -979,17 +1002,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader port;
-        private System.Windows.Forms.ColumnHeader way;
-        private System.Windows.Forms.ColumnHeader value;
-        private System.Windows.Forms.ColumnHeader protocol;
-        private System.Windows.Forms.ColumnHeader fromIP;
-        private System.Windows.Forms.ColumnHeader fromMAC;
-        private System.Windows.Forms.ColumnHeader fromPort;
-        private System.Windows.Forms.ColumnHeader ToIP;
-        private System.Windows.Forms.ColumnHeader ToMAC;
-        private System.Windows.Forms.ColumnHeader toPort;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
@@ -1029,6 +1041,11 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox timer;
+        private System.Windows.Forms.Label MacTableTimer;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button MacTimerUpdate;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
 
