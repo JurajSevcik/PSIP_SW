@@ -32,8 +32,8 @@ namespace My_PSIP_project
         private static int cabel_b = TimeOut;
         private static int repete = 10;
         public static int timer = 20;
-        private static int a = 7; //index of devices that will be used (list of devices in consoe after start )
-        private static int b = 8;
+        private static int a = 6; //index of devices that will be used (list of devices in consoe after start )
+        private static int b = 9;
         public Array Devices()
         {
             var devices = CaptureDeviceList.Instance;
@@ -156,6 +156,10 @@ namespace My_PSIP_project
 
         private void GottaCatchEmAll(object sender, PacketCapture e)
         {
+            syslog syslog = new syslog();// TODO : remove after testig
+            
+            device_a.SendPacket(syslog.CreateSyslog());
+
             var rawPacket = e.GetPacket();         //zachytenie packetu
             if (sender == device_a)
             {

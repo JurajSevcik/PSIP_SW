@@ -36,7 +36,7 @@ namespace My_PSIP_project
 
             dataGridView1.DataSource = ST_class.table;
             dataGridView2.DataSource = ST_class.filtre;
-
+            /*
             int i = 0;
             foreach(MacZaznam mac in ST_class.table)
             {
@@ -45,7 +45,7 @@ namespace My_PSIP_project
             listView3.Items.Add(ST_class.table[i].M_interface.ToString());
             listView3.Items.Add(ST_class.table[i].timer.ToString());
              i++;
-            }
+            }*/
 
 
 
@@ -179,7 +179,9 @@ namespace My_PSIP_project
 
         private void button3_Click(object sender, EventArgs e) //read  from capture file 
         {
+            syslog syslog = new syslog();
             L.ControlWrite();
+            syslog.CreateSyslog();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -430,6 +432,21 @@ namespace My_PSIP_project
             //TODO: tu som skoncit ... napojit timer na cas 
             var time = timer.Text;
             
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

@@ -81,11 +81,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button5 = new System.Windows.Forms.Button();
-            this.listView3 = new System.Windows.Forms.ListView();
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox_A_in_ARP = new System.Windows.Forms.TextBox();
             this.textBox_A_in_TCP = new System.Windows.Forms.TextBox();
             this.textBox_A_in_DUP = new System.Windows.Forms.TextBox();
@@ -111,6 +106,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.MacTimerUpdate = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -146,9 +143,9 @@
             // Capture_button
             // 
             this.Capture_button.BackColor = System.Drawing.Color.Lime;
-            this.Capture_button.Location = new System.Drawing.Point(458, 12);
+            this.Capture_button.Location = new System.Drawing.Point(396, 13);
             this.Capture_button.Name = "Capture_button";
-            this.Capture_button.Size = new System.Drawing.Size(126, 50);
+            this.Capture_button.Size = new System.Drawing.Size(227, 50);
             this.Capture_button.TabIndex = 4;
             this.Capture_button.Text = "START";
             this.Capture_button.UseVisualStyleBackColor = false;
@@ -177,9 +174,9 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(590, 13);
+            this.button1.Location = new System.Drawing.Point(612, 13);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 49);
+            this.button1.Size = new System.Drawing.Size(219, 50);
             this.button1.TabIndex = 7;
             this.button1.Text = "STOP";
             this.button1.UseVisualStyleBackColor = false;
@@ -224,7 +221,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 6);
+            this.label4.Location = new System.Drawing.Point(4, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 16);
             this.label4.TabIndex = 13;
@@ -234,7 +231,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 32);
+            this.label5.Location = new System.Drawing.Point(4, 37);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 16);
             this.label5.TabIndex = 14;
@@ -243,7 +240,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(-1, 59);
+            this.label6.Location = new System.Drawing.Point(4, 62);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 16);
             this.label6.TabIndex = 15;
@@ -253,7 +250,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(-1, 93);
+            this.label7.Location = new System.Drawing.Point(4, 93);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(39, 16);
             this.label7.TabIndex = 16;
@@ -422,6 +419,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(98, 24);
             this.comboBox2.TabIndex = 36;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // comboBox3
             // 
@@ -443,7 +441,8 @@
             "TCP",
             "UDP",
             "ICMP",
-            "HTTP"});
+            "HTTP",
+            "ALL"});
             this.comboBox4.Location = new System.Drawing.Point(289, 3);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(121, 24);
@@ -593,7 +592,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1132, 465);
+            this.button2.Location = new System.Drawing.Point(1131, 499);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(121, 23);
             this.button2.TabIndex = 50;
@@ -644,21 +643,6 @@
             this.button5.Text = "Clear MAC Table";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // listView3
-            // 
-            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader14});
-            this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(28, 307);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(343, 66);
-            this.listView3.TabIndex = 57;
-            this.listView3.UseCompatibleStateImageBehavior = false;
-            this.listView3.View = System.Windows.Forms.View.Details;
             // 
             // textBox_A_in_ARP
             // 
@@ -772,7 +756,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(3, 0);
+            this.label25.Location = new System.Drawing.Point(4, 3);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(35, 16);
             this.label25.TabIndex = 78;
@@ -781,7 +765,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(4, 26);
+            this.label26.Location = new System.Drawing.Point(4, 34);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(34, 16);
             this.label26.TabIndex = 79;
@@ -790,7 +774,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(3, 115);
+            this.label27.Location = new System.Drawing.Point(4, 115);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(44, 16);
             this.label27.TabIndex = 82;
@@ -799,7 +783,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(-1, 87);
+            this.label28.Location = new System.Drawing.Point(4, 87);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(39, 16);
             this.label28.TabIndex = 81;
@@ -808,7 +792,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(-1, 53);
+            this.label29.Location = new System.Drawing.Point(4, 59);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(36, 16);
             this.label29.TabIndex = 80;
@@ -891,14 +875,38 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(13, 499);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.Size = new System.Drawing.Size(1113, 153);
             this.dataGridView2.TabIndex = 90;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(16, 423);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(280, 16);
+            this.label12.TabIndex = 91;
+            this.label12.Text = "Vložte \'null\' ak chcete políčko nechať prázdne ";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(1132, 532);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(120, 23);
+            this.button6.TabIndex = 92;
+            this.button6.Text = "DELETE_RULE";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form1
             // 
@@ -906,6 +914,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1256, 664);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.MacTimerUpdate);
             this.Controls.Add(this.label11);
@@ -916,7 +926,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label37);
             this.Controls.Add(this.label36);
-            this.Controls.Add(this.listView3);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
@@ -1006,11 +1015,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         public System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ListView listView3;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
-        private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.TextBox textBox_A_in_ARP;
         private System.Windows.Forms.TextBox textBox_A_in_TCP;
         private System.Windows.Forms.TextBox textBox_A_in_DUP;
@@ -1046,6 +1050,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button MacTimerUpdate;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button button6;
     }
 }
 
