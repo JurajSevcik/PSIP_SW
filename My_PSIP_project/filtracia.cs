@@ -13,7 +13,11 @@ namespace My_PSIP_project
         public Boolean filtruj_in(RawCapture rawPacket, string pt)
         {
             //get packet --then i should look at it 
-            
+            if (ST_class.filtre == null)
+            {
+                return false;
+            }
+
             var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
             var ippa = rawPacket.LinkLayerType;
             string[] AllINeed = ip_add(packet, rawPacket);
@@ -45,8 +49,7 @@ namespace My_PSIP_project
                                             {
                                                 if (element.port_to == AllINeed[3] || element.protocol == "null") //port destnination
                                                 {
-                                                    //TODO: check ip 
-                                                    //TODO: check port
+      
                                                     if (element.YesNo == "deny")//mozem packet poslat 
                                                     {
                                                         return true;
@@ -73,11 +76,6 @@ namespace My_PSIP_project
             return false;
         }
 
-        //IpV4Datagram ip = packet.Ethernet.IpV4;
-        //UdpDatagram udp = ip.Udp;
-
-        // print ip addresses and udp ports
-        //Console.WriteLine(ip.Source + ":" + udp.SourcePort+ " -> " + ip.Destination + ":" + udp.DestinationPort);
 
         private string[] ip_add(PacketDotNet.Packet tempPacket, RawCapture rawPacket)
         {

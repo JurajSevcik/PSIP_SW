@@ -31,15 +31,18 @@ namespace My_PSIP_project
  
         public Boolean GiveMeMyPacket( SharpPcap.RawCapture rawPacket, char port )//get source mac and port 
         {
-            //port = 'A'; //TODO: prepisat na parameter 
+            
             string MyMac = "...because c#,  thats why !!!";
             List<string> MacDev = new List<String> { "005079666800", "005079666801", "005079666802" };
+
 
             if (rawPacket.LinkLayerType == PacketDotNet.LinkLayers.Ethernet)  //it should be always thrue
             {
                 var packet = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);
                 var ethernetPacket = (EthernetPacket)packet;
                 MyMac =  (ethernetPacket.SourceHardwareAddress).ToString();
+                //this part of code was important for testing I used it to check if it's from device in my network 
+                /*
                 if (MacDev[0] == MyMac || MacDev[1] == MyMac || MacDev[2] == MyMac) //I know this mac ...go ahead
                 {
 
@@ -47,7 +50,7 @@ namespace My_PSIP_project
                 else   //nope 
                 {
                     return false;
-                }
+                }*/
 
             }
             else
@@ -67,28 +70,6 @@ namespace My_PSIP_project
             return true;
         }
 
- 
-
-        //TODO: remove this usseles something
-        private void AddToTable(List<MacZaznam> table, string mac, char port)  //check if mac exist in tabel and if so on what port, if not add to table.
-        {
-            int i = 0;
-
-            while(table[i].mac_addres != "empty")
-            {
-                i++;
-            }
-            table[i].mac_addres = mac;
-            //[i].timer.Start();
-            //table[i].destination = "ja neviem uz";
-            table[i].M_interface = port;
-        }
-
-
-        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            //Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}", e.SignalTime);
-        }
 
         //TODO: add cheange array to dynamic 
         //TODO: add time to table (cheangable)
@@ -96,7 +77,6 @@ namespace My_PSIP_project
         private bool Is_ther( string mac, char port) //chack if the address is known 
         {
             //time_classcs Tm = new time_classcs();
-            //TODO: check the logic .... i am not shure about that ...!
             foreach(MacZaznam zanznem in ST_class.table)
                 if(zanznem.mac_addres == mac ) //našiels som mac 
                 {
@@ -111,7 +91,6 @@ namespace My_PSIP_project
                         zanznem.M_interface = port;
                         string var = "MAC addres"+ mac.ToString() +  " moved to port : " + port.ToString() + " ";
                         syslog.CreateSyslog(var, 2, "table_class/RM_CB");
-                        //TODO: remove all on interface
                         //Console.WriteLine("There seem to be some misschief going on ( I know mac but ther was wrong port )");
                         return false;
                     }
@@ -138,7 +117,6 @@ namespace My_PSIP_project
             {
                 return true;
             }
-
             return !list.Any();
         }
 
@@ -160,7 +138,6 @@ namespace My_PSIP_project
             {
                 if(zaznam.mac_addres == mac )
                 {
-                    //Console.WriteLine("From {0}, Going to: {1}, (table_class/WhereDoIGO/foreach)",mac,  zaznam.M_interface);
                     return zaznam.M_interface;
                 }
             }

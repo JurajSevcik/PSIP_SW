@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace My_PSIP_project
 {
-    internal class time_classcs
+    internal class time_classcs  //class for checking thing i need to control in time loop
     {
         private System.Windows.Forms.Timer timer1;
         private int counter = 5; // time on timer 
@@ -17,16 +17,14 @@ namespace My_PSIP_project
             timer1.Interval = 1000; // 1 sekunda 
             timer1.Start();
            
-           
-            //Console.WriteLine(counter.ToString());
         }
 
-        public void timer1_Tick(object sender, EventArgs e)
+        public void timer1_Tick(object sender, EventArgs e)  
         {
             counter--;
             if (counter == 0)
                 timer1.Stop();
-            //Console.WriteLine(counter.ToString());
+           
         }
     }
 }

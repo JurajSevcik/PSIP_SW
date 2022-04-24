@@ -125,22 +125,14 @@ namespace My_PSIP_project
             string var = "Switch was turnd ON";
             syslog.CreateSyslog(var, 1, "Form1/bitton2_Click");
             int i = 0;
-            foreach (var dev in devices)
-            {
-                textBox1.AppendText(i +  dev.Description);
-                textBox1.AppendText("\n");
-                i++;
-            }
+            
             
             //dataGridView1.DataSource = ST_class.table.ToList();
             //dataGridView1.DataBi
             //L.capture();
         }
 
-        private void button4_Click(object sender, EventArgs e) //clear -- vycisty textBox
-        {
-            textBox1.Clear();
-        }
+
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -150,7 +142,7 @@ namespace My_PSIP_project
 
         public void UpdateTextBox_1(string text)
         {
-            textBox1.Text = L.TextToDisplay;
+            //textBox1.Text = L.TextToDisplay;
  
         }
 
@@ -163,28 +155,15 @@ namespace My_PSIP_project
             }
             else
             {
-                textBox1.AppendText(Text);
+                //textBox1.AppendText(Text);
                 MessageBox.Show("invoke not required");
             }
-            //textBox1.Text = L.TextToDisplay;
-            textBox1.AppendText(Text); // TODO: add BackgroundWorker 
-            textBox1.Text += Text;
+
             //textBox2_TextChanged();
         }
 
-        private void BlaBla(string Text)
-        {
-            textBox2.AppendText(Text);
-        }
 
-        private void button3_Click(object sender, EventArgs e) //read  from capture file 
-        {
-            syslog syslog = new syslog();
-            L.ControlWrite();
-            string var = "My power is unlimited";
-            syslog.CreateSyslog(var, 2, "form/button_click/control_form");
-            
-        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -201,20 +180,13 @@ namespace My_PSIP_project
 
         }
 
-        public void label1_update(string Text)
-        {
-            this.label1.Text += Text;
-        }
+
 
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            
-        }
 
         public void update_text_stat()
         {
@@ -468,11 +440,24 @@ namespace My_PSIP_project
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                int fil = dataGridView2.SelectedRows[0].Index;
+                ST_class.filtre.RemoveAt(fil);
+                dataGridView2.Invoke(new Action(() => dataGridView2.DataSource = ST_class.filtre.ToList()));
+                dataGridView2.Update();
+                dataGridView2.Refresh();
+            }
+            catch (Exception)
+            {
+            }
+            
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
+            string tmp_A = ST_class.switch_ip;
+            string tmp_B = ST_class.switch_ip;
             string var = "Syslog server IP cheanged ";
             try
             {
@@ -484,6 +469,8 @@ namespace My_PSIP_project
             }
             catch (Exception)
             {
+                ST_class.switch_ip = tmp_A;
+                ST_class.syslog_ip= tmp_B;
                 MessageBox.Show("You did not file those boxes!\n Plese fix your mistake!", "Error --", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -494,6 +481,11 @@ namespace My_PSIP_project
         }
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

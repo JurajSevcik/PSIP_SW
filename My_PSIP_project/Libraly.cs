@@ -11,9 +11,6 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Timers;
 //using System.Timers;
-//TODO: kontrola ci sa packet este neodoslal -- hashocvanica tabulka :::ň
-//TODO: presuńut vystup do okna ... možno skusiť ja pop-up
-
 
 namespace My_PSIP_project
 {
@@ -75,7 +72,7 @@ namespace My_PSIP_project
         {
             var devices = LibPcapLiveDeviceList.Instance; //list of all devices 
             device_b = devices[b];
-            //Console.WriteLine(device_b.ToString());
+            
         }
         
         public static void tim()  //timer to chceck age of mac table content ....
@@ -163,11 +160,15 @@ namespace My_PSIP_project
 
         public void Stop()  //Stop devices   //TODO:add exaption catcher ...if devices are offline 
         {
-            string var = "Switch was rurnd off ";
-            syslog.CreateSyslog(var, 2, "Libraly/Stop");
-            F.UpdateTextBox_1("Stop");
-            device_a.StopCapture();
-            device_b.StopCapture();
+            try
+            {
+                string var = "Switch was rurnd off ";
+                syslog.CreateSyslog(var, 2, "Libraly/Stop");
+                F.UpdateTextBox_1("Stop");
+                device_a.StopCapture();
+                device_b.StopCapture();
+            }
+            catch (Exception) { }    
 
         }
 
@@ -176,9 +177,6 @@ namespace My_PSIP_project
 
         private void GottaCatchEmAll(object sender, PacketCapture e)
         {
-            //syslog syslog = new syslog();// TODO : remove after testig
-            //string var = "toto je moj testvaci vypis";
-            //device_a.SendPacket(syslog.CreateSyslog(var, 2, "Libraly/GottaCatchEmAll"));
 
             var rawPacket = e.GetPacket();         //zachytenie packetu
             if (sender == device_a)
@@ -212,16 +210,19 @@ namespace My_PSIP_project
 
             //filtrovanie packetov len na tiek ktore ma zaujimaju 
             var ethernetPacket = (EthernetPacket)packet;
+
+            //This is a list of mac addreses of devices i hade in my network .... those are only alloved 
             List<string> MacDev = new List<String> { "005079666800", "005079666801", "005079666802" };
+            
             string MyMac = (ethernetPacket.SourceHardwareAddress).ToString();
-            if (MacDev[0] == MyMac || MacDev[1] == MyMac || MacDev[2] == MyMac)
+            /*if (MacDev[0] == MyMac || MacDev[1] == MyMac || MacDev[2] == MyMac)  //checking if it's device from my web
             {
 
             }
             else
             {
                 return;
-            }
+            }*/
 
             string t = ethernetPacket.PrintHex().ToString();
             ST_class.watch.Add(t); //cheack if it isnt same packet
@@ -309,22 +310,11 @@ namespace My_PSIP_project
 
             if (rawPacket.LinkLayerType == PacketDotNet.LinkLayers.Ethernet)
             {
-                /*Console.WriteLine("{0} At: {1}:{2}: MAC:{3} -> MAC:{4}",
-                                  packetIndex,
-                                  rawPacket.Timeval.Date.ToString(),
-                                  rawPacket.Timeval.Date.Millisecond,
-                                  ethernetPacket.SourceHardwareAddress,
-                                  ethernetPacket.DestinationHardwareAddress);*/
+               
                 packetIndex++;
                 S.send(device_a, device_b, rawPacket, 'B');
             }
-            //device_a.Close();
 
-            //var ethernetPacket = (EthernetPacket)packet;
-            //var tcp = packet.PayloadPacket.PayloadPacket.PayloadData;
-            //var type = ethernetPacket.Type;
-
-            //Console.WriteLine("Toto je moj typ pre B : " + tcp);
             var pppc = packet.ToString();
 
             var tempPacket = PacketDotNet.Packet.ParsePacket(rawPacket.LinkLayerType, rawPacket.Data);

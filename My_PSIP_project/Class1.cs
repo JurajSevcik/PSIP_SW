@@ -20,8 +20,16 @@ namespace My_PSIP_project
             //I have no idea if it should be a sepret conection or it is somewhere on the edge of something else ...
             //if you know more than me please do it (message for my future self ...smille )
             // And remember: "Perpose of life is to die young as late as possible "
-            Libraly.device_a.SendPacket(ethernet); // send packet all ways
-            Libraly.device_b.SendPacket(ethernet);
+            try
+            {
+                Libraly.device_a.SendPacket(ethernet); // send packet all ways
+                Libraly.device_b.SendPacket(ethernet);
+            }
+            catch (Exception)
+            {
+
+            }
+            
         }
 
 

@@ -45,9 +45,7 @@ namespace My_PSIP_project
             udp.PayloadData = mess;
             ipv4.PayloadPacket = udp;
             PacketSender S = new PacketSender();
-            S.SendSyslog(ethernet); //send packert 
-            //Libraly.device_a.SendPacket(ethernet); // send packet all ways
-            //Libraly.device_b.SendPacket(ethernet);
+            S.SendSyslog(ethernet); //send 
             System.Console.WriteLine(ethernet);
             
             return ethernet;
