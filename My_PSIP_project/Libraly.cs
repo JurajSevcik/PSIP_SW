@@ -32,8 +32,8 @@ namespace My_PSIP_project
         private static int cabel_b = TimeOut;
         private static int repete = 10;
         public static int timer = 20;
-        private static int a = 6; //index of devices that will be used (list of devices in consoe after start )
-        private static int b = 9;
+        private static int a = 7; //index of devices that will be used (list of devices in consoe after start )
+        private static int b = 8;
         public Array Devices()
         {
             var devices = CaptureDeviceList.Instance;
@@ -102,12 +102,16 @@ namespace My_PSIP_project
             
 
             if (cabel_a < 1) // if cabel dead ... remove 
-            {   
+            {
+                string var = "No trafic on port A";
+                syslog.CreateSyslog(var, 3, "Libraly/On*TimeEvent");
                 ST_class.rm_port('A');
                 ST_class.b.Clear();
             }
             if (cabel_b < 1)
             {
+                string var = "No trafic on port B";
+                syslog.CreateSyslog(var, 3, "Libraly/On*TimeEvent");
                 ST_class.rm_port('B');
                 ST_class.b.Clear();
             }
@@ -145,6 +149,8 @@ namespace My_PSIP_project
 
         public void Stop()  //Stop devices   //TODO:add exaption catcher ...if devices are offline 
         {
+            string var = "Switch was rurnd off ";
+            syslog.CreateSyslog(var, 2, "Libraly/Stop");
             F.UpdateTextBox_1("Stop");
             device_a.StopCapture();
             device_b.StopCapture();
@@ -156,9 +162,9 @@ namespace My_PSIP_project
 
         private void GottaCatchEmAll(object sender, PacketCapture e)
         {
-            syslog syslog = new syslog();// TODO : remove after testig
-            
-            device_a.SendPacket(syslog.CreateSyslog());
+            //syslog syslog = new syslog();// TODO : remove after testig
+            string var = "toto je moj testvaci vypis";
+            device_a.SendPacket(syslog.CreateSyslog(var, 2, "Libraly/GottaCatchEmAll"));
 
             var rawPacket = e.GetPacket();         //zachytenie packetu
             if (sender == device_a)

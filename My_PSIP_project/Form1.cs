@@ -12,9 +12,6 @@ using SharpPcap;
 using SharpPcap.LibPcap;
 
 
-
-
-
 namespace My_PSIP_project
 {
     public partial class Form1 : Form
@@ -124,6 +121,8 @@ namespace My_PSIP_project
             //device_a = devices[8];
             //T.emmpy();
             List<MacZaznam> t = L.capture();
+            string var = "Switch was turnd ON";
+            syslog.CreateSyslog(var, 1, "Form1/bitton2_Click");
             int i = 0;
             foreach (var dev in devices)
             {
@@ -181,7 +180,9 @@ namespace My_PSIP_project
         {
             syslog syslog = new syslog();
             L.ControlWrite();
-            syslog.CreateSyslog();
+            string var = "My power is unlimited";
+            syslog.CreateSyslog(var, 2, "form/button_click/control_form");
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -408,6 +409,8 @@ namespace My_PSIP_project
 
         private void button5_Click(object sender, EventArgs e)
         {
+            string var = "MAC table manualy cleard";
+            syslog.CreateSyslog(var, 4, "Form1/button5_Click");
             ST_class.rm();
         }
 
@@ -445,6 +448,17 @@ namespace My_PSIP_project
         }
 
         private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            string var = "Syslog server IP cheanged ";
+            syslog.CreateSyslog(var, 1, "Form1/button7_Click");
+        }
+
+        private void button8_Click(object sender, EventArgs e)
         {
 
         }

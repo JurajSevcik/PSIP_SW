@@ -14,9 +14,18 @@ namespace My_PSIP_project
 {
     internal class syslog
     {
-        public EthernetPacket CreateSyslog()
+        public static String GetTimestamp(DateTime value)
         {
-            var sevenItems = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 }; 
+            return value.ToString("yyyy:MM:ddTHH:mm:ss:ffff");
+        }
+        public static EthernetPacket CreateSyslog(string var, int level , string app)
+        {
+            
+            //syslog.CreateSyslog(var, 2, "Libraly/On*TimeEvent");
+            String timeStamp = GetTimestamp(DateTime.Now);
+            string message = "<" + level + ">2 " + timeStamp + " MyAsomeSwitch " + app + " 111 " + "message ID" + " - BOM " + var; 
+            byte[] sevenItems = Encoding.ASCII.GetBytes(message);
+           
             //construct ethernet packet
             var ethernet = new EthernetPacket(PhysicalAddress.Parse("112233445566"), PhysicalAddress.Parse("665544332211"), EthernetType.IPv4);
             //construct local IPV4 packet

@@ -102,7 +102,6 @@ namespace My_PSIP_project
                 {
                     if(zanznem.M_interface == port) // it shouls 
                     {
-                        zanznem.timer = 15; // reset timer when get new packet from same source 
                         return true;
                     }
                     else  //mam rozdoelny port .....it's aproblem babe ..
@@ -110,6 +109,8 @@ namespace My_PSIP_project
                         RM_CB(port);
                         zanznem.mac_addres = mac;
                         zanznem.M_interface = port;
+                        string var = "MAC addres"+ mac.ToString() +  " moved to port : " + port.ToString() + " ";
+                        syslog.CreateSyslog(var, 2, "table_class/RM_CB");
                         //TODO: remove all on interface
                         //Console.WriteLine("There seem to be some misschief going on ( I know mac but ther was wrong port )");
                         return false;
@@ -122,6 +123,7 @@ namespace My_PSIP_project
 
         private void RM_CB(char port)// someone removed my cable .... no touchy !
         {
+            
             //Console.WriteLine("Mazem vsetko");
             for (int i = ST_class.table.Count - 1; i >= 0; i--)
             {
@@ -150,6 +152,8 @@ namespace My_PSIP_project
             bool isEmpty = IsEmpty(ST_class.table);
             if(isEmpty)
             {
+                string var = "Unknown MAC arres: " + mac.ToString() + " "; 
+                syslog.CreateSyslog(var, 4, "table_class/WhereDoIGo");
                 return 'X';
             }
             foreach(MacZaznam zaznam in ST_class.table)

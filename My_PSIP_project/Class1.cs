@@ -119,7 +119,11 @@ namespace My_PSIP_project
 
                 //Console.WriteLine("you did it ? (class1/go)");
             }
-            catch (Exception) { Console.WriteLine("-- error"); }
+            catch (Exception) {
+                string var = "unable to send packet !!!!!!";
+                Console.WriteLine("-- error"); 
+                syslog.CreateSyslog(var, 0, "Class1/go");
+            }
             //gate.Close();
         }
     }
