@@ -76,6 +76,7 @@ namespace My_PSIP_project
             }            
         }
 
+        //_________________________________________ Statisticks
         public static int packetIndex_in_A = 0;
         public static int EthernetII_in_A = 0;
         public static int ARP_in_A = 0;
@@ -111,5 +112,10 @@ namespace My_PSIP_project
         public static int ICMP_out_B = 0;
         public static int HTTP_out_B = 0;
         public static int HTTPS_out_B = 0;
+
+        //_______________________________________    syslog 
+        public static string switch_ip = "111222111222";
+        public static string syslog_ip = "222111222111";
+
     }
 }

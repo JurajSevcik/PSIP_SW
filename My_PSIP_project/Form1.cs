@@ -455,7 +455,18 @@ namespace My_PSIP_project
         private void button7_Click(object sender, EventArgs e)
         {
             string var = "Syslog server IP cheanged ";
-            syslog.CreateSyslog(var, 1, "Form1/button7_Click");
+            try
+            {
+                ST_class.switch_ip = textBox9.Text;
+                ST_class.switch_ip.Replace(".","");
+                ST_class.syslog_ip = textBox10.Text;
+                ST_class.syslog_ip.Replace(".", "");
+                syslog.CreateSyslog(var, 1, "Form1/button7_Click");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You did not file those boxes!\n Plese fix your mistake!", "Error --", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)

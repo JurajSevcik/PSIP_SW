@@ -20,8 +20,8 @@ namespace My_PSIP_project
     internal class Libraly
     {
         public string TextToDisplay;
-        protected LibPcapLiveDevice device_a;  //loopback devices ....
-        protected LibPcapLiveDevice device_b;
+        static public LibPcapLiveDevice device_a;  //loopback devices ....
+        static public LibPcapLiveDevice device_b;
         static Form1 F = new Form1();
         table_class T = new table_class();
         time_classcs TM = new time_classcs();
@@ -163,8 +163,8 @@ namespace My_PSIP_project
         private void GottaCatchEmAll(object sender, PacketCapture e)
         {
             //syslog syslog = new syslog();// TODO : remove after testig
-            string var = "toto je moj testvaci vypis";
-            device_a.SendPacket(syslog.CreateSyslog(var, 2, "Libraly/GottaCatchEmAll"));
+            //string var = "toto je moj testvaci vypis";
+            //device_a.SendPacket(syslog.CreateSyslog(var, 2, "Libraly/GottaCatchEmAll"));
 
             var rawPacket = e.GetPacket();         //zachytenie packetu
             if (sender == device_a)

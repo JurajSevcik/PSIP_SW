@@ -13,6 +13,18 @@ namespace My_PSIP_project
     {
         table_class T = new table_class();
         
+        public void SendSyslog(PacketDotNet.EthernetPacket ethernet) 
+        {
+            //If you know where to send this feel free to chose only one device or add annother 
+            //I had a little byt of problem with my GNS topology and I wasnt able to add ther a syslog server so 
+            //I have no idea if it should be a sepret conection or it is somewhere on the edge of something else ...
+            //if you know more than me please do it (message for my future self ...smille )
+            // And remember: "Perpose of life is to die young as late as possible "
+            Libraly.device_a.SendPacket(ethernet); // send packet all ways
+            Libraly.device_b.SendPacket(ethernet);
+        }
+
+
         public void send(LibPcapLiveDevice device_a, LibPcapLiveDevice device_b, SharpPcap.RawCapture rawPacket, char port)  //get packet and where it come from
         {
             
