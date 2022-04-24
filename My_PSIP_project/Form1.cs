@@ -27,6 +27,7 @@ namespace My_PSIP_project
         public Form1()  
         {
             InitializeComponent();
+
             //backgroundWorker1.WorkerReportsProgress = true;
             //backgroundWorker1.WorkerSupportsCancellation = true;
             //pridelenie textu na statistiky (TODO:dokoncit --pridat B in/out ----nebud lenivé prasa ...smille ) 
@@ -304,21 +305,30 @@ namespace My_PSIP_project
         private void button2_Click_1(object sender, EventArgs e)
         {
             //rull
-            AddFilter Fi = new AddFilter() {};
-            Fi.port = comboBox1.SelectedItem.ToString();
-            Fi.way = comboBox2.SelectedItem.ToString();
-            Fi.YesNo = comboBox3.SelectedItem.ToString();
-            Fi.protocol = comboBox4.SelectedItem.ToString();
-            Fi.ip_from = textBox3.Text;
-            Fi.mac_from = textBox4.Text;
-            Fi.port_from = textBox5.Text;
-            Fi.ip_to = textBox6.Text;
-            Fi.mac_to = textBox7.Text;
-            Fi.port_to = textBox8.Text;
-            ST_class.filtre.Add(Fi);
-            dataGridView2.Invoke(new Action(() => dataGridView2.DataSource = ST_class.filtre.ToList()));
-            dataGridView2.Update();
-            dataGridView2.Refresh();
+            try
+            {
+
+                AddFilter Fi = new AddFilter() { };
+                Fi.port = comboBox1.SelectedItem.ToString();
+                Fi.way = comboBox2.SelectedItem.ToString();
+                Fi.YesNo = comboBox3.SelectedItem.ToString();
+                Fi.protocol = comboBox4.SelectedItem.ToString();
+                Fi.ip_from = textBox3.Text;
+                Fi.mac_from = textBox4.Text;
+                Fi.port_from = textBox5.Text;
+                Fi.ip_to = textBox6.Text;
+                Fi.mac_to = textBox7.Text;
+                Fi.port_to = textBox8.Text;
+                ST_class.filtre.Add(Fi);
+                dataGridView2.Invoke(new Action(() => dataGridView2.DataSource = ST_class.filtre.ToList()));
+                dataGridView2.Update();
+                dataGridView2.Refresh();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("What did you forgot ?!", 
+                    "Error --", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void button4_Click_1(object sender, EventArgs e)
@@ -433,7 +443,16 @@ namespace My_PSIP_project
         private void MacTimerUpdate_Click(object sender, EventArgs e)
         {
             //TODO: tu som skoncit ... napojit timer na cas 
-            var time = timer.Text;
+            try { 
+                ST_class.MyTimerIsTop = int.Parse(timer.Text);
+            }
+            catch {
+                MessageBox.Show("You did not file those boxes!\n " +
+                    "Where is my number !? \nFIX IT !!!", "Error --", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            
             
         }
 
@@ -457,10 +476,10 @@ namespace My_PSIP_project
             string var = "Syslog server IP cheanged ";
             try
             {
-                ST_class.switch_ip = textBox9.Text;
-                ST_class.switch_ip.Replace(".","");
-                ST_class.syslog_ip = textBox10.Text;
-                ST_class.syslog_ip.Replace(".", "");
+                ST_class.switch_ip = textBox9.Text.Replace(".", "");
+                //ST_class.switch_ip.Replace(".","");
+                ST_class.syslog_ip = textBox10.Text.Replace(".", "");
+                //ST_class.syslog_ip.Replace(".", "");
                 syslog.CreateSyslog(var, 1, "Form1/button7_Click");
             }
             catch (Exception)
@@ -470,6 +489,11 @@ namespace My_PSIP_project
         }
 
         private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -114,8 +114,11 @@ namespace My_PSIP_project
         public static int HTTPS_out_B = 0;
 
         //_______________________________________    syslog 
-        public static string switch_ip = "111222111222";
-        public static string syslog_ip = "222111222111";
+        public static string switch_ip = "111222111";
+        public static string syslog_ip = "222111222";
+
+        public static int MyTimerIsTop = 20;
+        //public static var liingua = LibPcapLiveDeviceList.Instance;
 
     }
 }

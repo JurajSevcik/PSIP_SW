@@ -31,7 +31,7 @@ namespace My_PSIP_project
         private static int cabel_a = TimeOut;
         private static int cabel_b = TimeOut;
         private static int repete = 10;
-        public static int timer = 20;
+        public static int timer = ST_class.MyTimerIsTop; //time for mac table to expire
         private static int a = 7; //index of devices that will be used (list of devices in consoe after start )
         private static int b = 8;
         public Array Devices()
@@ -42,6 +42,20 @@ namespace My_PSIP_project
                  array.Append(dev.ToString());
             return array;
         }
+        public static SharpPcap.LibPcap.LibPcapLiveDeviceList ListOfMyDevices = LibPcapLiveDeviceList.Instance;
+        public void MyDevList()
+        {
+            var devices = LibPcapLiveDeviceList.Instance; //list of all devices 
+            int i = 0;
+
+            foreach (var dev in devices)
+            {
+                Console.WriteLine("{0}) {1}", i, dev.Description);
+                i++;
+            }
+        }
+
+
 
         private void ChoseDevice_A()   //TODO: make dinamic 
         {

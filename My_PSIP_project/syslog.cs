@@ -32,8 +32,10 @@ namespace My_PSIP_project
 
             //construct ethernet packet
             string MyMac = GetMacAddress().ToString(); //mac adresa tohoto zariadenia
-            var ethernet = new EthernetPacket(PhysicalAddress.Parse(MyMac), PhysicalAddress.Parse("ffffffffffff"), EthernetType.IPv4);
+            //EthernetPacket(PhysicalAddress.Parse("112233445566"), PhysicalAddress.Parse("665544332211"), EthernetType.IPv4);
+            var ethernet = new EthernetPacket(PhysicalAddress.Parse(MyMac), PhysicalAddress.Parse("665544332211"), EthernetType.IPv4);
             //construct local IPV4 packet
+
             System.Net.IPAddress ip_from = new System.Net.IPAddress(int.Parse(ST_class.switch_ip));  // my ip addres 
             System.Net.IPAddress ip_to = new System.Net.IPAddress(int.Parse(ST_class.syslog_ip));   //syslog server ip addres
             var ipv4 = new IPv4Packet(ip_from, ip_to);  

@@ -447,11 +447,9 @@
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Items.AddRange(new object[] {
             "ARP",
-            "IP",
             "TCP",
             "UDP",
             "ICMP",
-            "HTTP",
             "ALL"});
             this.comboBox4.Location = new System.Drawing.Point(289, 3);
             this.comboBox4.Name = "comboBox4";
@@ -924,7 +922,7 @@
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label13.Location = new System.Drawing.Point(9, 678);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(162, 39);
+            this.label13.Size = new System.Drawing.Size(159, 38);
             this.label13.TabIndex = 93;
             this.label13.Text = "SYSLOG";
             // 
